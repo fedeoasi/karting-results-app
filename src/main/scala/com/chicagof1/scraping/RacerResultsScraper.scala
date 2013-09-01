@@ -1,7 +1,8 @@
 package com.chicagof1.scraping
 
 import com.chicagof1.model.{Race, RacerResult}
-import com.chicagof1.Formatters._
+import com.chicagof1.Formatters.dateFormatter
+import com.chicagof1.Formatters.timeFormatter
 import com.chicagof1.scraping.ScraperHelper._
 import org.jsoup.Jsoup
 import org.joda.time.{LocalTime, LocalDate, Period}

@@ -38,12 +38,14 @@ class ScrapingSpec extends FunSpec with ShouldMatchers {
       val race = raceScraper.extract(regularHtml, url)
       race.date.toString should be("2013-01-23")
       race.time.toString should be("09:18:00.000")
+      ResultsExporter.writeCsv(race, "output")
     }
 
     it("should extract a race from a forwarded email") {
       val race = raceScraper.extract(forwardedHtml, url)
       race.date.toString should be("2013-01-23")
       race.time.toString should be("09:08:00.000")
+      ResultsExporter.writeCsv(race, "output")
     }
   }
 }
