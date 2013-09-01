@@ -23,7 +23,7 @@ class EmailSpec extends FunSpec with ShouldMatchers {
       val message = parser.parseEmail(testResourcesDir + "melrose-email.txt")
 
       val html: String = parser.getFirstBodyPartContentAsString(message)
-      html should include("html")
+      html should include("32.893")
       Jsoup.parse(html)
       SpecUtils.writeStringIntoFile(html, "melrose.html")
     }
@@ -33,7 +33,7 @@ class EmailSpec extends FunSpec with ShouldMatchers {
 
       val html: String = parser.getFirstHtmlBodyPartContentAsString(message)
       SpecUtils.writeStringIntoFile(html, "melrose-forwarded.html")
-      html should include("html")
+      html should include("32.893")
       Jsoup.parse(html)
     }
   }
