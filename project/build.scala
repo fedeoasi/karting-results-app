@@ -19,7 +19,9 @@ object KartingApplicationBuild extends Build {
       libraryDependencies ++= Seq(
         "org.scalatest" % "scalatest_2.10" % "1.9.1" % "test",
         "ch.qos.logback" % "logback-classic" % "1.0.6" % "runtime",
-        "javax.mail" % "mail" % "1.4.1"
+        "javax.mail" % "mail" % "1.4.1",
+        "org.jsoup" % "jsoup" % "1.7.2",
+        "org.apache.commons" % "commons-io" % "1.3.2"
       )
     )
   )
