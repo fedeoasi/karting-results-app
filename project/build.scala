@@ -18,7 +18,8 @@ object KartingApplicationBuild extends Build {
       resolvers += Classpaths.typesafeReleases,
       libraryDependencies ++= Seq(
         "org.scalatest" % "scalatest_2.10" % "1.9.1" % "test",
-        "ch.qos.logback" % "logback-classic" % "1.0.6" % "runtime"
+        "ch.qos.logback" % "logback-classic" % "1.0.6" % "runtime",
+        "javax.mail" % "mail" % "1.4.1"
       )
     )
   )
