@@ -4,6 +4,14 @@ import javax.mail._
 import com.chicagof1.parsing.EmailParser
 import com.chicagof1.scraping.RaceScraper
 import com.chicagof1.ResultsExporter
+import com.chicagof1.model.{RacerResult, Edition}
+import org.joda.time.{Duration, LocalDate}
+
+object Joda {
+  implicit def dateTimeOrdering: Ordering[Duration] = Ordering.fromLessThan(_ isShorterThan  _)
+}
+
+import Joda._
 
 object ImapRaceExtractor {
   def main(args: Array[String]) {
@@ -36,11 +44,32 @@ object ImapRaceExtractor {
             subject.contains("Race Result")
         })
       println(s"There are ${filteredMessages.size} emails to be processed")
-      for (message <- filteredMessages) {
-        val content = emailParser.getFirstHtmlBodyPartContentAsString(message)
-        val race = raceScraper.extract(content, "http://anything")
-        ResultsExporter.writeCsv(race, "output")
+
+      val races = filteredMessages.map {
+        message => {
+          val content = emailParser.getFirstHtmlBodyPartContentAsString(message)
+          val race = raceScraper.extract(content, "http://anything")
+          ResultsExporter.writeCsv(race, "output")
+          race
+        }
       }
+
+      val editions: Seq[Edition] = races.groupBy(_.date).map {
+        case (date, races) => {
+          val bestResultByName: Seq[RacerResult] = races
+            .flatMap(_.results)
+            .groupBy(_.name)
+            .map {
+            case (name, results) => results.minBy(_.time)
+          }.toSeq
+          (date, bestResultByName)
+        }
+      }.map {
+        case (date, results) => Edition(date, results.sortBy(_.time))
+      }.toSeq
+
+      editions.foreach(e => ResultsExporter.writeCsv(e, "output/edition"))
+
       inbox.close(true)
     } catch {
       case e: NoSuchProviderException => e.printStackTrace()

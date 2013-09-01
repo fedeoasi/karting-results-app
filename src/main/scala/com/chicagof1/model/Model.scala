@@ -6,3 +6,4 @@ case class RacerResult(name: String, position: Int, time: Duration)
 
 case class Race(date: LocalDate, time: LocalTime, results: Seq[RacerResult])
 
+case class Edition(date: LocalDate, results: Seq[RacerResult])
