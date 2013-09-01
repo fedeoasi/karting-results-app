@@ -1,8 +1,9 @@
-dirtylarry,1,29:30
-meesa,2,30:332
-David Quednau,3,30:503
-Justin,4,30:587
-Federico,5,30:624
-Andrius,6,30:900
-Nate,7,32:140
-RacerX,8,32:318
+Racer,Position,Kart #,Time
+dirtylarry,1,10,29:30
+meesa,2,8,30:332
+David Quednau,3,9,30:503
+Justin,4,14,30:587
+Federico,5,12,30:624
+Andrius,6,1,30:900
+Nate,7,11,32:140
+RacerX,8,22,32:318

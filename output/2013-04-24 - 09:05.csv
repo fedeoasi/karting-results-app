@@ -1,11 +1,12 @@
-Mark-Tami,1,31:30
-meesa,2,31:931
-Federico,3,32:4
-Justin,4,32:113
-Andrius,5,32:167
-KEN,6,32:476
-David Quednau,7,33:732
-Happy Monkey,8,33:864
-fan-of-f1,9,33:916
-STRIKER,10,34:78
-TECHNO-D,11,34:105
+Racer,Position,Kart #,Time
+Mark-Tami,1,13,31:30
+meesa,2,11,31:931
+Federico,3,8,32:4
+Justin,4,21,32:113
+Andrius,5,10,32:167
+KEN,6,7,32:476
+David Quednau,7,18,33:732
+Happy Monkey,8,15,33:864
+fan-of-f1,9,20,33:916
+STRIKER,10,16,34:78
+TECHNO-D,11,2,34:105

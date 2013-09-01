@@ -1,12 +1,13 @@
-David Quednau,1,31:735
-meesa,2,32:124
-Justin,3,32:214
-Federico,4,32:292
-Marek,5,32:316
-STRIKER,6,32:645
-Cool Guy,7,32:960
-Dan Rowley,8,33:21
-mack,9,33:782
-CaptainFranz,10,34:95
-Monsieur Prost,11,34:448
-Lisa Brown,12,36:843
+Racer,Position,Kart #,Time
+David Quednau,1,11,31:735
+meesa,2,16,32:124
+Justin,3,10,32:214
+Federico,4,17,32:292
+Marek,5,1,32:316
+STRIKER,6,4,32:645
+Cool Guy,7,8,32:960
+Dan Rowley,8,9,33:21
+mack,9,13,33:782
+CaptainFranz,10,18,34:95
+Monsieur Prost,11,12,34:448
+Lisa Brown,12,22,36:843

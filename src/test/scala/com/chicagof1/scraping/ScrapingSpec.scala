@@ -20,15 +20,15 @@ class ScrapingSpec extends FunSpec with ShouldMatchers {
     it("should extract results from a regular email") {
       val results: Seq[RacerResult] = resultsScraper.extract(regularHtml, url)
       results.size should be(12)
-      results(0) should be(RacerResult("Justin", 1, Period.seconds(32).plusMillis(889).toStandardDuration))
-      results(11) should be(RacerResult("JakeTracy", 12, Period.seconds(37).plusMillis(378).toStandardDuration))
+      results(0) should be(RacerResult("Justin", 1, 21, Period.seconds(32).plusMillis(889).toStandardDuration))
+      results(11) should be(RacerResult("JakeTracy", 12, 6, Period.seconds(37).plusMillis(378).toStandardDuration))
     }
 
     it("should extract results from a forwarded email") {
       val results: Seq[RacerResult] = resultsScraper.extract(forwardedHtml, url)
       results.size should be(12)
-      results(0) should be(RacerResult("Justin", 1, Period.seconds(32).plusMillis(605).toStandardDuration))
-      results(11) should be(RacerResult("SuperMario", 12, Period.seconds(37).plusMillis(957).toStandardDuration))
+      results(0) should be(RacerResult("Justin", 1, 21, Period.seconds(32).plusMillis(605).toStandardDuration))
+      results(11) should be(RacerResult("SuperMario", 12, 13, Period.seconds(37).plusMillis(957).toStandardDuration))
       ResultsExporter.writeCsv("results.csv", results)
     }
   }

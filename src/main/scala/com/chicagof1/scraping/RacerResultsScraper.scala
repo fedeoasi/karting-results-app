@@ -16,7 +16,7 @@ class RacerResultsScraper extends Scraper[Seq[RacerResult]] {
         val ch = el.children
         val timeSplit = ch.get(4).text.split("\\.")
         val time = Period.seconds(timeSplit(0).toInt).plusMillis(timeSplit(1).toInt).toStandardDuration
-        RacerResult(ch.get(3).text, ch.get(0).text.toInt, time)
+        RacerResult(ch.get(3).text, ch.get(0).text.toInt, ch.get(2).text.toInt, time)
       }
     }
   }

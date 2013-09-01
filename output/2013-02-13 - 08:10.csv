@@ -1,12 +1,13 @@
-Chris_B,1,30:852
-David Quednau,2,31:725
-NISMO,3,31:954
-Justin,4,32:252
-Federico,5,32:434
-meesa,6,32:439
-Dan Rowley,7,32:476
-Cool Guy,8,32:853
-Marek,9,33:295
-CaptainFranz,10,35:284
-Monsieur Prost,11,35:394
-STRIKER,12,35:413
+Racer,Position,Kart #,Time
+Chris_B,1,13,30:852
+David Quednau,2,11,31:725
+NISMO,3,22,31:954
+Justin,4,10,32:252
+Federico,5,17,32:434
+meesa,6,16,32:439
+Dan Rowley,7,9,32:476
+Cool Guy,8,8,32:853
+Marek,9,1,33:295
+CaptainFranz,10,18,35:284
+Monsieur Prost,11,12,35:394
+STRIKER,12,4,35:413
