@@ -10,7 +10,8 @@ object ResultsExporter {
     val f = new File(fileLocation  + ".csv")
     val writer = CSVWriter.open(f)
     writer.writeRow(Seq("Racer", "Position", "Time"))
-    writer.writeAll(results.map(r => Seq(r.name, r.position, r.time.getStandardSeconds + ":" + r.time.getMillis % 1000)))
+    writer.writeAll(results.map(r => Seq(r.name, r.position, r.time.getStandardSeconds +
+      ":" + "%03d".format(r.time.getMillis % 1000))))
   }
 
   def writeCsv(race: Race, baseFolder: String) {
@@ -18,7 +19,7 @@ object ResultsExporter {
     val f = new File(baseFolder + File.separator + fileName + ".csv")
     val writer = CSVWriter.open(f)
     writer.writeRow(Seq("Racer", "Position", "Kart #", "Time"))
-    writer.writeAll(race.results.map(r => Seq(r.name, r.position, r.kart, r.time.getStandardSeconds + ":" + r.time.getMillis % 1000)))
+    writer.writeAll(race.results.map(r => Seq(r.name, r.position, r.kart, r.time.getStandardSeconds + ":%03d".format(r.time.getMillis % 1000))))
   }
 
   def writeCsv(race: Edition, baseFolder: String) {
@@ -26,6 +27,6 @@ object ResultsExporter {
     val f = new File(baseFolder + File.separator + fileName + ".csv")
     val writer = CSVWriter.open(f)
     writer.writeRow(Seq("Racer", "Kart #", "Time"))
-    writer.writeAll(race.results.map(r => Seq(r.name, r.kart, r.time.getStandardSeconds + ":" + r.time.getMillis % 1000)))
+    writer.writeAll(race.results.map(r => Seq(r.name, r.kart, r.time.getStandardSeconds + ":%03d".format(r.time.getMillis % 1000))))
   }
 }
