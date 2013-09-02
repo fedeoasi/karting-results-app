@@ -38,5 +38,5 @@ To run the main application you'll need first to set the following environment v
 Now you're ready to run the app:
 ```sh
 $ ./sbt
-> test
+> run
 ```
