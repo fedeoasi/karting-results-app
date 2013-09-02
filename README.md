@@ -9,7 +9,7 @@ to a specific email address, which the application will be able to process.
 As of now, the email address for this purpose is `tomscript13@gmail.com`.
 
 If you're interested in seeing the results, you can go directly
-[here](https://github.com/fedeoasi/karting-results-app/tree/master/output) and
+[here](https://github.com/fedeoasi/karting-results-app/tree/master/output), and
 [here](https://github.com/fedeoasi/karting-results-app/tree/master/output/edition)
 for the aggregated results.
 
@@ -30,7 +30,9 @@ $ ./sbt
 ```
 
 To run the main application you'll need first to set the following environment variables:
+
 `KRA_EMAIL`: email address (for now tomscript13@gmail.com)
+
 `KRA_PWD`: the above email's password
 
 Now you're ready to run the app:
