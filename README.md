@@ -8,7 +8,10 @@ At least a racer per split will be asked to forward the results email he/she rec
 to a specific email address, which the application will be able to process.
 As of now, the email address for this purpose is `tomscript13@gmail.com`.
 
-If you're interested in seeing the results, you can go directly [here]() and [here]() for the aggregated results.
+If you're interested in seeing the results, you can go directly
+[here](https://github.com/fedeoasi/karting-results-app/tree/master/output) and
+[here](https://github.com/fedeoasi/karting-results-app/tree/master/output/edition)
+for the aggregated results.
 
 ## How it works
 
