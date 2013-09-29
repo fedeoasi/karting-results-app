@@ -16,6 +16,7 @@ class ScrapingSpec extends FunSpec with ShouldMatchers {
   lazy val regularHtml = loadFileIntoString(testResourcesDir + "melrose.html")
   lazy val forwardedHtml = loadFileIntoString(testResourcesDir + "melrose-forwarded.html")
   lazy val doubleForwardedHtml = loadFileIntoString(testResourcesDir + "double-forwarded.html")
+  lazy val yahooForwardedHtml = loadFileIntoString(testResourcesDir + "yahoo-forwarded.html")
 
   describe("A Race Results Scraper") {
     it("should extract results from a regular email") {
@@ -38,6 +39,15 @@ class ScrapingSpec extends FunSpec with ShouldMatchers {
       results.size should be(8)
       results(0) should be(RacerResult("JCLARK18TEAMAR...", 1, 10, Period.seconds(29).plusMillis(466).toStandardDuration))
       results(7) should be(RacerResult("Number 1", 8, 17, Period.seconds(39).plusMillis(246).toStandardDuration))
+      ResultsExporter.writeCsv("results.csv", results)
+    }
+
+    it("should extract results from a yahoo forwarded email") {
+      val results: Seq[RacerResult] = resultsScraper.extract(yahooForwardedHtml, url)
+      results.size should be(7)
+      RacerResult("Justin", 1, 14, Period.seconds(30).plusMillis(373).toStandardDuration)
+      results(0) should be(RacerResult("Justin", 1, 14, Period.seconds(30).plusMillis(373).toStandardDuration))
+      results(6) should be(RacerResult("jDaWg",7,12,Period.seconds(38).plusMillis(241).toStandardDuration))
       ResultsExporter.writeCsv("results.csv", results)
     }
   }

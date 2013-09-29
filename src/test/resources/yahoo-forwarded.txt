@@ -1,0 +1,671 @@
+Delivered-To: tomscript13@gmail.com
+Received: by 10.76.4.69 with SMTP id i5csp81090oai;
+        Sun, 1 Sep 2013 17:52:07 -0700 (PDT)
+X-Received: by 10.49.130.162 with SMTP id of2mr25600914qeb.37.1378083127263;
+        Sun, 01 Sep 2013 17:52:07 -0700 (PDT)
+Return-Path: <mjroyster@yahoo.com>
+Received: from nm34-vm8.bullet.mail.bf1.yahoo.com (nm34-vm8.bullet.mail.bf1.yahoo.com. [72.30.239.6])
+        by mx.google.com with ESMTPS id fx10si3778899qeb.103.1969.12.31.16.00.00
+        (version=TLSv1 cipher=RC4-SHA bits=128/128);
+        Sun, 01 Sep 2013 17:52:07 -0700 (PDT)
+Received-SPF: pass (google.com: best guess record for domain of mjroyster@yahoo.com designates 72.30.239.6 as permitted sender) client-ip=72.30.239.6;
+Authentication-Results: mx.google.com;
+       spf=pass (google.com: best guess record for domain of mjroyster@yahoo.com designates 72.30.239.6 as permitted sender) smtp.mail=mjroyster@yahoo.com;
+       dkim=pass header.i=@yahoo.com
+Received: from [98.139.212.149] by nm34.bullet.mail.bf1.yahoo.com with NNFMP; 02 Sep 2013 00:52:06 -0000
+Received: from [98.139.212.214] by tm6.bullet.mail.bf1.yahoo.com with NNFMP; 02 Sep 2013 00:52:06 -0000
+Received: from [127.0.0.1] by omp1023.mail.bf1.yahoo.com with NNFMP; 02 Sep 2013 00:52:06 -0000
+X-Yahoo-Newman-Property: ymail-3
+X-Yahoo-Newman-Id: 548825.31908.bm@omp1023.mail.bf1.yahoo.com
+Received: (qmail 45914 invoked by uid 60001); 2 Sep 2013 00:52:06 -0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=yahoo.com; s=s1024; t=1378083126; bh=e5xCRC3CHiI2cI0AjCjz9YL1Wr2sjRjJw+I0PaH/XzA=; h=X-YMail-OSG:Received:X-Rocket-MIMEInfo:X-Mailer:References:Message-ID:Date:From:Reply-To:Subject:To:In-Reply-To:MIME-Version:Content-Type; b=dRFIeKcu1i4nMAHPhYR33GNaR4GNMKzbNIxO31YJRy1teoAHjnPawm5o5WtPFwz7iPwJ5fnoXqN9O7WMBlMS8tqjm6j//1edJk2ehFqAr/8jIl8qQsg83n9PW2uUTLsnaDi0u3cO0yDS6CJXYuRfwlH+lKQN1m3TQUE5Nx7Ge7w=
+DomainKey-Signature:a=rsa-sha1; q=dns; c=nofws;
+  s=s1024; d=yahoo.com;
+  h=X-YMail-OSG:Received:X-Rocket-MIMEInfo:X-Mailer:References:Message-ID:Date:From:Reply-To:Subject:To:In-Reply-To:MIME-Version:Content-Type;
+  b=jIEXuCKpkHsgDTT9aSudNsCryTapNYm/rxjsOi1YEQbgkyDOJj7+ke6xZtdDRpwNCNcexnl3cPC0eOpBNHZkM4RwoFy6BaW//DfFwAaEu9YIciY/Q/E+4zdih9T9CL3hGdXYa6gBHxIn5pxqJ4dN2tt0UCp3HFf+A9SI4UZElpE=;
+X-YMail-OSG: ._6UNQYVM1mJq4OXsL1CqRC9l5UIOabfssr_NHpUOUBFRTX
+ bYovQTA6FXyz5WX_csEEnNToAKnL7SlsYTNsoHiwPnma2nSyzntvrrbwIH4i
+ Vl3sY_cU0MWrJQ0ibTdEc.Az9gIIY9yarLQuz_wCNW3YhrREfdZdDxfBO7E8
+ k60Vuyenz4hQYoRCT.mxWaPvRX3_93w0z9ZYL2BGdQUes18zoAbDPTaB1LdP
+ tTDdCBCH4CW9FbXwCmyy4JaKFv1KApZmjoWgKqdlBCV9zCOvkDk.aHBkvPlf
+ rTDFtTaEzwgK5x8SXFi1J.FGGFI6ekg20iDxHgBYzKIaREfxDZBzsjwv.erV
+ VKJDb9WOEPUbPUA5i..jB4sHqThzh5etPRmbq0ZZOjn45Cb_lBS40._nIidt
+ 4BvQeTna7LOvpbCF7travL7CbRiRZCaQMqujeINzGsWjrkT3llbk3RbPkZB3
+ k3DG_UkyhXXo8DfozcJFAVF7TnvCoEjN3UJzGd20GeF7JQ22s4gZcR5XGRF.
+ 3XU5SVbigJzt98jkCLRbalBxxng8cqN7rCURtqDvHEXXMYBo55BCHDYA4Gki
+ 5y9WyO7OhDaa2JxO_DL_ehttfaRoAxqbz7p2bIax_nEDoYXVL7uL4qXtRf3A
+ -
+Received: from [216.80.117.4] by web162006.mail.bf1.yahoo.com via HTTP; Sun, 01 Sep 2013 17:52:06 PDT
+X-Rocket-MIMEInfo: 002.001,CgoKLS0tLS0gRm9yd2FyZGVkIE1lc3NhZ2UgLS0tLS0KRnJvbTogIm5vLXJlcGx5QG1wZ3JhbmRwcml4LmNvbSIgPG5vLXJlcGx5QG1wZ3JhbmRwcml4LmNvbT4KVG86IG1qcm95c3RlckB5YWhvby5jb20gClNlbnQ6IFRodXJzZGF5LCBKdWx5IDE4LCAyMDEzIDQ6MDcgQU0KU3ViamVjdDogUmFjZSBSZXN1bHQKIAoKCkNsdWIgU3BlZWQgUmVzdWx0IFNoZWV0ICAKIAogCkp1c3RpbihKdXN0aW4gUm95c3RlcikgMXN0IFBsYWNlICAKQXdhcmQ6wqAgMSB0aW1lKHMpIGJlc3Qgb2YgdGhlIGRheS7CoFIuUC5NLgEwAQEBAQ--
+X-Mailer: YahooMailWebService/0.8.156.576
+References: <MPGP-MELROSEC6HbSzx000004f7@MPGP-Melrose.MPGPMelrose.local>
+Message-ID: <1378083126.45786.YahooMailNeo@web162006.mail.bf1.yahoo.com>
+Date: Sun, 1 Sep 2013 17:52:06 -0700 (PDT)
+From: Marc Royster <mjroyster@yahoo.com>
+Reply-To: Marc Royster <mjroyster@yahoo.com>
+Subject: Fw: Race Result
+To: "tomscript13@gmail.com" <tomscript13@gmail.com>
+In-Reply-To: <MPGP-MELROSEC6HbSzx000004f7@MPGP-Melrose.MPGPMelrose.local>
+MIME-Version: 1.0
+Content-Type: multipart/mixed; boundary="1229592896-1054185688-1378083126=:45786"
+
+--1229592896-1054185688-1378083126=:45786
+Content-Type: multipart/alternative; boundary="1229592896-1913170168-1378083126=:45786"
+
+--1229592896-1913170168-1378083126=:45786
+Content-Type: text/plain; charset=iso-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+=0A=0A=0A----- Forwarded Message -----=0AFrom: "no-reply@mpgrandprix.com" <=
+no-reply@mpgrandprix.com>=0ATo: mjroyster@yahoo.com =0ASent: Thursday, July=
+ 18, 2013 4:07 AM=0ASubject: Race Result=0A =0A=0A=0AClub Speed Result Shee=
+t  =0A =0A =0AJustin(Justin Royster) 1st Place  =0AAward:=A0 1 time(s) best=
+ of the day.=A0R.P.M.=A02114=A0Ranked=A0488 of 81,089 (99.40 %)=0ARacer sin=
+ce: 11/23/12. 10th visit, 29th race. =0ALaptimes=A0 (Mon Race)7/17/2013 9:0=
+5 PMHeat# 80 Position(By Best Lap Time)     =0A01-37.103  02-33.591  03-30.=
+633  04-30.494  05-30.470  06-31.088  07-31.183  =0A08-31.934  09-30.373  1=
+0-30.721  11-31.074  12-30.427  13-31.085    =0AClub Speed Track=0A=0APos =
+=A0 Kart Racer Best Lap #Lap Best Lap Gap R.P.M. =0A1  14 Justin  30.373 13=
+ 30.373 - 2114 (+37)  =0A2  8 meesa  30.426 12 30.426 0.053 2061 (+3)  =0A3=
+  11 Nate  30.524 12 30.524 0.151 1262 (+39)  =0A4  22 THEREAL2CHAINZ  35.1=
+32 10 35.132 4.759 1219 (+19)  =0A5  21 Anthony Ristich  35.406 10 35.406 5=
+.033 1199 (-1)  =0A6  19 BASSHEAD  36.044 10 36.044 5.671 1179 (-21)  =0A7 =
+ 12 jDaWg  38.241 9 38.241 7.868 1159 (-41)   =0A=0A=A0 Top R.P.M. Overall =
+R.P.M. =0A1 bubbles  7472  =0A2 IMHARD8=3D=3DD~  5810  =0A3 Chris_B  5107  =
+=0A4 van eynde  4681  =0A5 Mark-Tami  4535  =0A6 Slick142  4402  =0A7 Slamm=
+ed Steve  4301  =0A8 str8 up whipin it  4071  =0A9 Prze Huj  4013  =0A10 K2=
+9HARVICK  3921  =0A11 Sunshine  3905  =0A12 Han  3850   =0A=0A=A0 Best of T=
+he Week Time =0A1 DEGO  20.444  =0A2 Megan  21.604  =0A3 mama b  25.623  =
+=0A4 Chris_B  28.949  =0A5 dirtylarry  29.030  =0A6 Mariluts  29.050  =0A7 =
+van eynde  29.569  =0A8 TAC  29.647  =0A9 Tom C  30.037  =0A10 michael ocho=
+a  30.089  =0A11 EL JEFE  30.105  =0A12 Anthony  30.127
+--1229592896-1913170168-1378083126=:45786
+Content-Type: text/html; charset=iso-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+<html><body><div style=3D"color:#000; background-color:#fff; font-family:ti=
+mes new roman, new york, times, serif;font-size:12pt"><div><span></span></d=
+iv><div><br></div>  <div style=3D"font-family: 'times new roman', 'new york=
+', times, serif; font-size: 12pt;"> <div style=3D"font-family: 'times new r=
+oman', 'new york', times, serif; font-size: 12pt;"> <div dir=3D"ltr"> -----=
+ Forwarded Message -----<br>  <font size=3D"2" face=3D"Arial"> <b><span sty=
+le=3D"font-weight:bold;">From:</span></b> "no-reply@mpgrandprix.com" &lt;no=
+-reply@mpgrandprix.com&gt;<br> <b><span style=3D"font-weight: bold;">To:</s=
+pan></b> mjroyster@yahoo.com <br> <b><span style=3D"font-weight: bold;">Sen=
+t:</span></b> Thursday, July 18, 2013 4:07 AM<br> <b><span style=3D"font-we=
+ight: bold;">Subject:</span></b> Race Result<br> </font> </div> <div class=
+=3D"y_msg_container"><br><div id=3D"yiv4801622050">=0A=0A=0A=09=0A=09    <t=
+itle>Club Speed Result Sheet</title>=0A=09=09 =0A=09=09<style>=0A</style>=
+=0A=09=0A=09<div>=0A=09=09<form target=3D"_blank" name=3D"Form1" method=3D"=
+post"  id=3D"yiv4801622050Form1">=0A<input type=3D"hidden" name=3D"__VIEWST=
+ATE" id=3D"yiv4801622050__VIEWSTATE"
+ value=3D"/wEPDwUKMTA0MDc0MTQ2OQ9kFgICAQ9kFiZmDw8WAh4HVmlzaWJsZWhkZAIBDw8WA=
+h4EVGV4dAUWSnVzdGluKEp1c3RpbiBSb3lzdGVyKWRkAgIPDxYCHwEFCTFzdCBQbGFjZWRkAgQP=
+DxYCHwEFGjEgdGltZShzKSBiZXN0IG9mIHRoZSBkYXkuZGQCBQ8PFgIfAQUHIFIuUC5NLmRkAgY=
+PDxYCHwEFBDIxMTRkZAIIDw8WAh8BBRc0ODggb2YgODEsMDg5ICg5OS40MCAlKWRkAgkPDxYCHw=
+EFLVJhY2VyIHNpbmNlOiAxMS8yMy8xMi4gMTB0aCB2aXNpdCwgMjl0aCByYWNlLmRkAgsPDxYCH=
+wEFCihNb24gUmFjZSlkZAIMDw8WAh8BBRE3LzE3LzIwMTMgOTowNSBQTWRkAg4PDxYCHwEFEihC=
+eSBCZXN0IExhcCBUaW1lKWRkAg8PDxYOHg9ZVmFsdWVzSW50ZXJ2YWwIAAAAQB4MWUN1c3RvbVN=
+0YXJ0CAAA8EEeCllDdXN0b21FbmQIAAAYQh4NWVZhbHVlc0Zvcm1hdAUGezA6RjF9HgdJbWFnZU=
+lEBSQ1MDM4NmYzOC1mMzFjLTQ1ZjAtODk0NS0zYjQ3ODhmODUyZWYeD1hWYWx1ZXNJbnRlcnZhb=
+AIBHg5YVGlja3NJbnRlcnZhbAIBZGQCEA9kFgICAQ8PFg4fAggAAIA/HwMIAACAPx8ECAAA4EAf=
+BQUGezA6RjB9HwYFJDZhYzczNzhjLTEzN2ItNDRkNS05Y2IxLTA4ZGZhNjA4YzNjOR8HAgEfCAI=
+BZGQCEg88KwAJAQAPFgYeDVJlcGVhdENvbHVtbnMCBx4IRGF0YUtleXMWAB4LXyFJdGVtQ291bn=
+QCDWQWGmYPZBYCZg8VAQkwMS0zNy4xMDNkAgEPZBYCZg8VAQkwMi0zMy41OTFkAgIPZBY
+CZg8VAQkwMy0zMC42MzNkAgMPZBYCZg8VAQkwNC0zMC40OTRkAgQPZBYCZg8VAQkwNS0zMC40Nz=
+BkAgUPZBYCZg8VAQkwNi0zMS4wODhkAgYPZBYCZg8VAQkwNy0zMS4xODNkAgcPZBYCZg8VAQkwO=
+C0zMS45MzRkAggPZBYCZg8VAQkwOS0zMC4zNzNkAgkPZBYCZg8VAQkxMC0zMC43MjFkAgoPZBYC=
+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
+x0KIIsN7Q=3D=3D">=0A=0A=09=09=09<table style=3D"" cellspacing=3D"0" width=
+=3D"700" border=3D"0">=0A=09=09=09=09<tbody>=0A=09=09=09=09    <tr>=0A=09=
+=09=09=09=09=09<td width=3D"100%" colspan=3D"2">=0A=09=09=09=09=09=09=09=09=
+=09=09=09=09=0A=09=09=09=09=09=09</td>=0A=09=09=09=09=09</tr>=0A=09=09=09=
+=09=09<tr>=0A=09=09=09=09=09=09<td width=3D"100%" colspan=3D"2">=0A=09=09=
+=09=09=09=09=09<table id=3D"yiv4801622050Table2" cellspacing=3D"0" cellpadd=
+ing=3D"0" width=3D"100%" border=3D"0">=0A=09=09=09=09=09=09=09=09<tbody><tr=
+>=0A=09=09=09=09=09=09=09=09=09<td width=3D"85%"><span id=3D"yiv4801622050l=
+blName" class=3D"yiv4801622050Head">Justin(Justin Royster)</span></td>=0A=
+=09=09=09=09=09=09=09=09=09<td align=3D"right" width=3D"15%"><span id=3D"yi=
+v4801622050lblPosition" class=3D"yiv4801622050Head">1st Place</span></td>=
+=0A=09=09=09=09=09=09=09=09</tr>=0A=09=09=09=09=09=09=09</tbody></table>=0A=
+=09=09=09=09=09=09</td>=0A=09=09=09=09=09</tr>=0A=09=09=09=09=09<tr>=0A=09=
+=09=09=09=09=09<td style=3D"BORDER-TOP:dimgray 1px solid;" align=3D"right" =
+width=3D"100%" colspan=3D"2" height=3D"30"><span id=3D"yiv4801622050Label3"=
+ class=3D"yiv4801622050normal"><b>Award:</b></span>&nbsp;=0A=09=09=09=09=09=
+=09=09<span id=3D"yiv4801622050lblAward1" class=3D"yiv4801622050normal">1 t=
+ime(s) best of the day.</span>&nbsp;<span id=3D"yiv4801622050Label1" class=
+=3D"yiv4801622050normal"><b> R.P.M.</b></span>&nbsp;<span id=3D"yiv48016220=
+50lblRPM" class=3D"yiv4801622050normal">2114</span>&nbsp;<span id=3D"yiv480=
+1622050Label2" class=3D"yiv4801622050normal">Ranked</span>&nbsp;<span id=3D=
+"yiv4801622050lblRank" class=3D"yiv4801622050normal">488 of 81,089 (99.40 %=
+)</span><br>=0A=09=09=09=09=09=09=09<span id=3D"yiv4801622050lblRacerProfil=
+e" class=3D"yiv4801622050Tiny">Racer since: 11/23/12. 10th visit, 29th race=
+.</span></td>=0A=09=09=09=09=09</tr>=0A=09=09=09=09=09<tr>=0A=09=09=09=09=
+=09=09<td style=3D"HEIGHT:15px;" width=3D"50%"><span id=3D"yiv4801622050Lab=
+el4" class=3D"yiv4801622050ItemTitle">Laptimes</span>&nbsp;=0A=09=09=09=09=
+=09=09=09<span id=3D"yiv4801622050lblHeatTypeName" class=3D"yiv4801622050It=
+emTitle">(Mon Race)</span><span id=3D"yiv4801622050lblTimeSlot" class=3D"yi=
+v4801622050Tiny">7/17/2013 9:05 PM</span><span class=3D"yiv4801622050Tiny">=
+ Heat# 80</span></td>=0A=09=09=09=09=09=09<td style=3D"HEIGHT:15px;" align=
+=3D"right" width=3D"50%"><span id=3D"yiv4801622050Label5" class=3D"yiv48016=
+22050ItemTitle"> Position</span><span id=3D"yiv4801622050lblType" class=3D"=
+yiv4801622050ItemTitle">(By Best Lap Time)</span></td>=0A=09=09=09=09=09</t=
+r>=0A=09=09=09=09=09<tr>=0A=09=09=09=09=09=09<td width=3D"50%">=0A=09=09=09=
+=09=09=09<img>=0A=09=09=09=09=09=09</td>=0A=09=09=09=09=09=09<td align=3D"r=
+ight" width=3D"50%"><div id=3D"yiv4801622050positionPanel">=0A=09=0A=09=09=
+=09=09=09=09=09=09=09=09=09=09=09=09=09=0A=09=09=09        <img>=0A=09=09=
+=09=09=09=09=09=0A</div></td>=0A=09=09=09=09=09</tr>=0A=09=09=09=09=09<tr>=
+=0A=09=09=09=09=09=09<td width=3D"100%" colspan=3D"2">=0A=09=09=09=09=09=09=
+=09<table id=3D"yiv4801622050Table1" cellspacing=3D"0" cellpadding=3D"0" wi=
+dth=3D"100%" align=3D"left" border=3D"0">=0A=09=09=09=09=09=09=09=09<tbody>=
+<tr>=0A=09=09=09=09=09=09=09=09=09<td valign=3D"top" colspan=3D"3"><table i=
+d=3D"yiv4801622050dlLapTime" class=3D"yiv4801622050Normal" cellspacing=3D"0=
+" cellpadding=3D"0" border=3D"0" width=3D"100%">=0A=09<tbody><tr>=0A=09=09<=
+td>=0A=09=09=09=09=09=09=09=09=09=09=09=0901-37.103=0A=09=09=09=09=09=09=09=
+=09=09=09=09</td><td>=0A=09=09=09=09=09=09=09=09=09=09=09=0902-33.591=0A=09=
+=09=09=09=09=09=09=09=09=09=09</td><td>=0A=09=09=09=09=09=09=09=09=09=09=09=
+=0903-30.633=0A=09=09=09=09=09=09=09=09=09=09=09</td><td>=0A=09=09=09=09=09=
+=09=09=09=09=09=09=0904-30.494=0A=09=09=09=09=09=09=09=09=09=09=09</td><td>=
+=0A=09=09=09=09=09=09=09=09=09=09=09=0905-30.470=0A=09=09=09=09=09=09=09=09=
+=09=09=09</td><td>=0A=09=09=09=09=09=09=09=09=09=09=09=0906-31.088=0A=09=09=
+=09=09=09=09=09=09=09=09=09</td><td>=0A=09=09=09=09=09=09=09=09=09=09=09=09=
+07-31.183=0A=09=09=09=09=09=09=09=09=09=09=09</td>=0A=09</tr><tr>=0A=09=09<=
+td>=0A=09=09=09=09=09=09=09=09=09=09=09=0908-31.934=0A=09=09=09=09=09=09=09=
+=09=09=09=09</td><td><b>=0A=09=09=09=09=09=09=09=09=09=09=09=0909-30.373=0A=
+=09=09=09=09=09=09=09=09=09=09=09</b></td><td>=0A=09=09=09=09=09=09=09=09=
+=09=09=09=0910-30.721=0A=09=09=09=09=09=09=09=09=09=09=09</td><td>=0A=09=09=
+=09=09=09=09=09=09=09=09=09=0911-31.074=0A=09=09=09=09=09=09=09=09=09=09=09=
+</td><td>=0A=09=09=09=09=09=09=09=09=09=09=09=0912-30.427=0A=09=09=09=09=09=
+=09=09=09=09=09=09</td><td>=0A=09=09=09=09=09=09=09=09=09=09=09=0913-31.085=
+=0A=09=09=09=09=09=09=09=09=09=09=09</td><td></td>=0A=09</tr>=0A</tbody></t=
+able></td>=0A=09=09=09=09=09=09=09=09</tr>=0A=09=09=09=09=09=09=09=09<tr>=
+=0A=09=09=09=09=09=09=09=09=09<td valign=3D"top" width=3D"360"><span id=3D"=
+yiv4801622050lblTrackName" class=3D"yiv4801622050Normal"><b>Club Speed Trac=
+k</b></span><br>=0A=09=09=09=09=09=09=09=09=09=09<table class=3D"yiv4801622=
+050TinyBold" cellspacing=3D"0" cellpadding=3D"0" border=3D"0" id=3D"yiv4801=
+622050dg" width=3D"95%">=0A=09<tbody><tr align=3D"left">=0A=09=09<td align=
+=3D"left" width=3D"15"><u><b>Pos</b></u></td><td align=3D"right" width=3D"2=
+5"><u><b>&nbsp;</b></u></td><td align=3D"center" width=3D"15"><u><b>Kart</b=
+></u></td><td align=3D"left" width=3D"125"><u><b>Racer</b></u></td><td alig=
+n=3D"center" width=3D"60"><u><b>Best Lap</b></u></td><td align=3D"center" w=
+idth=3D"60"><u><b>#Lap</b></u></td><td align=3D"center" width=3D"60"><u><b>=
+Best Lap</b></u></td><td align=3D"center" width=3D"30"><u><b>Gap</b></u></t=
+d><td align=3D"right" width=3D"95"><u><b>R.P.M.</b></u></td>=0A=09</tr><tr =
+align=3D"left">=0A=09=09<td nowrap=3D"" align=3D"center"><font color=3D"Red=
+">1</font></td><td><font color=3D"Red"></font></td><td nowrap=3D"" align=3D=
+"center"><font color=3D"Red">14</font></td><td nowrap=3D"" align=3D"left"><=
+font color=3D"Red">=0A=09=09=09=09=09=09=09=09=09=09=09=09=09=09Justin=0A=
+=09=09=09=09=09=09=09=09=09=09=09=09=09</font></td><td align=3D"center"><fo=
+nt color=3D"Red">30.373</font></td><td align=3D"center"><font color=3D"Red"=
+>13</font></td><td align=3D"center"><font color=3D"Red">30.373</font></td><=
+td align=3D"center"><font color=3D"Red">-</font></td><td align=3D"right"><f=
+ont color=3D"Red">=0A=09=09=09=09=09=09=09=09=09=09=09=09=09=092114=0A=09=
+=09=09=09=09=09=09=09=09=09=09=09=09=09(+37)=0A=09=09=09=09=09=09=09=09=09=
+=09=09=09=09</font></td>=0A=09</tr><tr align=3D"left">=0A=09=09<td nowrap=
+=3D"" align=3D"center">2</td><td></td><td nowrap=3D"" align=3D"center">8</t=
+d><td nowrap=3D"" align=3D"left">=0A=09=09=09=09=09=09=09=09=09=09=09=09=09=
+=09meesa=0A=09=09=09=09=09=09=09=09=09=09=09=09=09</td><td align=3D"center"=
+>30.426</td><td align=3D"center">12</td><td align=3D"center">30.426</td><td=
+ align=3D"center">0.053</td><td align=3D"right">=0A=09=09=09=09=09=09=09=09=
+=09=09=09=09=09=092061=0A=09=09=09=09=09=09=09=09=09=09=09=09=09=09(+3)=0A=
+=09=09=09=09=09=09=09=09=09=09=09=09=09</td>=0A=09</tr><tr align=3D"left">=
+=0A=09=09<td nowrap=3D"" align=3D"center">3</td><td></td><td nowrap=3D"" al=
+ign=3D"center">11</td><td nowrap=3D"" align=3D"left">=0A=09=09=09=09=09=09=
+=09=09=09=09=09=09=09=09Nate=0A=09=09=09=09=09=09=09=09=09=09=09=09=09</td>=
+<td align=3D"center">30.524</td><td align=3D"center">12</td><td align=3D"ce=
+nter">30.524</td><td align=3D"center">0.151</td><td align=3D"right">=0A=09=
+=09=09=09=09=09=09=09=09=09=09=09=09=091262=0A=09=09=09=09=09=09=09=09=09=
+=09=09=09=09=09(+39)=0A=09=09=09=09=09=09=09=09=09=09=09=09=09</td>=0A=09</=
+tr><tr align=3D"left">=0A=09=09<td nowrap=3D"" align=3D"center">4</td><td><=
+/td><td nowrap=3D"" align=3D"center">22</td><td nowrap=3D"" align=3D"left">=
+=0A=09=09=09=09=09=09=09=09=09=09=09=09=09=09THEREAL2CHAINZ=0A=09=09=09=09=
+=09=09=09=09=09=09=09=09=09</td><td align=3D"center">35.132</td><td align=
+=3D"center">10</td><td align=3D"center">35.132</td><td align=3D"center">4.7=
+59</td><td align=3D"right">=0A=09=09=09=09=09=09=09=09=09=09=09=09=09=09121=
+9=0A=09=09=09=09=09=09=09=09=09=09=09=09=09=09(+19)=0A=09=09=09=09=09=09=09=
+=09=09=09=09=09=09</td>=0A=09</tr><tr align=3D"left">=0A=09=09<td nowrap=3D=
+"" align=3D"center">5</td><td></td><td nowrap=3D"" align=3D"center">21</td>=
+<td nowrap=3D"" align=3D"left">=0A=09=09=09=09=09=09=09=09=09=09=09=09=09=
+=09Anthony Ristich=0A=09=09=09=09=09=09=09=09=09=09=09=09=09</td><td align=
+=3D"center">35.406</td><td align=3D"center">10</td><td align=3D"center">35.=
+406</td><td align=3D"center">5.033</td><td align=3D"right">=0A=09=09=09=09=
+=09=09=09=09=09=09=09=09=09=091199=0A=09=09=09=09=09=09=09=09=09=09=09=09=
+=09=09(-1)=0A=09=09=09=09=09=09=09=09=09=09=09=09=09</td>=0A=09</tr><tr ali=
+gn=3D"left">=0A=09=09<td nowrap=3D"" align=3D"center">6</td><td></td><td no=
+wrap=3D"" align=3D"center">19</td><td nowrap=3D"" align=3D"left">=0A=09=09=
+=09=09=09=09=09=09=09=09=09=09=09=09BASSHEAD=0A=09=09=09=09=09=09=09=09=09=
+=09=09=09=09</td><td align=3D"center">36.044</td><td align=3D"center">10</t=
+d><td align=3D"center">36.044</td><td align=3D"center">5.671</td><td align=
+=3D"right">=0A=09=09=09=09=09=09=09=09=09=09=09=09=09=091179=0A=09=09=09=09=
+=09=09=09=09=09=09=09=09=09=09(-21)=0A=09=09=09=09=09=09=09=09=09=09=09=09=
+=09</td>=0A=09</tr><tr align=3D"left">=0A=09=09<td nowrap=3D"" align=3D"cen=
+ter">7</td><td></td><td nowrap=3D"" align=3D"center">12</td><td nowrap=3D""=
+ align=3D"left">=0A=09=09=09=09=09=09=09=09=09=09=09=09=09=09jDaWg=0A=09=09=
+=09=09=09=09=09=09=09=09=09=09=09</td><td align=3D"center">38.241</td><td a=
+lign=3D"center">9</td><td align=3D"center">38.241</td><td align=3D"center">=
+7.868</td><td align=3D"right">=0A=09=09=09=09=09=09=09=09=09=09=09=09=09=09=
+1159=0A=09=09=09=09=09=09=09=09=09=09=09=09=09=09(-41)=0A=09=09=09=09=09=09=
+=09=09=09=09=09=09=09</td>=0A=09</tr>=0A</tbody></table></td>=0A=09=09=09=
+=09=09=09=09=09=09<td valign=3D"top" align=3D"left" width=3D"170"><br>=0A=
+=09=09=09=09=09=09=09=09=09=09<table class=3D"yiv4801622050TinyBold" cellsp=
+acing=3D"0" border=3D"0" id=3D"yiv4801622050dgTopRPMs" width=3D"160">=0A=09=
+<tbody><tr valign=3D"bottom">=0A=09=09<td align=3D"center" width=3D"15"><b>=
+&nbsp;</b></td><td><b>Top R.P.M. Overall</b></td><td align=3D"center"><b>R.=
+P.M.</b></td>=0A=09</tr><tr>=0A=09=09<td align=3D"center">1</td><td nowrap=
+=3D"" align=3D"left" width=3D"115">=0A=09=09=09=09=09=09=09=09=09=09=09=09=
+=09=09bubbles=0A=09=09=09=09=09=09=09=09=09=09=09=09=09</td><td nowrap=3D""=
+ align=3D"left" width=3D"30">=0A=09=09=09=09=09=09=09=09=09=09=09=09=09=097=
+472=0A=09=09=09=09=09=09=09=09=09=09=09=09=09</td>=0A=09</tr><tr>=0A=09=09<=
+td align=3D"center">2</td><td nowrap=3D"" align=3D"left" width=3D"115">=0A=
+=09=09=09=09=09=09=09=09=09=09=09=09=09=09IMHARD8=3D=3DD~=0A=09=09=09=09=09=
+=09=09=09=09=09=09=09=09</td><td nowrap=3D"" align=3D"left" width=3D"30">=
+=0A=09=09=09=09=09=09=09=09=09=09=09=09=09=095810=0A=09=09=09=09=09=09=09=
+=09=09=09=09=09=09</td>=0A=09</tr><tr>=0A=09=09<td align=3D"center">3</td><=
+td nowrap=3D"" align=3D"left" width=3D"115">=0A=09=09=09=09=09=09=09=09=09=
+=09=09=09=09=09Chris_B=0A=09=09=09=09=09=09=09=09=09=09=09=09=09</td><td no=
+wrap=3D"" align=3D"left" width=3D"30">=0A=09=09=09=09=09=09=09=09=09=09=09=
+=09=09=095107=0A=09=09=09=09=09=09=09=09=09=09=09=09=09</td>=0A=09</tr><tr>=
+=0A=09=09<td align=3D"center">4</td><td nowrap=3D"" align=3D"left" width=3D=
+"115">=0A=09=09=09=09=09=09=09=09=09=09=09=09=09=09van eynde=0A=09=09=09=09=
+=09=09=09=09=09=09=09=09=09</td><td nowrap=3D"" align=3D"left" width=3D"30"=
+>=0A=09=09=09=09=09=09=09=09=09=09=09=09=09=094681=0A=09=09=09=09=09=09=09=
+=09=09=09=09=09=09</td>=0A=09</tr><tr>=0A=09=09<td align=3D"center">5</td><=
+td nowrap=3D"" align=3D"left" width=3D"115">=0A=09=09=09=09=09=09=09=09=09=
+=09=09=09=09=09Mark-Tami=0A=09=09=09=09=09=09=09=09=09=09=09=09=09</td><td =
+nowrap=3D"" align=3D"left" width=3D"30">=0A=09=09=09=09=09=09=09=09=09=09=
+=09=09=09=094535=0A=09=09=09=09=09=09=09=09=09=09=09=09=09</td>=0A=09</tr><=
+tr>=0A=09=09<td align=3D"center">6</td><td nowrap=3D"" align=3D"left" width=
+=3D"115">=0A=09=09=09=09=09=09=09=09=09=09=09=09=09=09Slick142=0A=09=09=09=
+=09=09=09=09=09=09=09=09=09=09</td><td nowrap=3D"" align=3D"left" width=3D"=
+30">=0A=09=09=09=09=09=09=09=09=09=09=09=09=09=094402=0A=09=09=09=09=09=09=
+=09=09=09=09=09=09=09</td>=0A=09</tr><tr>=0A=09=09<td align=3D"center">7</t=
+d><td nowrap=3D"" align=3D"left" width=3D"115">=0A=09=09=09=09=09=09=09=09=
+=09=09=09=09=09=09Slammed Steve=0A=09=09=09=09=09=09=09=09=09=09=09=09=09</=
+td><td nowrap=3D"" align=3D"left" width=3D"30">=0A=09=09=09=09=09=09=09=09=
+=09=09=09=09=09=094301=0A=09=09=09=09=09=09=09=09=09=09=09=09=09</td>=0A=09=
+</tr><tr>=0A=09=09<td align=3D"center">8</td><td nowrap=3D"" align=3D"left"=
+ width=3D"115">=0A=09=09=09=09=09=09=09=09=09=09=09=09=09=09str8 up whipin =
+it=0A=09=09=09=09=09=09=09=09=09=09=09=09=09</td><td nowrap=3D"" align=3D"l=
+eft" width=3D"30">=0A=09=09=09=09=09=09=09=09=09=09=09=09=09=094071=0A=09=
+=09=09=09=09=09=09=09=09=09=09=09=09</td>=0A=09</tr><tr>=0A=09=09<td align=
+=3D"center">9</td><td nowrap=3D"" align=3D"left" width=3D"115">=0A=09=09=09=
+=09=09=09=09=09=09=09=09=09=09=09Prze Huj=0A=09=09=09=09=09=09=09=09=09=09=
+=09=09=09</td><td nowrap=3D"" align=3D"left" width=3D"30">=0A=09=09=09=09=
+=09=09=09=09=09=09=09=09=09=094013=0A=09=09=09=09=09=09=09=09=09=09=09=09=
+=09</td>=0A=09</tr><tr>=0A=09=09<td align=3D"center">10</td><td nowrap=3D""=
+ align=3D"left" width=3D"115">=0A=09=09=09=09=09=09=09=09=09=09=09=09=09=09=
+K29HARVICK=0A=09=09=09=09=09=09=09=09=09=09=09=09=09</td><td nowrap=3D"" al=
+ign=3D"left" width=3D"30">=0A=09=09=09=09=09=09=09=09=09=09=09=09=09=093921=
+=0A=09=09=09=09=09=09=09=09=09=09=09=09=09</td>=0A=09</tr><tr>=0A=09=09<td =
+align=3D"center">11</td><td nowrap=3D"" align=3D"left" width=3D"115">=0A=09=
+=09=09=09=09=09=09=09=09=09=09=09=09=09Sunshine=0A=09=09=09=09=09=09=09=09=
+=09=09=09=09=09</td><td nowrap=3D"" align=3D"left" width=3D"30">=0A=09=09=
+=09=09=09=09=09=09=09=09=09=09=09=093905=0A=09=09=09=09=09=09=09=09=09=09=
+=09=09=09</td>=0A=09</tr><tr>=0A=09=09<td align=3D"center">12</td><td nowra=
+p=3D"" align=3D"left" width=3D"115">=0A=09=09=09=09=09=09=09=09=09=09=09=09=
+=09=09Han=0A=09=09=09=09=09=09=09=09=09=09=09=09=09</td><td nowrap=3D"" ali=
+gn=3D"left" width=3D"30">=0A=09=09=09=09=09=09=09=09=09=09=09=09=09=093850=
+=0A=09=09=09=09=09=09=09=09=09=09=09=09=09</td>=0A=09</tr>=0A</tbody></tabl=
+e></td>=0A=09=09=09=09=09=09=09=09=09<td valign=3D"top" align=3D"right" wid=
+th=3D"170"><br>=0A=09=09=09=09=09=09=09=09=09=09<table class=3D"yiv48016220=
+50TinyBold" cellspacing=3D"0" border=3D"0" id=3D"yiv4801622050dgBestOftheWe=
+ek" width=3D"160">=0A=09<tbody><tr>=0A=09=09<td align=3D"center" width=3D"1=
+5"><b>&nbsp;</b></td><td align=3D"left"><b>Best of The Week</b></td><td ali=
+gn=3D"center"><b>Time</b></td>=0A=09</tr><tr>=0A=09=09<td align=3D"center">=
+1</td><td nowrap=3D"" width=3D"115">=0A=09=09=09=09=09=09=09=09=09=09=09=09=
+=09=09DEGO=0A=09=09=09=09=09=09=09=09=09=09=09=09=09</td><td nowrap=3D"" wi=
+dth=3D"30">=0A=09=09=09=09=09=09=09=09=09=09=09=09=09=0920.444=0A=09=09=09=
+=09=09=09=09=09=09=09=09=09=09</td>=0A=09</tr><tr>=0A=09=09<td align=3D"cen=
+ter">2</td><td nowrap=3D"" width=3D"115">=0A=09=09=09=09=09=09=09=09=09=09=
+=09=09=09=09Megan=0A=09=09=09=09=09=09=09=09=09=09=09=09=09</td><td nowrap=
+=3D"" width=3D"30">=0A=09=09=09=09=09=09=09=09=09=09=09=09=09=0921.604=0A=
+=09=09=09=09=09=09=09=09=09=09=09=09=09</td>=0A=09</tr><tr>=0A=09=09<td ali=
+gn=3D"center">3</td><td nowrap=3D"" width=3D"115">=0A=09=09=09=09=09=09=09=
+=09=09=09=09=09=09=09mama b=0A=09=09=09=09=09=09=09=09=09=09=09=09=09</td><=
+td nowrap=3D"" width=3D"30">=0A=09=09=09=09=09=09=09=09=09=09=09=09=09=0925=
+.623=0A=09=09=09=09=09=09=09=09=09=09=09=09=09</td>=0A=09</tr><tr>=0A=09=09=
+<td align=3D"center">4</td><td nowrap=3D"" width=3D"115">=0A=09=09=09=09=09=
+=09=09=09=09=09=09=09=09=09Chris_B=0A=09=09=09=09=09=09=09=09=09=09=09=09=
+=09</td><td nowrap=3D"" width=3D"30">=0A=09=09=09=09=09=09=09=09=09=09=09=
+=09=09=0928.949=0A=09=09=09=09=09=09=09=09=09=09=09=09=09</td>=0A=09</tr><t=
+r>=0A=09=09<td align=3D"center">5</td><td nowrap=3D"" width=3D"115">=0A=09=
+=09=09=09=09=09=09=09=09=09=09=09=09=09dirtylarry=0A=09=09=09=09=09=09=09=
+=09=09=09=09=09=09</td><td nowrap=3D"" width=3D"30">=0A=09=09=09=09=09=09=
+=09=09=09=09=09=09=09=0929.030=0A=09=09=09=09=09=09=09=09=09=09=09=09=09</t=
+d>=0A=09</tr><tr>=0A=09=09<td align=3D"center">6</td><td nowrap=3D"" width=
+=3D"115">=0A=09=09=09=09=09=09=09=09=09=09=09=09=09=09Mariluts=0A=09=09=09=
+=09=09=09=09=09=09=09=09=09=09</td><td nowrap=3D"" width=3D"30">=0A=09=09=
+=09=09=09=09=09=09=09=09=09=09=09=0929.050=0A=09=09=09=09=09=09=09=09=09=09=
+=09=09=09</td>=0A=09</tr><tr>=0A=09=09<td align=3D"center">7</td><td nowrap=
+=3D"" width=3D"115">=0A=09=09=09=09=09=09=09=09=09=09=09=09=09=09van eynde=
+=0A=09=09=09=09=09=09=09=09=09=09=09=09=09</td><td nowrap=3D"" width=3D"30"=
+>=0A=09=09=09=09=09=09=09=09=09=09=09=09=09=0929.569=0A=09=09=09=09=09=09=
+=09=09=09=09=09=09=09</td>=0A=09</tr><tr>=0A=09=09<td align=3D"center">8</t=
+d><td nowrap=3D"" width=3D"115">=0A=09=09=09=09=09=09=09=09=09=09=09=09=09=
+=09TAC=0A=09=09=09=09=09=09=09=09=09=09=09=09=09</td><td nowrap=3D"" width=
+=3D"30">=0A=09=09=09=09=09=09=09=09=09=09=09=09=09=0929.647=0A=09=09=09=09=
+=09=09=09=09=09=09=09=09=09</td>=0A=09</tr><tr>=0A=09=09<td align=3D"center=
+">9</td><td nowrap=3D"" width=3D"115">=0A=09=09=09=09=09=09=09=09=09=09=09=
+=09=09=09Tom C=0A=09=09=09=09=09=09=09=09=09=09=09=09=09</td><td nowrap=3D"=
+" width=3D"30">=0A=09=09=09=09=09=09=09=09=09=09=09=09=09=0930.037=0A=09=09=
+=09=09=09=09=09=09=09=09=09=09=09</td>=0A=09</tr><tr>=0A=09=09<td align=3D"=
+center">10</td><td nowrap=3D"" width=3D"115">=0A=09=09=09=09=09=09=09=09=09=
+=09=09=09=09=09michael ochoa=0A=09=09=09=09=09=09=09=09=09=09=09=09=09</td>=
+<td nowrap=3D"" width=3D"30">=0A=09=09=09=09=09=09=09=09=09=09=09=09=09=093=
+0.089=0A=09=09=09=09=09=09=09=09=09=09=09=09=09</td>=0A=09</tr><tr>=0A=09=
+=09<td align=3D"center">11</td><td nowrap=3D"" width=3D"115">=0A=09=09=09=
+=09=09=09=09=09=09=09=09=09=09=09EL JEFE=0A=09=09=09=09=09=09=09=09=09=09=
+=09=09=09</td><td nowrap=3D"" width=3D"30">=0A=09=09=09=09=09=09=09=09=09=
+=09=09=09=09=0930.105=0A=09=09=09=09=09=09=09=09=09=09=09=09=09</td>=0A=09<=
+/tr><tr>=0A=09=09<td align=3D"center">12</td><td nowrap=3D"" width=3D"115">=
+=0A=09=09=09=09=09=09=09=09=09=09=09=09=09=09Anthony=0A=09=09=09=09=09=09=
+=09=09=09=09=09=09=09</td><td nowrap=3D"" width=3D"30">=0A=09=09=09=09=09=
+=09=09=09=09=09=09=09=09=0930.127=0A=09=09=09=09=09=09=09=09=09=09=09=09=09=
+</td>=0A=09</tr>=0A</tbody></table></td>=0A=09=09=09=09=09=09=09=09</tr>=0A=
+=09=09=09=09=09=09=09</tbody></table>=0A=09=09=09=09=09=09</td>=0A=09=09=09=
+=09=09</tr>=0A=09=09=09=09</tbody>=0A=09=09=09</table>=0A<table style=3D"" =
+cellspacing=3D"0" width=3D"700" border=3D"0">=0A<tbody><tr><td align=3D"cen=
+ter">=0A=0A</td></tr>=0A</tbody></table>=0A=09=09</form>=0A=09</div>=0A=0A=
+=0A<style type=3D"text/css">=0A#yiv4801622050 .yiv4801622050ItemTitle  {fon=
+t-family:Verdana, Arial, Helvetica, sans-serif;font-size:12px;font-weight:b=
+old;color:black;}=0A#yiv4801622050 .yiv4801622050ItemTitle2 {font-family:Ve=
+rdana, Arial, Helvetica, sans-serif;font-size:11px;font-weight:bold;color:d=
+arkBlue;}=0A#yiv4801622050 .yiv4801622050ItemTitle3 {font-family:Verdana, A=
+rial, Helvetica, sans-serif;font-size:10px;font-weight:bold;color:darkBlue;=
+}=0A#yiv4801622050 .yiv4801622050Head       {font-family:Verdana, Arial, He=
+lvetica, sans-serif;font-size:16px;font-weight:Bold;color:black;}=0A#yiv480=
+1622050 .yiv4801622050Head2      {font-family:Verdana, Arial, Helvetica, sa=
+ns-serif;font-size:16px;font-weight:Bold;color:darkBlue;}=0A#yiv4801622050 =
+.yiv4801622050Normal=09    {font-family:Verdana, Arial, Helvetica, sans-ser=
+if;font-size:11px;font-weight:normal;line-height:12px;}=0A#yiv4801622050 .y=
+iv4801622050Tiny=09    {font-family:Verdana, Arial, Helvetica, sans-serif;f=
+ont-size:9px;font-weight:Normal;}=0A#yiv4801622050 .yiv4801622050TinyBold  =
+ {font-family:Verdana, Arial, Helvetica, sans-serif;font-size:9px;font-weig=
+ht:Bold;}=0A#yiv4801622050 .yiv4801622050NormalRed  {font-family:Verdana, A=
+rial, Helvetica, sans-serif;font-size:11px;font-weight:bold;color:red;}=0A#=
+yiv4801622050 .yiv4801622050NormalBlue {font-family:Verdana, Arial, Helveti=
+ca, sans-serif;font-size:11px;color:Blue;}=0A#yiv4801622050 .yiv4801622050N=
+ormalBold {font-family:Verdana, Arial, Helvetica, sans-serif;font-size:11px=
+;font-weight:bold;}=0A</style></div><br><br></div> </div> </div>  </div></b=
+ody></html>
+--1229592896-1913170168-1378083126=:45786--
+--1229592896-1054185688-1378083126=:45786
+Content-Type: application/octet-stream; name="1-48280-1071621.png"
+Content-Transfer-Encoding: base64
+
+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
+HywFa37c1BTeAAAAAElFTkSuQmCC
+--1229592896-1054185688-1378083126=:45786
+Content-Type: application/octet-stream; name="2-48280-1071621.png"
+Content-Transfer-Encoding: base64
+
+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
+--1229592896-1054185688-1378083126=:45786--

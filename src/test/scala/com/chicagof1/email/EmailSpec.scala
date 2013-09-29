@@ -39,5 +39,12 @@ class EmailSpec extends FunSpec with ShouldMatchers {
       html should include("30.767")
       Jsoup.parse(html)
     }
+
+    it("should extract html from a yahoo fowarded email") {
+      val message = parser.parseEmail(testResourcesDir + "yahoo-forwarded.txt")
+      val html: String = parser.getFirstHtmlBodyPartContentAsString(message)
+      html should include("30.373")
+      Jsoup.parse(html)
+    }
   }
 }
