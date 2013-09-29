@@ -1,0 +1,843 @@
+Delivered-To: tomscript13@gmail.com
+Received: by 10.194.40.42 with SMTP id u10csp35121wjk;
+        Sun, 29 Sep 2013 06:40:57 -0700 (PDT)
+Return-Path: <fedeoasi@gmail.com>
+Received-SPF: pass (google.com: domain of fedeoasi@gmail.com designates 10.180.72.148 as permitted sender) client-ip=10.180.72.148
+Authentication-Results: mr.google.com;
+       spf=pass (google.com: domain of fedeoasi@gmail.com designates 10.180.72.148 as permitted sender) smtp.mail=fedeoasi@gmail.com;
+       dkim=pass header.i=@gmail.com
+X-Received: from mr.google.com ([10.180.72.148])
+        by 10.180.72.148 with SMTP id d20mr9962835wiv.21.1380462057377 (num_hops = 1);
+        Sun, 29 Sep 2013 06:40:57 -0700 (PDT)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+        d=gmail.com; s=20120113;
+        h=mime-version:in-reply-to:references:date:message-id:subject:from:to
+         :content-type;
+        bh=++VgyredzdglVrvMXT/+BQh7oAjVTGCH6RpFPL01C5Q=;
+        b=BQzPvTePCpvRHUWpjM2VM5dijol3/NskoNFsnoe2v1DVtll4kMbLK99/k1YdE9SkAr
+         +56ERBn8tiLTkXWSv53svHSw3B423fNIBlzMtmfXrJDc/J5y7KSshXkRJH34gblbGW0a
+         hbVDnpdWIgQALi7RUVi8Yej/rUKnl88Fjl+J1SBgek1oTBEgg513j8r5FyZvibf2rfPG
+         ft3gbAvbKZ0OQLivdkT71WwqEEYbXSn4dlADx2ZZd5CiDhnBg4L+6Da8EWnuDBaMuYsA
+         tsocHE6GdSkE1TrjGJcc2xLcYlzgnHHzAUdD//qdMJ2ng9g1uT8absOpXsVIMoumvTV3
+         hdHg==
+MIME-Version: 1.0
+X-Received: by 10.180.72.148 with SMTP id d20mr9962835wiv.21.1380462057359;
+ Sun, 29 Sep 2013 06:40:57 -0700 (PDT)
+Received: by 10.216.194.69 with HTTP; Sun, 29 Sep 2013 06:40:57 -0700 (PDT)
+In-Reply-To: <1380418173.95699.YahooMailNeo@web140003.mail.bf1.yahoo.com>
+References: <MPGP-MELROSEeIiGXix00000557@MPGP-Melrose.MPGPMelrose.local>
+	<CAHmTqHYA4zixQAFMmJtGZdu=Du-5XdC04E8vQuMiJn=miSwn-Q@mail.gmail.com>
+	<1380418173.95699.YahooMailNeo@web140003.mail.bf1.yahoo.com>
+Date: Sun, 29 Sep 2013 08:40:57 -0500
+Message-ID: <CAHJj5RUzhfWG-L17WZJ8aJX5dSNJd9yvAk3bEfsqH=JZuKmAjQ@mail.gmail.com>
+Subject: Fwd: DQ race results
+From: Federico Caimi <fedeoasi@gmail.com>
+To: Tom Script <tomscript13@gmail.com>
+Content-Type: multipart/mixed; boundary=f46d043be21c8e2edc04e785de08
+
+--f46d043be21c8e2edc04e785de08
+Content-Type: multipart/alternative; boundary=f46d043be21c8e2ed804e785de06
+
+--f46d043be21c8e2ed804e785de06
+Content-Type: text/plain; charset=ISO-8859-1
+
+---------- Forwarded message ----------
+From: Theodore Birks <tedbirks@yahoo.com>
+Date: Sat, Sep 28, 2013 at 8:29 PM
+Subject: DQ race results
+To: Federico Caimi <Fedeoasi@gmail.com>
+
+
+
+Ted Birks
+The Energy Exchange of Coldwell Banker NRT
+1440 N Dayton Street
+Chicago IL 60642
+1-312-888-9466
+
+
+
+
+http://www.energy-xchange.com
+
+  ----- Forwarded Message -----
+ *From:* David Quednau <dquednau@fieldmuseum.org>
+*To:* Theodore Birks <TedBirks@yahoo.com>
+*Sent:* Friday, September 27, 2013 4:36 PM
+*Subject:* Fwd: Race Result
+
+
+
+---------- Forwarded message ----------
+From: ** <no-reply@mpgrandprix.com>
+Date: Thu, Sep 26, 2013 at 4:07 AM
+Subject: Race Result
+To: dquednau@fieldmuseum.org
+
+
+**
+        David Quednau 2nd Place      *Racing Performance Measurement(R.P.M.)
+* 1917 Ranked 898 of 84,217 (98.93 %)
+
+Racer since: 01/26/10. 13th visit, 41st race.
+ Laptimes  (Mon Race)9/25/2013 9:15 PM Heat# 88 Position(By Best Lap Time)
+      01-41.006 02-34.425 03-31.592 04-32.596 05-32.078 06-32.008  07-31.436
+08-30.875 * 09-30.767 * 10-32.697 11-31.060   *Club Speed Track*
+ *Pos** **Kart**Racer* *Best Lap**#Lap**Best Lap**Gap**R.P.M.*
+110JCLARK18TEAMAR...
+29.4661129.466- 3303 (+13)  21 David Quednau 30.7671130.7671.301 1917 (+34)
+318 Joey T 31.1661131.1661.700 1350 (+47)  414 Rob 31.2691131.2691.803 1256
+(+33)  58 Daniel Nikonchik 31.9431131.9432.477 1271 (+9)  621 The Stig
+33.2591033.2593.793 1519 (-32)  79 Neil 33.5161033.5164.050 1144 (-22)
+ 817Number 1
+39.246839.2469.780 1122 (-42)
+ * **Top R.P.M. Overall**R.P.M.* 1 bubbles 7695  2 IMHARD ==D~ 6055
+3Mark-Tami 5428
+ 4 Chris_B 5185  5 Slick142 4493  6 van eynde 4209  7 str8 up whipin it 4128
+ 8 Slammed Steve 4100  9 Han 4098  10 Prze Huj 4013  11 K29HARVICK
+3921  12Sunshine 3905
+
+  * **Best of The Week**Time* 1 archila 26.575  2 Zorro 26.975  3 IMHARD
+==D~ 28.376  4 JCLARK18TEAMARROW 29.466  5 Slick142 29.636  6 ***
+29.900  7Cabbage Patch 30.045
+ 8 Bash 30.085  9 mook 30.158  10 van eynde 30.158  11 Freaky Fast 30.309
+12 michael ochoa 30.394
+
+
+
+--
+David Quednau
+Graphic Designer
+The Field Museum
+1400 Lake Shore Dr.
+Chicago, IL, 60605
+
+--f46d043be21c8e2ed804e785de06
+Content-Type: text/html; charset=ISO-8859-1
+Content-Transfer-Encoding: quoted-printable
+
+<div dir=3D"ltr"><br><br><div class=3D"gmail_quote">---------- Forwarded me=
+ssage ----------<br>From: <b class=3D"gmail_sendername">Theodore Birks</b> =
+<span dir=3D"ltr">&lt;<a href=3D"mailto:tedbirks@yahoo.com">tedbirks@yahoo.=
+com</a>&gt;</span><br>
+Date: Sat, Sep 28, 2013 at 8:29 PM<br>Subject: DQ race results<br>To: Feder=
+ico Caimi &lt;<a href=3D"mailto:Fedeoasi@gmail.com">Fedeoasi@gmail.com</a>&=
+gt;<br><br><br><div><div style=3D"font-size:12pt;font-family:arial,helvetic=
+a,sans-serif">
+<div><span></span></div><div></div><div>=A0</div><div>Ted Birks<br>The Ener=
+gy Exchange of Coldwell Banker NRT<br>1440 N Dayton Street<br>Chicago IL 60=
+642<br><a href=3D"tel:1-312-888-9466" value=3D"+13128889466" target=3D"_bla=
+nk">1-312-888-9466</a></div>
+<div><br><br><br><br></div><div><a href=3D"http://www.energy-xchange.com" t=
+arget=3D"_blank">http://www.energy-xchange.com</a></div><br>  <div style=3D=
+"font-family:arial,helvetica,sans-serif;font-size:12pt"> <div style=3D"font=
+-family:&#39;times new roman&#39;,&#39;new york&#39;,times,serif;font-size:=
+12pt">
+ <div dir=3D"ltr"> ----- Forwarded Message -----<br>  <font face=3D"Arial">=
+ <b><span style=3D"font-weight:bold">From:</span></b> David Quednau &lt;<a =
+href=3D"mailto:dquednau@fieldmuseum.org" target=3D"_blank">dquednau@fieldmu=
+seum.org</a>&gt;<br>
+ <b><span style=3D"font-weight:bold">To:</span></b> Theodore Birks &lt;<a h=
+ref=3D"mailto:TedBirks@yahoo.com" target=3D"_blank">TedBirks@yahoo.com</a>&=
+gt; <br> <b><span style=3D"font-weight:bold">Sent:</span></b> Friday, Septe=
+mber 27, 2013 4:36 PM<br>
+ <b><span style=3D"font-weight:bold">Subject:</span></b> Fwd:
+ Race Result<br> </font> </div> <div><br><div><div dir=3D"ltr"><br><br><div=
+>---------- Forwarded message ----------<br>From: <b></b> <span dir=3D"ltr"=
+>&lt;<a rel=3D"nofollow" href=3D"mailto:no-reply@mpgrandprix.com" target=3D=
+"_blank">no-reply@mpgrandprix.com</a>&gt;</span><br>
+
+Date: Thu, Sep 26, 2013 at 4:07 AM<br>Subject: Race Result<br>To: <a rel=3D=
+"nofollow" href=3D"mailto:dquednau@fieldmuseum.org" target=3D"_blank">dqued=
+nau@fieldmuseum.org</a><br><br><br>
+<u></u>
+
+=09
+	   =20
+	=09
+	=09
+=09
+	<div>
+		<form name=3D"14169e39a79f955b_1415985c481219ea_Form1" method=3D"post" ac=
+tion=3D"http://SpeedSheetAK.aspx?HeatNo=3D50788&amp;CustID=3D1001339&amp;Sa=
+ve=3D1" target=3D"_blank" onsubmit=3D"return window.confirm(&quot;You are s=
+ubmitting information to an external page.\nAre you sure?&quot;);">
+
+
+<input name=3D"__VIEWSTATE" value=3D"/wEPDwUKMTA0MDc0MTQ2OQ9kFgICAQ9kFiRmDw=
+8WAh4HVmlzaWJsZWhkZAIBDw8WAh4EVGV4dAUNRGF2aWQgUXVlZG5hdWRkAgIPDxYCHwEFCTJuZ=
+CBQbGFjZWRkAgMPDxYCHwBoZGQCBg8PFgIfAQUEMTkxN2RkAggPDxYCHwEFFzg5OCBvZiA4NCwy=
+MTcgKDk4LjkzICUpZGQCCQ8PFgIfAQUtUmFjZXIgc2luY2U6IDAxLzI2LzEwLiAxM3RoIHZpc2l=
+0LCA0MXN0IHJhY2UuZGQCCw8PFgIfAQUKKE1vbiBSYWNlKWRkAgwPDxYCHwEFETkvMjUvMjAxMy=
+A5OjE1IFBNZGQCDg8PFgIfAQUSKEJ5IEJlc3QgTGFwIFRpbWUpZGQCDw8PFg4eD1lWYWx1ZXNJb=
+nRlcnZhbAgAAOA/HgxZQ3VzdG9tU3RhcnQIAADoQR4KWUN1c3RvbUVuZAgAABBCHg1ZVmFsdWVz=
+Rm9ybWF0BQZ7MDpGMX0eB0ltYWdlSUQFJDhhNWY1ODU4LTBiM2QtNDM4Yy05YjY1LTA4NTdhMDd=
+jMWUzMR4PWFZhbHVlc0ludGVydmFsAgEeDlhUaWNrc0ludGVydmFsAgFkZAIQD2QWAgIBDw8WDh=
+8CCAAAgD8fAwgAAIA/HwQIAAAAQR8FBQZ7MDpGMH0fBgUkZDgxZmNhMmEtNWIwMi00MmU4LWI4Z=
+GEtNDI3YTk1ZmVjMjNiHwcCAR8IAgFkZAISDzwrAAkBAA8WBh4NUmVwZWF0Q29sdW1ucwIGHghE=
+YXRhS2V5cxYAHgtfIUl0ZW1Db3VudAILZBYWZg9kFgJmDxUBCTAxLTQxLjAwNmQCAQ9kFgJmDxU=
+BCTAyLTM0LjQyNWQCAg9kFgJmDxUBCTAzLTMxLjU5MmQCAw9kFgJmDxUBCTA0LTMyLjU5NmQCBA=
+9kFgJmDxUBCTA1LTMyLjA
+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
+OTRkZKqHJE31ciOyMhIaLIGiF4OA1W3N" type=3D"hidden">
+
+			<span class=3D"HOEnZb"><font color=3D"#888888">
+					</font></span><span class=3D"HOEnZb"><font color=3D"#888888">
+				</font></span><span class=3D"HOEnZb"><font color=3D"#888888">
+			</font></span><table border=3D"0" cellspacing=3D"0" width=3D"700">
+				<tbody>
+				    <tr>
+						<td colspan=3D"2" width=3D"100%">
+											=09
+						</td>
+					</tr>
+					<tr>
+						<td colspan=3D"2" width=3D"100%">
+							<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"100=
+%">
+								<tbody><tr>
+									<td width=3D"85%"><span>David Quednau</span></td>
+									<td align=3D"right" width=3D"15%"><span>2nd Place</span></td>
+								</tr>
+							</tbody></table>
+						</td>
+					</tr>
+					<tr>
+						<td style=3D"BORDER-TOP:dimgray 1px solid" colspan=3D"2" height=3D"30=
+" align=3D"right" width=3D"100%">=A0
+							<span></span>=A0<span><b>Racing Performance Measurement(R.P.M.)</b><=
+/span>=A0<span>1917</span>=A0<span>Ranked</span>=A0<span>898 of 84,217 (98.=
+93 %)</span><div><br>
+							<span>Racer since: 01/26/10. 13th visit, 41st race.</span></div></td=
+>
+					</tr>
+					<tr>
+						<td style=3D"min-height:15px" width=3D"50%"><span>Laptimes</span>=A0
+							<span>(Mon Race)</span><span>9/25/2013 9:15 PM</span><span> Heat# 88=
+</span></td>
+						<td style=3D"min-height:15px" align=3D"right" width=3D"50%"><span> Po=
+sition</span><span>(By Best Lap Time)</span></td>
+					</tr>
+					<tr>
+						<td width=3D"50%">
+						<img src=3D"">
+						</td>
+						<td align=3D"right" width=3D"50%"><div>
+=09
+														=09
+			        <img src=3D"">
+						=09
+</div></td>
+					</tr>
+					<tr>
+						<td colspan=3D"2" width=3D"100%">
+							<span class=3D"HOEnZb"><font color=3D"#888888">
+								</font></span><span class=3D"HOEnZb"><font color=3D"#888888">
+							</font></span><table align=3D"left" border=3D"0" cellpadding=3D"0" c=
+ellspacing=3D"0" width=3D"100%">
+								<tbody><tr>
+									<td colspan=3D"3" valign=3D"top"><table border=3D"0" cellpadding=
+=3D"0" cellspacing=3D"0" width=3D"100%">
+	<tbody><tr>
+		<td>
+												01-41.006
+											</td><td>
+												02-34.425
+											</td><td>
+												03-31.592
+											</td><td>
+												04-32.596
+											</td><td>
+												05-32.078
+											</td><td>
+												06-32.008
+											</td>
+	</tr><tr>
+		<td>
+												07-31.436
+											</td><td>
+												08-30.875
+											</td><td><b>
+												09-30.767
+											</b></td><td>
+												10-32.697
+											</td><td>
+												11-31.060
+											</td><td></td>
+	</tr>
+</tbody></table></td>
+								</tr>
+								<tr>
+									<td valign=3D"top" width=3D"360"><span><b>Club Speed Track</b></sp=
+an><br>
+										<table border=3D"0" cellpadding=3D"0" cellspacing=3D"0" width=3D"=
+95%">
+	<tbody><tr align=3D"left">
+		<td align=3D"left" width=3D"15"><u><b>Pos</b></u></td><td align=3D"right"=
+ width=3D"25"><u><b>=A0</b></u></td><td align=3D"center" width=3D"15"><u><b=
+>Kart</b></u></td><td align=3D"left" width=3D"125"><u><b>Racer</b></u></td>=
+<td align=3D"center" width=3D"60">
+
+<u><b>Best Lap</b></u></td><td align=3D"center" width=3D"60"><u><b>#Lap</b>=
+</u></td><td align=3D"center" width=3D"60"><u><b>Best Lap</b></u></td><td a=
+lign=3D"center" width=3D"30"><u><b>Gap</b></u></td><td align=3D"right" widt=
+h=3D"95"><u><b>R.P.M.</b></u></td>
+
+
+	</tr><tr align=3D"left">
+		<td align=3D"center" nowrap>1</td><td></td><td align=3D"center" nowrap>10=
+</td><td align=3D"left" nowrap>
+														JCLARK18TEAMAR...
+													</td><td align=3D"center">29.466</td><td align=3D"center">11</=
+td><td align=3D"center">29.466</td><td align=3D"center">-</td><td align=3D"=
+right">
+														3303
+														(+13)
+													</td>
+	</tr><tr align=3D"left">
+		<td align=3D"center" nowrap><font color=3D"Red">2</font></td><td><font co=
+lor=3D"Red"></font></td><td align=3D"center" nowrap><font color=3D"Red">1</=
+font></td><td align=3D"left" nowrap><font color=3D"Red">
+														David Quednau
+													</font></td><td align=3D"center"><font color=3D"Red">30.767</f=
+ont></td><td align=3D"center"><font color=3D"Red">11</font></td><td align=
+=3D"center"><font color=3D"Red">30.767</font></td><td align=3D"center"><fon=
+t color=3D"Red">1.301</font></td>
+
+<td align=3D"right"><font color=3D"Red">
+														1917
+														(+34)
+													</font></td>
+	</tr><tr align=3D"left">
+		<td align=3D"center" nowrap>3</td><td></td><td align=3D"center" nowrap>18=
+</td><td align=3D"left" nowrap>
+														Joey T
+													</td><td align=3D"center">31.166</td><td align=3D"center">11</=
+td><td align=3D"center">31.166</td><td align=3D"center">1.700</td><td align=
+=3D"right">
+														1350
+														(+47)
+													</td>
+	</tr><tr align=3D"left">
+		<td align=3D"center" nowrap>4</td><td></td><td align=3D"center" nowrap>14=
+</td><td align=3D"left" nowrap>
+														Rob
+													</td><td align=3D"center">31.269</td><td align=3D"center">11</=
+td><td align=3D"center">31.269</td><td align=3D"center">1.803</td><td align=
+=3D"right">
+														1256
+														(+33)
+													</td>
+	</tr><tr align=3D"left">
+		<td align=3D"center" nowrap>5</td><td></td><td align=3D"center" nowrap>8<=
+/td><td align=3D"left" nowrap>
+														Daniel Nikonchik
+													</td><td align=3D"center">31.943</td><td align=3D"center">11</=
+td><td align=3D"center">31.943</td><td align=3D"center">2.477</td><td align=
+=3D"right">
+														1271
+														(+9)
+													</td>
+	</tr><tr align=3D"left">
+		<td align=3D"center" nowrap>6</td><td></td><td align=3D"center" nowrap>21=
+</td><td align=3D"left" nowrap>
+														The Stig
+													</td><td align=3D"center">33.259</td><td align=3D"center">10</=
+td><td align=3D"center">33.259</td><td align=3D"center">3.793</td><td align=
+=3D"right">
+														1519
+														(-32)
+													</td>
+	</tr><tr align=3D"left">
+		<td align=3D"center" nowrap>7</td><td></td><td align=3D"center" nowrap>9<=
+/td><td align=3D"left" nowrap>
+														Neil
+													</td><td align=3D"center">33.516</td><td align=3D"center">10</=
+td><td align=3D"center">33.516</td><td align=3D"center">4.050</td><td align=
+=3D"right">
+														1144
+														(-22)
+													</td>
+	</tr><tr align=3D"left">
+		<td align=3D"center" nowrap>8</td><td></td><td align=3D"center" nowrap>17=
+</td><td align=3D"left" nowrap>
+														Number 1
+													</td><td align=3D"center">39.246</td><td align=3D"center">8</t=
+d><td align=3D"center">39.246</td><td align=3D"center">9.780</td><td align=
+=3D"right">
+														1122
+														(-42)
+													</td>
+	</tr>
+</tbody></table></td>
+									<td align=3D"left" valign=3D"top" width=3D"170"><br>
+										<table border=3D"0" cellspacing=3D"0" width=3D"160">
+	<tbody><tr valign=3D"bottom">
+		<td align=3D"center" width=3D"15"><b>=A0</b></td><td><b>Top R.P.M. Overal=
+l</b></td><td align=3D"center"><b>R.P.M.</b></td>
+	</tr><tr>
+		<td align=3D"center">1</td><td align=3D"left" nowrap width=3D"115">
+														bubbles
+													</td><td align=3D"left" nowrap width=3D"30">
+														7695
+													</td>
+	</tr><tr>
+		<td align=3D"center">2</td><td align=3D"left" nowrap width=3D"115">
+														IMHARD =3D=3DD~
+													</td><td align=3D"left" nowrap width=3D"30">
+														6055
+													</td>
+	</tr><tr>
+		<td align=3D"center">3</td><td align=3D"left" nowrap width=3D"115">
+														Mark-Tami
+													</td><td align=3D"left" nowrap width=3D"30">
+														5428
+													</td>
+	</tr><tr>
+		<td align=3D"center">4</td><td align=3D"left" nowrap width=3D"115">
+														Chris_B
+													</td><td align=3D"left" nowrap width=3D"30">
+														5185
+													</td>
+	</tr><tr>
+		<td align=3D"center">5</td><td align=3D"left" nowrap width=3D"115">
+														Slick142
+													</td><td align=3D"left" nowrap width=3D"30">
+														4493
+													</td>
+	</tr><tr>
+		<td align=3D"center">6</td><td align=3D"left" nowrap width=3D"115">
+														van eynde
+													</td><td align=3D"left" nowrap width=3D"30">
+														4209
+													</td>
+	</tr><tr>
+		<td align=3D"center">7</td><td align=3D"left" nowrap width=3D"115">
+														str8 up whipin it
+													</td><td align=3D"left" nowrap width=3D"30">
+														4128
+													</td>
+	</tr><tr>
+		<td align=3D"center">8</td><td align=3D"left" nowrap width=3D"115">
+														Slammed Steve
+													</td><td align=3D"left" nowrap width=3D"30">
+														4100
+													</td>
+	</tr><tr>
+		<td align=3D"center">9</td><td align=3D"left" nowrap width=3D"115">
+														Han
+													</td><td align=3D"left" nowrap width=3D"30">
+														4098
+													</td>
+	</tr><tr>
+		<td align=3D"center">10</td><td align=3D"left" nowrap width=3D"115">
+														Prze Huj
+													</td><td align=3D"left" nowrap width=3D"30">
+														4013
+													</td>
+	</tr><tr>
+		<td align=3D"center">11</td><td align=3D"left" nowrap width=3D"115">
+														K29HARVICK
+													</td><td align=3D"left" nowrap width=3D"30">
+														3921
+													</td>
+	</tr><tr>
+		<td align=3D"center">12</td><td align=3D"left" nowrap width=3D"115">
+														Sunshine
+													</td><td align=3D"left" nowrap width=3D"30">
+														3905
+													</td>
+	</tr>
+</tbody></table></td>
+									<td align=3D"right" valign=3D"top" width=3D"170"><br>
+										<span class=3D"HOEnZb"><font color=3D"#888888">
+	</font></span><span class=3D"HOEnZb"><font color=3D"#888888">
+</font></span><table border=3D"0" cellspacing=3D"0" width=3D"160">
+	<tbody><tr>
+		<td align=3D"center" width=3D"15"><b>=A0</b></td><td align=3D"left"><b>Be=
+st of The Week</b></td><td align=3D"center"><b>Time</b></td>
+	</tr><tr>
+		<td align=3D"center">1</td><td nowrap width=3D"115">
+														archila
+													</td><td nowrap width=3D"30">
+														26.575
+													</td>
+	</tr><tr>
+		<td align=3D"center">2</td><td nowrap width=3D"115">
+														Zorro
+													</td><td nowrap width=3D"30">
+														26.975
+													</td>
+	</tr><tr>
+		<td align=3D"center">3</td><td nowrap width=3D"115">
+														IMHARD =3D=3DD~
+													</td><td nowrap width=3D"30">
+														28.376
+													</td>
+	</tr><tr>
+		<td align=3D"center">4</td><td nowrap width=3D"115">
+														JCLARK18TEAMARROW
+													</td><td nowrap width=3D"30">
+														29.466
+													</td>
+	</tr><tr>
+		<td align=3D"center">5</td><td nowrap width=3D"115">
+														Slick142
+													</td><td nowrap width=3D"30">
+														29.636
+													</td>
+	</tr><tr>
+		<td align=3D"center">6</td><td nowrap width=3D"115">
+														***
+													</td><td nowrap width=3D"30">
+														29.900
+													</td>
+	</tr><tr>
+		<td align=3D"center">7</td><td nowrap width=3D"115">
+														Cabbage Patch
+													</td><td nowrap width=3D"30">
+														30.045
+													</td>
+	</tr><tr>
+		<td align=3D"center">8</td><td nowrap width=3D"115">
+														Bash
+													</td><td nowrap width=3D"30">
+														30.085
+													</td>
+	</tr><tr>
+		<td align=3D"center">9</td><td nowrap width=3D"115">
+														mook
+													</td><td nowrap width=3D"30">
+														30.158
+													</td>
+	</tr><tr>
+		<td align=3D"center">10</td><td nowrap width=3D"115">
+														van eynde
+													</td><td nowrap width=3D"30">
+														30.158
+													</td>
+	</tr><tr>
+		<td align=3D"center">11</td><td nowrap width=3D"115">
+														Freaky Fast
+													</td><td nowrap width=3D"30">
+														30.309
+													</td>
+	</tr><tr>
+		<td align=3D"center">12</td><td nowrap width=3D"115">
+														michael ochoa
+													</td><td nowrap width=3D"30">
+														30.394
+													</td></tr></tbody></table></td></tr></tbody></table><span clas=
+s=3D"HOEnZb"><font color=3D"#888888">
+						</font></span></td></tr></tbody></table><span class=3D"HOEnZb"><font =
+color=3D"#888888">
+<table border=3D"0" cellspacing=3D"0" width=3D"700">
+<tbody><tr><td align=3D"center">
+
+</td></tr>
+</tbody></table>
+		</font></span></form><span class=3D"HOEnZb"><font color=3D"#888888">
+	</font></span></div><span class=3D"HOEnZb"><font color=3D"#888888">
+
+
+</font></span></div><span class=3D"HOEnZb"><font color=3D"#888888"><br><br =
+clear=3D"all"><div><br></div>-- <br>David Quednau<br>Graphic Designer<br>Th=
+e Field Museum<br>1400 Lake Shore Dr.<br>Chicago, IL, 60605
+</font></span></div></div><br><br></div> </div> </div>  </div></div></div><=
+br></div>
+
+--f46d043be21c8e2ed804e785de06--
+--f46d043be21c8e2edc04e785de08
+Content-Type: application/octet-stream; name="1-50788-1001339.png"
+Content-Disposition: attachment; filename="1-50788-1001339.png"
+Content-Transfer-Encoding: base64
+X-Attachment-Id: b914e48adcd5c180_0.1
+
+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
+--f46d043be21c8e2edc04e785de08
+Content-Type: application/octet-stream; name="2-50788-1001339.png"
+Content-Disposition: attachment; filename="2-50788-1001339.png"
+Content-Transfer-Encoding: base64
+X-Attachment-Id: b914e48adcd5c180_0.2
+
+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
+--f46d043be21c8e2edc04e785de08--

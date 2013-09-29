@@ -10,7 +10,7 @@ import org.joda.time.{LocalTime, LocalDate, Period}
 class RacerResultsScraper extends Scraper[Seq[RacerResult]] {
   def extract(html: String, url: String): Seq[RacerResult] = {
     val doc = Jsoup.parse(html, url)
-    extractItemsUsingSelector[RacerResult](doc, "table[rules=all] tr",
+    extractItemsUsingSelector[RacerResult](doc, "table[width=95%] tr",
       el => el.children.get(0).text != "Pos") {
       el => {
         val ch = el.children

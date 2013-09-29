@@ -5,7 +5,6 @@ import org.scalatest.matchers.ShouldMatchers
 import com.chicagof1.utils.SpecUtils._
 import com.chicagof1.parsing.EmailParser
 import org.jsoup.Jsoup
-import com.chicagof1.utils.SpecUtils
 
 class EmailSpec extends FunSpec with ShouldMatchers {
   val parser: EmailParser = new EmailParser()
@@ -31,6 +30,13 @@ class EmailSpec extends FunSpec with ShouldMatchers {
       val message = parser.parseEmail(testResourcesDir + "melrose-forwarded-email.txt")
       val html: String = parser.getFirstHtmlBodyPartContentAsString(message)
       html should include("32.893")
+      Jsoup.parse(html)
+    }
+
+    it("should extract html from a results email that has been forwarded twice") {
+      val message = parser.parseEmail(testResourcesDir + "double-forwarded.txt")
+      val html: String = parser.getFirstHtmlBodyPartContentAsString(message)
+      html should include("30.767")
       Jsoup.parse(html)
     }
   }
