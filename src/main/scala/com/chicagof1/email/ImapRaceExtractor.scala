@@ -39,9 +39,9 @@ object ImapRaceExtractor {
 
       val filteredMessages = messages.filter(
         m => {
-          val subject = m.getSubject
-          (subject.contains("Melrose") && subject.contains("Result")) ||
-            subject.contains("Race Result")
+          val subject = m.getSubject.toLowerCase
+          (subject.contains("melrose") && subject.contains("result")) ||
+            subject.contains("race result")
         })
       println(s"There are ${filteredMessages.size} emails to be processed")
 
