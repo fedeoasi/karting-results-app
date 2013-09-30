@@ -6,6 +6,7 @@ import com.chicagof1.scraping.RaceScraper
 import com.chicagof1.ResultsExporter
 import com.chicagof1.model.{RacerResult, Edition}
 import org.joda.time.{Duration, LocalDate}
+import java.io.FileOutputStream
 
 object Joda {
   implicit def dateTimeOrdering: Ordering[Duration] = Ordering.fromLessThan(_ isShorterThan  _)
@@ -48,11 +49,15 @@ object ImapRaceExtractor {
       val races = filteredMessages.map {
         message => {
           val content = emailParser.getFirstHtmlBodyPartContentAsString(message)
-          val race = raceScraper.extract(content, "http://anything")
-          ResultsExporter.writeCsv(race, "output")
-          race
+          raceScraper.extract(content, "http://anything")
         }
       }
+
+      val racesString = races.map(ResultsExporter.raceFilename(_)).mkString("\n")
+      new FileOutputStream("output/editions.txt").write(racesString.getBytes)
+
+      races.foreach(ResultsExporter.writeCsv(_, "output"))
+
 
       val editions: Seq[Edition] = races.groupBy(_.date).map {
         case (date, races) => {
@@ -69,6 +74,9 @@ object ImapRaceExtractor {
       }.toSeq
 
       editions.foreach(e => ResultsExporter.writeCsv(e, "output/edition"))
+      val editionsString = editions.map(ResultsExporter.editionFilename(_)).mkString("\n")
+      new FileOutputStream("output/races.txt").write(editionsString.getBytes)
+
 
       inbox.close(true)
     } catch {

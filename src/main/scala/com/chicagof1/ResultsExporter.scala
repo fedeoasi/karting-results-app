@@ -15,7 +15,7 @@ object ResultsExporter {
   }
 
   def writeCsv(race: Race, baseFolder: String) {
-    val fileName = datePrintFormatter.print(race.date) + " - " + timeFormatter.print(race.time)
+    val fileName = raceFilename(race)
     val f = new File(baseFolder + File.separator + fileName + ".csv")
     val writer = CSVWriter.open(f)
     writer.writeRow(Seq("Racer", "Position", "Kart #", "Time"))
@@ -24,11 +24,19 @@ object ResultsExporter {
   }
 
   def writeCsv(race: Edition, baseFolder: String) {
-    val fileName = datePrintFormatter.print(race.date)
+    val fileName = editionFilename(race)
     val f = new File(baseFolder + File.separator + fileName + ".csv")
     val writer = CSVWriter.open(f)
     writer.writeRow(Seq("Racer", "Kart #", "Time"))
     writer.writeAll(race.results.map(r => Seq(r.name, r.kart,
       r.time.getStandardSeconds + ":%03d".format(r.time.getMillis % 1000))))
+  }
+
+  def editionFilename(race: Edition): String = {
+    datePrintFormatter.print(race.date)
+  }
+
+  def raceFilename(race: Race): String = {
+    datePrintFormatter.print(race.date) + " - " + timeFormatter.print(race.time)
   }
 }
