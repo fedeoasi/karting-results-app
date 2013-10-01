@@ -44,7 +44,7 @@ object ImapRaceExtractor {
           (subject.contains("melrose") && subject.contains("result")) ||
             subject.contains("race result")
         })
-      println(s"There are ${filteredMessages.size} emails to be processed")
+      println(s"There are ${filteredMessages.size} emails to process")
 
       val races = filteredMessages.map {
         message => {
@@ -54,7 +54,7 @@ object ImapRaceExtractor {
       }
 
       val racesString = races.map(ResultsExporter.raceFilename(_)).mkString("\n")
-      new FileOutputStream("output/editions.txt").write(racesString.getBytes)
+      new FileOutputStream("output/races.txt").write(racesString.getBytes)
 
       races.foreach(ResultsExporter.writeCsv(_, "output"))
 
@@ -75,7 +75,7 @@ object ImapRaceExtractor {
 
       editions.foreach(e => ResultsExporter.writeCsv(e, "output/edition"))
       val editionsString = editions.map(ResultsExporter.editionFilename(_)).mkString("\n")
-      new FileOutputStream("output/races.txt").write(editionsString.getBytes)
+      new FileOutputStream("output/editions.txt").write(editionsString.getBytes)
 
 
       inbox.close(true)
