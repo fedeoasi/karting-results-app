@@ -2,8 +2,9 @@ package com.chicagof1.app
 
 import org.scalatra._
 import scalate.ScalateSupport
+import com.chicagof1.data.DataManager
 
-class KartingResultsServlet extends KartingResultsAppStack {
+class KartingResultsServlet(dataManager: DataManager) extends KartingResultsAppStack {
 
   get("/") {
     <html>
@@ -13,5 +14,9 @@ class KartingResultsServlet extends KartingResultsAppStack {
       </body>
     </html>
   }
-  
+
+  get("/races") {
+    contentType = "text/html"
+    dataManager.races.keys.mkString("<br>")
+  }
 }

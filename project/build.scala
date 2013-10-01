@@ -13,6 +13,8 @@ object KartingApplicationBuild extends Build {
   val ScalaVersion = "2.10.2"
   val ScalatraVersion = "2.2.1"
 
+  def containerConf = config("container")
+
   lazy val project = Project (
     "karting-application",
     file("."),
@@ -23,10 +25,13 @@ object KartingApplicationBuild extends Build {
       scalaVersion := ScalaVersion,
       resolvers += Classpaths.typesafeReleases,
       resolvers += "Sonatype snapshots" at "http://oss.sonatype.org/content/repositories/snapshots/",
-      libraryDependencies ++= Seq(
+      unmanagedResourceDirectories in Runtime += file("output"),
+      fullClasspath in containerConf += file("output"),
+        libraryDependencies ++= Seq(
         "org.scalatra" %% "scalatra" % ScalatraVersion,
         "org.scalatra" %% "scalatra-scalate" % ScalatraVersion,
         "org.scalatest"  %% "scalatest" % "1.9.1" % "test",
+        "org.apache.commons" % "commons-io" % "1.3.2",
         "ch.qos.logback" % "logback-classic"     % "1.0.13",
         "org.jsoup" % "jsoup" % "1.7.2",
         "joda-time" % "joda-time" % "2.2",
