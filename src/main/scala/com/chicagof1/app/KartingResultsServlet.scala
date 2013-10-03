@@ -30,16 +30,19 @@ class KartingResultsServlet(dataManager: DataManager) extends KartingResultsAppS
     jade("race", "race" -> race.get)
   }
 
-  get("/data/races") {
+  get("/data/races/:id") {
     contentType = "application/json"
-
-    val data = dataManager.races.map(r => List[String](r.date.toString, "", "", ""))
+    val raceId = params("id")
+    val race = dataManager.getRaceById(raceId)
+    val data = race.get.results.map(r => List[String](r.name, r.position.toString, r.kart.toString, r.formattedTime))
     val json = "aaData" -> data
     compact(render(json))
   }
 
-  get("/datatable") {
-    contentType = "text/html"
-    jade("datatable")
+  get("/data/races") {
+    contentType = "application/json"
+    val data = dataManager.races.map(r => List[String](r.date.toString, "", "", ""))
+    val json = "aaData" -> data
+    compact(render(json))
   }
 }

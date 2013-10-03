@@ -2,4 +2,31 @@
 - attributes("title") = s"Race ${race.raceId}"
 - attributes("titleName") = "Races"
 
-p Race
+!!!
+html
+  head
+    title Datatables Page
+    script(type='text/javascript' src='../../../js/jquery.js')
+    script(type='text/javascript' src='../../../js/jquery.dataTables.min.js')
+    link(rel='stylesheet' href='../../../css/demo_table.css')
+    link(rel='stylesheet' href='../../../css/all.css')
+  body
+    #content
+      table(id='example' class='standardTable')
+        thead
+          tr
+            th Racer
+            th Position
+            th Kart #
+            th Time
+        tbody
+  :!javascript
+    $(document).ready(function() {
+      $('#example').dataTable( {
+    	"bProcessing": true,
+        "sAjaxSource": '/data/races/#{race.raceId}'
+      });
+    });
+
+
+

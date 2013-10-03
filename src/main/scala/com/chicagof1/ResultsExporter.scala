@@ -20,7 +20,7 @@ object ResultsExporter {
     val writer = CSVWriter.open(f)
     writer.writeRow(Seq("Racer", "Position", "Kart #", "Time"))
     writer.writeAll(race.results.map(r => Seq(r.name, r.position, r.kart,
-      r.time.getStandardSeconds + ":%03d".format(r.time.getMillis % 1000))))
+      r.formattedTime)))
   }
 
   def writeCsv(race: Edition, baseFolder: String) {
