@@ -34,7 +34,6 @@ class RaceScraper extends Scraper[Race] {
         val processed = el.text.replaceAll("\\(.*\\)", "").replaceAll("Laptimes", "").replace("\u00a0","").trim
         val split = processed.split("\\s")
         println(processed)
-        println(split)
         ((LocalDate.parse(split(0), dateFormatter), LocalTime.parse(split(1), timeFormatter)))
       }
     }

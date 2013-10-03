@@ -6,8 +6,8 @@ import java.io.StringReader
 import org.joda.time.{LocalTime, LocalDate, Period}
 
 object ResultsImporter {
-  def readRacerResult(filename: String): List[RacerResult] = {
-    val reader = CSVReader.open(new StringReader(filename))
+  def readRacerResult(contents: String): List[RacerResult] = {
+    val reader = CSVReader.open(new StringReader(contents))
     reader.allWithHeaders().map(r => {
       val timeSplit = r.get("Time").get.split(":")
       RacerResult(

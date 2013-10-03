@@ -1,0 +1,11 @@
+- attributes("title") = "List of Races"
+- attributes("titleName") = "Races"
+-@ val raceIds: List[String]
+
+p These are the races
+ul
+- for(id <- raceIds) {
+  li
+    a(href='races/#{id}')= id
+- }
+

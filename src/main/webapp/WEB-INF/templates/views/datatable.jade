@@ -1,0 +1,26 @@
+- attributes("title") = "Races"
+!!!
+html
+  head
+    title Datatables Page
+    script(type='text/javascript' src='../../../js/jquery.js')
+    script(type='text/javascript' src='../../../js/jquery.dataTables.min.js')
+    link(rel='stylesheet' href='../../../css/demo_table.css')
+    link(rel='stylesheet' type='text/css' href='http://fonts.googleapis.com/css?family=Ruda')
+  body
+    #content
+      table(id='example' class='standardTable')
+        thead
+          tr
+            th Racer
+            th Position
+            th Kart #
+            th Time
+        tbody
+  :!javascript
+    $(document).ready(function() {
+      $('#example').dataTable( {
+    	"bProcessing": true,
+        "sAjaxSource": 'data/races'
+      });
+    });

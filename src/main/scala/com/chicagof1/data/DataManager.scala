@@ -1,6 +1,6 @@
 package com.chicagof1.data
 
-import com.chicagof1.model.RacerResult
+import com.chicagof1.model.Race
 import com.chicagof1.ResultsImporter
 import java.io.StringWriter
 import org.apache.commons.io.IOUtils
@@ -9,14 +9,14 @@ import grizzled.slf4j.Logging
 
 object DataProvider extends Logging {
   def dataManager(): DataManager = {
-    val races = loadFileIntoString("races.txt").split("\n")
-    val racerResults: Map[String, List[RacerResult]] =
-      races.map { r => r -> ResultsImporter.readRacerResult(r) } toMap;
+    val races = loadFileIntoString("races.txt").split("\\n")
+    val racerResults: List[Race] =
+      races.map(name => ResultsImporter.readRace(name, loadFileIntoString(name + ".csv"))).toList
     new DataManager(racerResults)
   }
 
   def loadFileIntoString(path: String): String = {
-    val racesStream = Thread.currentThread().getContextClassLoader.getResourceAsStream("races.txt")
+    val racesStream = Thread.currentThread().getContextClassLoader.getResourceAsStream(path)
     val writer = new StringWriter()
     try {
       IOUtils.copy(racesStream, writer, "UTF-8")
@@ -31,4 +31,8 @@ object DataProvider extends Logging {
   }
 }
 
-case class DataManager(races: Map[String, List[RacerResult]])
+case class DataManager(races: List[Race]) {
+  private val racesMap: Map[String, Race] = races.map(r => r.raceId -> r) toMap
+
+  def getRaceById(id: String): Option[Race] = racesMap.get(id)
+}

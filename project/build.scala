@@ -32,6 +32,7 @@ object KartingApplicationBuild extends Build {
         "org.scalatra" %% "scalatra-scalate" % ScalatraVersion,
         "org.scalatest"  %% "scalatest" % "1.9.1" % "test",
         "org.apache.commons" % "commons-io" % "1.3.2",
+        "org.json4s" %% "json4s-jackson" % "3.2.4",
         "ch.qos.logback" % "logback-classic"     % "1.0.13",
         "org.jsoup" % "jsoup" % "1.7.2",
         "joda-time" % "joda-time" % "2.2",
