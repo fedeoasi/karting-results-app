@@ -16,7 +16,11 @@ object DataProvider extends Logging {
   }
 
   def loadFileIntoString(path: String): String = {
+    info("Opening resource at path: " + path)
     val racesStream = Thread.currentThread().getContextClassLoader.getResourceAsStream(path)
+    if(racesStream == null) {
+      error("Unable to stream resource at path: " + path)
+    }
     val writer = new StringWriter()
     try {
       IOUtils.copy(racesStream, writer, "UTF-8")
