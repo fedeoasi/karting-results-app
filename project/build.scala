@@ -15,10 +15,29 @@ object KartingApplicationBuild extends Build {
 
   def containerConf = config("container")
 
+  val tomcatDeployKey = TaskKey[Unit]("tomcat-deploy", "deploys the banana stand web war to tomcat")
+
+  val tomcatDeployTask = (tomcatDeployKey in Compile) <<= (Keys.`package` in(Compile)) map {
+    (artifact) => {
+      val tomcatHost = System.getenv("KRA_TOMCAT_HOST")
+      val tomcatUser = System.getenv("KRA_TOMCAT_USER")
+      val tomcatPassword = System.getenv("KRA_TOMCAT_PWD")
+      println("tomcatHost=" + tomcatHost + " tomcatUser=" + tomcatUser + " tomcatPassword=" + tomcatPassword)
+      if(tomcatHost == null || tomcatUser == null || tomcatPassword == null) {
+        println("You need to properly set the environment variables: KRA_TOMCAT_HOST, KRA_TOMCAT_USER, " +
+          "and KRA_TOMCAT_PWD. The app has not been deployed.")
+      } else {
+        List("sh", "-c", "curl -u " + tomcatUser + ":" + tomcatPassword + " --upload-file " + artifact +
+          " \"http://" + tomcatHost + ":8080/manager/text/deploy?path=/&update=true\"") !;
+      }
+      None
+    }
+  }
+
   lazy val project = Project (
     "karting-application",
     file("."),
-    settings = Defaults.defaultSettings ++ ScalatraPlugin.scalatraWithJRebel ++ scalateSettings ++ Seq(
+    settings = Defaults.defaultSettings ++ ScalatraPlugin.scalatraWithJRebel ++ scalateSettings ++ Seq(tomcatDeployTask) ++ Seq(
       organization := Organization,
       name := Name,
       version := Version,
