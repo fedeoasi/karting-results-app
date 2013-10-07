@@ -55,19 +55,18 @@ a {
     text-align: center;
 }
 
-
 tr.odd {
-	background-color: #1a0000;
+	background-color: #8a0000;
 }
 
 tr.even {
-	background-color: #2a0000;
-}
-
-tr.odd td.sorting_1 {
 	background-color: #1f0000;
 }
 
+tr.odd td.sorting_1 {
+	background-color: #8a0000;
+}
+
 tr.even td.sorting_1 {
-	background-color: #2f0000;
+	background-color: #1f0000;
 }

@@ -16,7 +16,7 @@ object DataProvider extends Logging {
   }
 
   def loadFileIntoString(path: String): String = {
-    info("Opening resource at path: " + path)
+    debug("Opening resource at path: " + path)
     val racesStream = Thread.currentThread().getContextClassLoader.getResourceAsStream(path)
     if(racesStream == null) {
       error("Unable to stream resource at path: " + path)
