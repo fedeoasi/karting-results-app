@@ -10,7 +10,7 @@ object KartingApplicationBuild extends Build {
   val Organization = "com.chicagof1"
   val Name = "Karting Results Application"
   val Version = "0.1.0-SNAPSHOT"
-  val ScalaVersion = "2.10.2"
+  val ScalaVersion = "2.10.0"
   val ScalatraVersion = "2.2.1"
 
   def containerConf = config("container")
@@ -59,7 +59,7 @@ object KartingApplicationBuild extends Build {
         "org.clapper"    % "grizzled-slf4j_2.10" % "1.0.1",
         "javax.mail" % "mail" % "1.4.1",
         "org.apache.commons" % "commons-io" % "1.3.2",
-        "org.scala-lang" % "scala-reflect" % "2.10.2",
+        "org.scala-lang" % "scala-reflect" % "2.10.0",
         "com.github.tototoshi" %% "scala-csv" % "1.0.0-SNAPSHOT",
         "org.eclipse.jetty" % "jetty-webapp" % "8.1.8.v20121106" % "container",
         "org.eclipse.jetty.orbit" % "javax.servlet" % "3.0.0.v201112011016" % "container;provided;test" artifacts (Artifact("javax.servlet", "jar", "jar"))
