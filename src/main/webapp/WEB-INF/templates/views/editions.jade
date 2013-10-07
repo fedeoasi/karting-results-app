@@ -1,0 +1,13 @@
+- attributes("title") = "List of Editions"
+- attributes("titleName") = "Editions"
+- attributes("headline") = "Editions"
+-@ val editions: List[com.chicagof1.model.Edition]
+
+p These are the races
+ul
+  - for(e <- editions) {
+  li
+    .race
+      a(href='editions/#{e.date}')= e.date
+      .winner
+  - }

@@ -1,6 +1,6 @@
 package com.chicagof1.data
 
-import com.chicagof1.model.Race
+import com.chicagof1.model.{Edition, Race}
 import com.chicagof1.ResultsImporter
 import java.io.StringWriter
 import org.apache.commons.io.IOUtils
@@ -12,7 +12,11 @@ object DataProvider extends Logging {
     val races = loadFileIntoString("races.txt").split("\\n")
     val racerResults: List[Race] =
       races.map(name => ResultsImporter.readRace(name, loadFileIntoString(name + ".csv"))).toList
-    new DataManager(racerResults)
+    val editions = loadFileIntoString("editions.txt").split("\\n")
+    val editionResults: List[Edition] =
+      editions.map(name => ResultsImporter.readEdition(name, loadFileIntoString("edition/" + name + ".csv"))).toList
+    info(s"Imported ${races.size} races and ${editions.size} editions")
+    new DataManager(racerResults, editionResults)
   }
 
   def loadFileIntoString(path: String): String = {
@@ -35,8 +39,10 @@ object DataProvider extends Logging {
   }
 }
 
-case class DataManager(races: List[Race]) {
+case class DataManager(races: List[Race], editions: List[Edition]) {
   private val racesMap: Map[String, Race] = races.map(r => r.raceId -> r) toMap
+  private val editionsMap: Map[String, Edition] = editions.map(e => e.date.toString -> e) toMap
 
   def getRaceById(id: String): Option[Race] = racesMap.get(id)
+  def getEditionById(id: String): Option[Edition] = editionsMap.get(id)
 }

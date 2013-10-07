@@ -18,6 +18,12 @@ class KartingResultsServlet(dataManager: DataManager) extends KartingResultsAppS
     jade("races", "raceIds" -> raceIds)
   }
 
+  get("/editions") {
+    contentType = "text/html"
+    val editions = dataManager.editions
+    jade("editions", "editions" -> editions)
+  }
+
   get("/races/:id") {
     contentType = "text/html"
     val raceId = params("id")
