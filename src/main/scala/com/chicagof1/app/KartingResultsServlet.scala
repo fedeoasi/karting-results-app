@@ -8,13 +8,8 @@ import com.chicagof1.data.DataManager
 class KartingResultsServlet(dataManager: DataManager) extends KartingResultsAppStack {
 
   get("/") {
-    <html>
-      <body>
-        <h1>Welcome to the Chicago F1 Karting Results App</h1>
-        <a href="editions">Editions</a>
-        <a href="races">Races</a>
-      </body>
-    </html>
+    contentType = "text/html"
+    jade("index")
   }
 
   get("/races") {

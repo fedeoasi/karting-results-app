@@ -1,11 +1,13 @@
 - attributes("title") = "List of Races"
 - attributes("titleName") = "Races"
+- attributes("headline") = "Races"
 -@ val raceIds: List[String]
 
-img(src='../../../images/chicago_f1_logo.jpg' height='200px')
 p These are the races
 ul
-- for(id <- raceIds) {
+  - for(id <- raceIds) {
   li
-    a(href='races/#{id}')= id
-- }
+    .race
+      a(href='races/#{id}')= id
+      .winner
+  - }

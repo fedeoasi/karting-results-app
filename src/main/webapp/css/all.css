@@ -1,3 +1,73 @@
+body {
+    margin: 0 auto;
+    padding-left: 10px;
+
+    font-family: Helvetica, Verdana, sans-serif;
+    //background: url(../images/chicago_f1_logo.jpg) no-repeat;
+    background: #110000;
+    color: #ddd;
+}
+
+th {
+  color: #aa0000;
+  font-size: 20px;
+}
+
+h1 {
+    color: #aa0000;
+}
+
 .standardTable {
     width: 100%;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+#menu li {
+    padding: 0 20px;
+}
+
+ul li {
+    float:left;
+    padding: 30px;
+    overflow: auto;
+}
+
+.clear {
+    clear:both;
+}
+
+li:hover {
+  background: #990000;
+  cursor: pointer;
+}
+
+a {
+    color: #aaa;
+    text-decoration: none;
+}
+
+.center {
+    text-align: center;
+}
+
+
+tr.odd {
+	background-color: #1a0000;
+}
+
+tr.even {
+	background-color: #2a0000;
+}
+
+tr.odd td.sorting_1 {
+	background-color: #1f0000;
+}
+
+tr.even td.sorting_1 {
+	background-color: #2f0000;
 }
