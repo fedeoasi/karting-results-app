@@ -3,11 +3,14 @@
 - attributes("headline") = "Editions"
 -@ val editions: List[com.chicagof1.model.Edition]
 
-p These are the races
-ul
+ul(class='editions')
   - for(e <- editions) {
   li
-    .race
-      a(href='editions/#{e.date}')= e.date
-      .winner
+    .edition
+      .printId
+        a= e.printId
+      .detail
+        h3= e.winner
+        p= e.results(0).formattedTime
+        a(href='editions/#{e.date}')= e.date
   - }

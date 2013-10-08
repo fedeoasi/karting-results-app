@@ -14,7 +14,10 @@ object DataProvider extends Logging {
       races.map(name => ResultsImporter.readRace(name, loadFileIntoString(name + ".csv"))).toList
     val editions = loadFileIntoString("editions.txt").split("\\n")
     val editionResults: List[Edition] =
-      editions.map(name => ResultsImporter.readEdition(name, loadFileIntoString("edition/" + name + ".csv"))).toList
+      editions.map(name =>
+        ResultsImporter.readEdition(name, loadFileIntoString("edition/" + name + ".csv")))
+        .sortBy(_.date.toString)
+        .toList
     info(s"Imported ${races.size} races and ${editions.size} editions")
     new DataManager(racerResults, editionResults)
   }

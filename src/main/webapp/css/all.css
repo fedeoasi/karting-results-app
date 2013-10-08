@@ -1,10 +1,15 @@
+html {
+    margin: 0px;
+    padding: 0px;
+}
+
 body {
     margin: 0 auto;
     padding-left: 10px;
 
     font-family: Helvetica, Verdana, sans-serif;
     //background: url(../images/chicago_f1_logo.jpg) no-repeat;
-    background: #110000;
+    background: #050202;
     color: #ddd;
 }
 
@@ -33,8 +38,54 @@ ul {
 
 ul li {
     float:left;
-    padding: 30px;
+    //padding: 20px;
     overflow: auto;
+}
+
+ul.editions li {
+    width: 500px;
+    margin: 4px;
+    background: #111;
+    border: solid 1px #111;
+}
+
+li .printId {
+    padding: 55px 10px 10px 10px;
+    height: 100px;
+    width: 150px;
+    float:left;
+    background: #5a1111;
+    text-align: center;
+}
+
+li .printId {
+    padding: 55px 10px 10px 10px;
+    height: 100px;
+    width: 150px;
+    float:left;
+    background: #5a1111;
+    text-align: center;
+}
+
+li .printId:hover {
+    background: #9a1111;
+}
+
+.printId a {
+    margin: 0 15px 0 0;
+    height: 100px;
+    width: 150px;
+    font-size: 30px;
+}
+
+
+
+.detail {
+    padding-top: 5px;
+    padding-left: 20px;
+    height: 100%;
+    float: left;
+    vertical-align: middle;
 }
 
 .clear {
