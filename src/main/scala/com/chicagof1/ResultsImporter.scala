@@ -12,7 +12,7 @@ object ResultsImporter {
       val timeSplit = r._1.get("Time").get.split(":")
       val position = r._1.get("Position") match {
         case Some(pos) => pos.toInt
-        case None => r._2
+        case None => r._2 + 1
       }
       RacerResult(
         r._1.get("Racer").get,

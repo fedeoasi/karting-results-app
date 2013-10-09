@@ -1,0 +1,7 @@
+-@ val edition: com.chicagof1.model.Edition
+- attributes("title") = s"Edition ${edition.printId}"
+- attributes("titleName") = s"Edition ${edition.printId}"
+- attributes("source") = "/data/editions/" + edition.date
+
+#content
+- render("racer-results.jade")

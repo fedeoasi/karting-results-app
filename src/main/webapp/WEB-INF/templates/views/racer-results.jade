@@ -1,0 +1,23 @@
+-@ val source: String
+
+table(id='example' class='standardTable')
+  thead
+    tr
+      th Racer
+      th Position
+      th Kart #
+      th Time
+  tbody
+  :!javascript
+    $(document).ready(function() {
+      $('#example').dataTable( {
+    	"bProcessing": true,
+        "sAjaxSource": '#{source}',
+        "bPaginate": false,
+        "aaSorting": [[ 1, "asc" ]],
+        "bInfo": false,
+        "aoColumnDefs": [
+          { "sClass": "center", "aTargets": [1, 2, 3] }
+        ]
+      });
+    });

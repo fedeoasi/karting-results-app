@@ -17,3 +17,7 @@ case class Edition(date: LocalDate, results: Seq[RacerResult]) {
   def winner: String = results(0).name
   def printId: String = date.toString("MMM yyyy")
 }
+
+trait HasRacerResults {
+  def results: Seq[RacerResult]
+}

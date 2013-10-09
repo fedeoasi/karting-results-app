@@ -1,6 +1,5 @@
 package com.chicagof1.app
 
-import org.scalatra._
 import org.json4s.jackson.JsonMethods._
 import org.json4s.JsonDSL._
 import com.chicagof1.data.DataManager
@@ -16,12 +15,6 @@ class KartingResultsServlet(dataManager: DataManager) extends KartingResultsAppS
     contentType = "text/html"
     val raceIds = dataManager.races.map(_.raceId)
     jade("races", "raceIds" -> raceIds)
-  }
-
-  get("/editions") {
-    contentType = "text/html"
-    val editions = dataManager.editions
-    jade("editions", "editions" -> editions)
   }
 
   get("/races/:id") {
@@ -40,9 +33,24 @@ class KartingResultsServlet(dataManager: DataManager) extends KartingResultsAppS
     compact(render(json))
   }
 
-  get("/data/races") {
+  get("/editions") {
+    contentType = "text/html"
+    val editions = dataManager.editions
+    jade("editions", "editions" -> editions)
+  }
+
+  get("/editions/:id") {
+    contentType = "text/html"
+    val edtionId = params("id")
+    val edition = dataManager.getEditionById(edtionId)
+    jade("edition", "edition" -> edition.get)
+  }
+
+  get("/data/editions/:id") {
     contentType = "application/json"
-    val data = dataManager.races.map(r => List[String](r.date.toString, "", "", ""))
+    val editionId = params("id")
+    val edition = dataManager.getEditionById(editionId)
+    val data = edition.get.results.map(r => List[String](r.name, r.position.toString, r.kart.toString, r.formattedTime))
     val json = "aaData" -> data
     compact(render(json))
   }

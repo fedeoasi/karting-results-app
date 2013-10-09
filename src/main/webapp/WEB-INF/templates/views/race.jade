@@ -1,26 +1,7 @@
 -@ val race: com.chicagof1.model.Race
 - attributes("title") = s"Race ${race.raceId}"
 - attributes("titleName") = "Races"
+- attributes("source") = "/data/races/" + race.raceId
 
 #content
-  table(id='example' class='standardTable')
-    thead
-      tr
-        th Racer
-        th Position
-        th Kart #
-        th Time
-      tbody
-  :!javascript
-    $(document).ready(function() {
-      $('#example').dataTable( {
-    	"bProcessing": true,
-        "sAjaxSource": '/data/races/#{race.raceId}',
-        "bPaginate": false,
-        "aaSorting": [[ 1, "asc" ]],
-        "bInfo": false,
-        "aoColumnDefs": [
-          { "sClass": "center", "aTargets": [1, 2, 3] }
-        ]
-      });
-    });
+- render("racer-results.jade")

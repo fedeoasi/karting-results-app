@@ -17,6 +17,7 @@ object DataProvider extends Logging {
       editions.map(name =>
         ResultsImporter.readEdition(name, loadFileIntoString("edition/" + name + ".csv")))
         .sortBy(_.date.toString)
+        .reverse
         .toList
     info(s"Imported ${races.size} races and ${editions.size} editions")
     new DataManager(racerResults, editionResults)
