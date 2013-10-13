@@ -1,91 +1,59 @@
-html {
-    margin: 0px;
-    padding: 0px;
-}
-
 body {
-    margin: 0 auto;
-    padding-left: 10px;
-
-    font-family: Helvetica, Verdana, sans-serif;
+    //font-family: Helvetica, Verdana, sans-serif;
     //background: url(../images/chicago_f1_logo.jpg) no-repeat;
-    background: #050202;
-    color: #ddd;
-}
-
-th {
-  color: #aa0000;
-  font-size: 20px;
-}
-
-h1 {
-    padding-left: 10px;
-    color: #aa0000;
-    text-transform: uppercase;
+    //background: #050202;
 }
 
 .standardTable {
     width: 100%;
 }
 
-ul {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
-}
-
-#menu li {
-    text-transform: uppercase;
-    padding: 0 20px;
-}
-
 ul li {
     float:left;
-    //padding: 20px;
     overflow: auto;
 }
 
 ul.editions li {
     width: 500px;
-    margin: 4px;
-    background: #202020;
-    border: solid 1px #333;
+    margin: 1px;
+    background: #eee;
+    border: solid 1px #ccc;
 }
 
-ul.editions h3 {
-    color: #EBC000;
+.editions h3 {
+    margin-top: 13px;
 }
 
 li .printId {
-    padding: 55px 10px 10px 10px;
-    height: 100px;
+    height: 120px;
     width: 150px;
     float:left;
-    background: #880000;
+    color: #ddd;
+    background: #9a1111;
     text-align: center;
 }
 
-li .printId:hover {
-    background: #9a1111;
-}
-
 .printId a {
-    margin: 0 15px 0 0;
-    height: 100px;
+    padding: 35px 10px 10px 10px;
+    display: block;
+    color: #eee;
+    height: 120px;
     width: 150px;
     font-size: 30px;
 }
 
 .detail {
-    padding-top: 5px;
-    padding-left: 20px;
+    //padding-top: 5px;
+    padding-left: 15px;
     height: 100%;
     float: left;
     vertical-align: middle;
 }
 
-.clear {
-    clear:both;
+li a {
+    display: block;
+    color: #000;
+    text-decoration: none;
 }
 
 li:hover {
@@ -93,27 +61,27 @@ li:hover {
   cursor: pointer;
 }
 
-a {
-    color: #aaa;
-    text-decoration: none;
-}
-
 .center {
     text-align: center;
 }
 
-tr.odd {
-	background-color: #8a0000;
+.clear {
+    clear:both;
 }
 
-tr.even {
-	background-color: #1f0000;
+#example_filter {
+    margin-bottom: 50px;
 }
 
-tr.odd td.sorting_1 {
-	background-color: #8a0000;
+li .race {
 }
 
-tr.even td.sorting_1 {
-	background-color: #1f0000;
+li .race a {
+    padding: 20px 40px;
+}
+
+a:hover {
+    background: #bb1111;
+    color: #eee !important;
+    text-decoration:none !important;
 }

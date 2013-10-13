@@ -1,6 +1,6 @@
 -@ val source: String
 
-table(id='example' class='standardTable')
+table(id='example' class='table table-striped')
   thead
     tr
       th Racer
@@ -14,6 +14,7 @@ table(id='example' class='standardTable')
     	"bProcessing": true,
         "sAjaxSource": '#{source}',
         "bPaginate": false,
+        "bFilter": false,
         "aaSorting": [[ 1, "asc" ]],
         "bInfo": false,
         "aoColumnDefs": [

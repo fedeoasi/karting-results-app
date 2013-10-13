@@ -3,7 +3,7 @@
 - attributes("headline") = "Editions"
 -@ val editions: List[com.chicagof1.model.Edition]
 
-ul(class='editions')
+ul(class='editions list-unstyled')
   - for(e <- editions) {
   li
     .edition
@@ -12,5 +12,5 @@ ul(class='editions')
       .detail
         h3= e.winner
         p= e.results(0).formattedTime
-        a(href='editions/#{e.date}')= e.date
+        p= e.date
   - }
