@@ -1,6 +1,6 @@
 package com.chicagof1.data
 
-import com.chicagof1.model.{Edition, Race}
+import com.chicagof1.model.{RacerResult, Edition, Race}
 import com.chicagof1.ResultsImporter
 import java.io.StringWriter
 import org.apache.commons.io.IOUtils
@@ -9,13 +9,21 @@ import grizzled.slf4j.Logging
 
 object DataProvider extends Logging {
   def dataManager(): DataManager = {
+    val racers: Seq[String] = loadFileIntoString("racers.txt").split("\\n")
     val races = loadFileIntoString("races.txt").split("\\n")
     val racerResults: List[Race] =
-      races.map(name => ResultsImporter.readRace(name, loadFileIntoString(name + ".csv"))).toList
+      races.map(name => ResultsImporter.readRace(name, loadFileIntoString(name + ".csv")))
+        .sortBy(r => r.raceId).reverse.toList
     val editions = loadFileIntoString("editions.txt").split("\\n")
     val editionResults: List[Edition] =
       editions.map(name =>
         ResultsImporter.readEdition(name, loadFileIntoString("edition/" + name + ".csv")))
+        .map(e => {
+           Edition(e.date, e.results.filter(r =>
+             racers.contains(r.name))
+             .zipWithIndex
+             .map(r => RacerResult(r._1.name, r._2, r._1.kart, r._1.time)))
+         })
         .sortBy(_.date.toString)
         .reverse
         .toList
