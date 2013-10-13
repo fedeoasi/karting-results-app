@@ -85,3 +85,15 @@ a:hover {
     color: #eee !important;
     text-decoration:none !important;
 }
+
+a:visited {
+    //color: #eee !important;
+    text-decoration:none !important;
+}
+
+a:active {
+    //color: #eee !important;
+    text-decoration:none !important;
+}
+
+
