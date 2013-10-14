@@ -22,7 +22,7 @@ object DataProvider extends Logging {
            Edition(e.date, e.results.filter(r =>
              racers.contains(r.name))
              .zipWithIndex
-             .map(r => RacerResult(r._1.name, r._2, r._1.kart, r._1.time)))
+             .map(r => RacerResult(r._1.name, r._2 + 1, r._1.kart, r._1.time)))
          })
         .sortBy(_.date.toString)
         .reverse
