@@ -8,7 +8,7 @@ class KartingResultsServlet(dataManager: DataManager) extends KartingResultsAppS
 
   get("/") {
     contentType = "text/html"
-    jade("index")
+    ssp("index")
   }
 
   get("/races") {

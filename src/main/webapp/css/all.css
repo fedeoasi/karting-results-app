@@ -1,9 +1,3 @@
-body {
-    //font-family: Helvetica, Verdana, sans-serif;
-    //background: url(../images/chicago_f1_logo.jpg) no-repeat;
-    //background: #050202;
-}
-
 .standardTable {
     width: 100%;
 }
@@ -94,6 +88,14 @@ a:visited {
 a:active {
     //color: #eee !important;
     text-decoration:none !important;
+}
+
+#nav {
+    margin-bottom: 0;
+}
+
+#standings {
+    margin: 0 auto;
 }
 
 
