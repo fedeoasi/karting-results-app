@@ -8,7 +8,9 @@ import org.joda.time.Period
 
 class ResultsImporterSpec extends FunSpec with ShouldMatchers {
   val raceFilename: String = "2013-01-23 - 08:48.csv"
+  val raceGapsFilename: String = "2014-01-01 - 01:01.csv"
   val racerResultCsv = testResourcesDir + raceFilename
+  val racerResultGapsCsv = testResourcesDir + raceGapsFilename
   val editionFilename: String = "2012-11-16.csv"
   val raceCsv = testResourcesDir + editionFilename
 
@@ -19,6 +21,15 @@ class ResultsImporterSpec extends FunSpec with ShouldMatchers {
       result.size should be(11)
       result(0) should be(RacerResult("Justin", 1, 16, Period.seconds(33).plusMillis(720).toStandardDuration))
       result(10) should be(RacerResult("SuperMario", 11, 8, Period.seconds(39).plusMillis(690).toStandardDuration))
+    }
+
+    it("should read a racer result with gaps") {
+      val csv = loadFileIntoString(racerResultGapsCsv)
+      val result = ResultsImporter.readRacerResult(csv)
+      result.size should be(24)
+      result(0) should be(RacerResult("Federico Caimi", 1, 22, Period.seconds(0).toStandardDuration))
+      result(1) should be(RacerResult("Ken Lim", 2, 30, Period.seconds(4).plusMillis(893).toStandardDuration))
+      result(23) should be(RacerResult("James Moeller", 24, 10, Period.seconds(0).toStandardDuration))
     }
 
     it("should read a race from a csv file") {

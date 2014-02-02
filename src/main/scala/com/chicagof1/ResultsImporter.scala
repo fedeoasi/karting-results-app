@@ -3,14 +3,17 @@ package com.chicagof1
 import com.chicagof1.model.{Edition, Race, RacerResult}
 import com.github.tototoshi.csv.CSVReader
 import java.io.StringReader
-import org.joda.time.{LocalTime, LocalDate, Period}
+import org.joda.time.{Duration, LocalTime, LocalDate, Period}
+import scala.util.matching.Regex
 
 object ResultsImporter {
+  val minSecRegex = new Regex("(\\d+):(\\d+)", "secs", "millis")
+
   def readRacerResult(contents: String): List[RacerResult] = {
     val reader = CSVReader.open(new StringReader(contents))
     reader.allWithHeaders().zipWithIndex.map {
       case (rowMap, rowNum) => {
-        val timeSplit = rowMap.get("Time").get.split(":")
+        val time = extractTime(rowMap)
         val position = rowMap.get("Position") match {
           case Some(pos) => pos.toInt
           case None => rowNum + 1
@@ -19,8 +22,32 @@ object ResultsImporter {
           rowMap.get("Racer").get,
           position,
           rowMap.get("Kart #").get.toInt,
-          Period.seconds(timeSplit(0).toInt).plusMillis(timeSplit(1).toInt).toStandardDuration)
+          time)
       }
+    }
+  }
+
+  private def extractTime(rowMap: Map[String, String]): Duration = {
+    rowMap.get("Time") match {
+      case Some(time) =>
+        val timeSplit = rowMap.get("Time").get.split(":")
+        Period.seconds(timeSplit(0).toInt).plusMillis(timeSplit(1).toInt).toStandardDuration
+      case None =>
+        rowMap.get("Gap") match {
+          case Some(gap) => parseGap(gap)
+          case None => throw new IllegalStateException("Both Time and Gap are not defined")
+        }
+    }
+  }
+
+  private def parseGap(gap: String): Duration = {
+    minSecRegex.findFirstMatchIn(gap) match {
+      case Some(r) =>
+        Period
+          .seconds(r.group("secs").toInt)
+          .plusMillis(r.group("millis").toInt)
+          .toStandardDuration
+      case None => Period.millis(0).toStandardDuration
     }
   }
 

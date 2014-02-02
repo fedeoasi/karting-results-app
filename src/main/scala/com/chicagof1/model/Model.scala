@@ -3,7 +3,13 @@ package com.chicagof1.model
 import org.joda.time.{LocalTime, LocalDate, Duration}
 
 case class RacerResult(name: String, position: Int, kart: Int, time: Duration) {
-  def formattedTime = time.getStandardSeconds + ":%03d".format(time.getMillis % 1000)
+  def formattedTime = {
+    if(time.getMillis == 0) {
+      "-"
+    } else {
+      time.getStandardSeconds + ":%03d".format(time.getMillis % 1000)
+    }
+  }
 }
 case class EditionResult(name: String, kart: Int, time: Duration)
 
