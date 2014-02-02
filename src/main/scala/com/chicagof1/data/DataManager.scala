@@ -9,12 +9,14 @@ import grizzled.slf4j.Logging
 
 object DataProvider extends Logging {
   def dataManager(): DataManager = {
-    val racers: Seq[String] = loadFileIntoString("racers.txt").split("\\n")
-    val races = loadFileIntoString("races.txt").split("\\n")
-    val racerResults: List[Race] =
+    val racers = loadRacers()
+    val races = loadRaces()
+    val editions = loadEditions()
+
+    val racerResults =
       races.map(name => ResultsImporter.readRace(name, loadFileIntoString(name + ".csv")))
         .sortBy(r => r.raceId).reverse.toList
-    val editions = loadFileIntoString("editions.txt").split("\\n")
+
     val editionResults: List[Edition] =
       editions.map(name =>
         ResultsImporter.readEdition(name, loadFileIntoString("edition/" + name + ".csv")))
@@ -30,6 +32,19 @@ object DataProvider extends Logging {
     info(s"Imported ${races.size} races and ${editions.size} editions")
     new DataManager(racerResults, editionResults)
   }
+
+  private def loadRacers(): Seq[String] = loadStringsFromFiles("racers.txt")
+
+  private def loadRaces(): Seq[String] = loadStringsFromFiles("races.txt", "extraRaces.txt")
+
+  private def loadEditions(): Seq[String] = loadStringsFromFiles("editions.txt", "extraEditions.txt")
+
+  private def loadStringsFromFiles(filenames: String*): Seq[String] = {
+    filenames.flatMap {
+      case f => loadFileIntoString(f).split("\\n").filterNot(_.isEmpty)
+    }
+  }
+
 
   def loadFileIntoString(path: String): String = {
     debug("Opening resource at path: " + path)
