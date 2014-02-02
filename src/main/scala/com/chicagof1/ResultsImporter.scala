@@ -8,18 +8,20 @@ import org.joda.time.{LocalTime, LocalDate, Period}
 object ResultsImporter {
   def readRacerResult(contents: String): List[RacerResult] = {
     val reader = CSVReader.open(new StringReader(contents))
-    reader.allWithHeaders().zipWithIndex.map(r => {
-      val timeSplit = r._1.get("Time").get.split(":")
-      val position = r._1.get("Position") match {
-        case Some(pos) => pos.toInt
-        case None => r._2 + 1
+    reader.allWithHeaders().zipWithIndex.map {
+      case (rowMap, rowNum) => {
+        val timeSplit = rowMap.get("Time").get.split(":")
+        val position = rowMap.get("Position") match {
+          case Some(pos) => pos.toInt
+          case None => rowNum + 1
+        }
+        RacerResult(
+          rowMap.get("Racer").get,
+          position,
+          rowMap.get("Kart #").get.toInt,
+          Period.seconds(timeSplit(0).toInt).plusMillis(timeSplit(1).toInt).toStandardDuration)
       }
-      RacerResult(
-        r._1.get("Racer").get,
-        position,
-        r._1.get("Kart #").get.toInt,
-        Period.seconds(timeSplit(0).toInt).plusMillis(timeSplit(1).toInt).toStandardDuration)
-    })
+    }
   }
 
   def readRace(filename: String, contents: String): Race = {
