@@ -1,6 +1,6 @@
 <% attributes("title") = "Chicago F1 Karting - 2014 Standings" %>
-<% attributes("titleName") = "Chicago F1 Karting - 2014 Standings" %>
 
+<h1>Chicago F1 Karting - 2014 Standings</h1>
 <iframe id='standings' width='100%' height='1000' frameborder='0'
     src='https://docs.google.com/spreadsheet/pub?key=0AtOE1qp3UUMAdDBNTFA4TkhTVDJfVmFEeElqeWFscnc&single=true&gid=0&output=html&widget=true'>
 </iframe>

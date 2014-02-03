@@ -98,4 +98,25 @@ a:active {
     margin: 0 auto;
 }
 
+.jumbo {
+    background-color: #EEEEEE;
+    padding: 15px;
+    //font-size: 14px;
+}
 
+.jumbo h1 {
+    font-size: 35px;
+}
+
+.jumbo p {
+    font-size: 17px;
+}
+
+
+.fb-like-box {
+    margin-top: 10px;
+}
+
+#twitter-f1 {
+    margin-top: 10px;
+}
