@@ -17,7 +17,14 @@ function loadVideos() {
         newDiv.append($('<div class="video col-md-8">' +
             '<iframe src="http://www.youtube.com/embed/' + item.id + '"></iframe>' +
         '</div>'));
-        newDiv.append($('<div class="col-md-4">Detail</div>'));
+        newDiv.append($('<div class="col-md-4">'
+            + '<dl>'
+                + '<h3>Driver</h3>'
+                + '<h4>' + item.racer + '<h4>'
+                + '<h3>Edition</h3>'
+                + '<dd><a href="/editions/' + item.edition + '">' + item.edition + '</a></dd>'
+            + '</dl>'
+        + '</div>'));
         $('#videos').append(newDiv);
     });
 }

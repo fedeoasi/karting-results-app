@@ -121,11 +121,17 @@ a:active {
 }
 
 #videos {
-    background-color: #EEEEEE;
     //font-size: 14px;
 }
 
 .videoDiv {
-    padding: 10px 10px 0px 10px;
-    //margin: 20px;
+    background-color: #ddd;
+    padding: 3px 0px 3px 3px !important;
+    margin: 5px 5px 0px 5px;
+}
+
+.video {
+    background-color: #ddd;
+    padding: 0px !important;
+    margin: 0px;
 }
