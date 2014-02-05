@@ -112,11 +112,20 @@ a:active {
     font-size: 17px;
 }
 
-
 .fb-like-box {
     margin-top: 10px;
 }
 
 #twitter-f1 {
     margin-top: 10px;
+}
+
+#videos {
+    background-color: #EEEEEE;
+    //font-size: 14px;
+}
+
+.videoDiv {
+    padding: 10px 10px 0px 10px;
+    //margin: 20px;
 }

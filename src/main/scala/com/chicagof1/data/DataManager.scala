@@ -5,7 +5,7 @@ import com.chicagof1.ResultsImporter
 import java.io.StringWriter
 import org.apache.commons.io.IOUtils
 import grizzled.slf4j.Logging
-
+import scala.language.postfixOps
 
 object DataProvider extends Logging {
   def dataManager(): DataManager = {

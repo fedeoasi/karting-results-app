@@ -1,0 +1,30 @@
+<% attributes("title") = "Videos" %>
+
+<h1>Videos</h1>
+<div id="videos">
+</div>
+
+<script>
+var videos = {
+    "videos": [
+        {"id": "WhOIM936iqo", "racer": "STRIKER", "edition": "2013-07-17"},
+        {"id": "tA0uA1nG7gE", "racer": "meesa", "edition": "2013-11-13"}
+]};
+
+function loadVideos() {
+    $.each(videos.videos, function(i, item) {
+        var newDiv = $('<div class="videoDiv row"></div>');
+        newDiv.append($('<div class="video col-md-8">' +
+            '<iframe src="http://www.youtube.com/embed/' + item.id + '"></iframe>' +
+        '</div>'));
+        newDiv.append($('<div class="col-md-4">Detail</div>'));
+        $('#videos').append(newDiv);
+    });
+}
+
+$(document).ready(function(){
+    loadVideos();
+    $("#videos").fitVids();
+  });
+</script>
+

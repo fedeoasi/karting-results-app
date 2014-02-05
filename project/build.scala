@@ -42,6 +42,7 @@ object KartingApplicationBuild extends Build {
       name := Name,
       version := Version,
       scalaVersion := ScalaVersion,
+      scalacOptions ++= Seq("-feature"),
       resolvers += Classpaths.typesafeReleases,
       resolvers += "Sonatype snapshots" at "http://oss.sonatype.org/content/repositories/snapshots/",
       unmanagedResourceDirectories in Runtime += file("output"),
