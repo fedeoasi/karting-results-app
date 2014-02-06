@@ -3,8 +3,10 @@ package com.chicagof1.app
 import org.json4s.jackson.JsonMethods._
 import org.json4s.JsonDSL._
 import com.chicagof1.data.DataManager
+import com.chicagof1.parsing.VideoSerializer
 
 class KartingResultsServlet(dataManager: DataManager) extends KartingResultsAppStack {
+  val vs = new VideoSerializer
 
   get("/") {
     contentType = "text/html"
@@ -53,5 +55,10 @@ class KartingResultsServlet(dataManager: DataManager) extends KartingResultsAppS
     val data = edition.get.results.map(r => List[String](r.name, r.position.toString, r.kart.toString, r.formattedTime))
     val json = "aaData" -> data
     compact(render(json))
+  }
+
+  get("/data/videos") {
+    contentType = "application/json"
+    vs.serializeVideos(dataManager.videos)
   }
 }

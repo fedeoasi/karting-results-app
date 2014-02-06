@@ -11,7 +11,7 @@ var videos = {
         {"id": "tA0uA1nG7gE", "racer": "meesa", "edition": "2013-11-13"}
 ]};
 
-function loadVideos() {
+function renderVideos() {
     $.each(videos.videos, function(i, item) {
         var newDiv = $('<div class="videoDiv row"></div>');
         newDiv.append($('<div class="video col-md-8">' +
@@ -26,12 +26,23 @@ function loadVideos() {
             + '</dl>'
         + '</div>'));
         $('#videos').append(newDiv);
+        $("#videos").fitVids();
+    });
+}
+
+function loadVideos() {
+    $.ajax({
+        url: '/data/videos',
+        context: document.body,
+        success: function(data) {
+            videos = data;
+            renderVideos();
+        }
     });
 }
 
 $(document).ready(function(){
     loadVideos();
-    $("#videos").fitVids();
   });
 </script>
 
