@@ -43,6 +43,6 @@ function loadVideos() {
 
 $(document).ready(function(){
     loadVideos();
-  });
+});
 </script>
 
