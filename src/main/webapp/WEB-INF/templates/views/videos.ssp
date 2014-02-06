@@ -1,6 +1,8 @@
 <% attributes("title") = "Videos" %>
 <% attributes("fitVids") = true %>
 
+<script src='/js/jquery.fitvids.js'></script>
+
 <h1>Videos</h1>
 <div id="videos">
 </div>
