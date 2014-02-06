@@ -1,17 +1,21 @@
 package com.chicagof1.data
 
-import com.chicagof1.model.{RacerResult, Edition, Race}
+import com.chicagof1.model.{Video, RacerResult, Edition, Race}
 import com.chicagof1.ResultsImporter
 import java.io.StringWriter
 import org.apache.commons.io.IOUtils
 import grizzled.slf4j.Logging
 import scala.language.postfixOps
+import com.chicagof1.parsing.VideoDeserializer
 
 object DataProvider extends Logging {
+  lazy val vd = new VideoDeserializer
+
   def dataManager(): DataManager = {
     val racers = loadRacers()
     val races = loadRaces()
     val editions = loadEditions()
+    val videos = loadVideos()
 
     val racerResults =
       races.map(name => ResultsImporter.readRace(name, loadFileIntoString(name + ".csv")))
@@ -30,7 +34,7 @@ object DataProvider extends Logging {
         .reverse
         .toList
     info(s"Imported ${races.size} races and ${editions.size} editions")
-    new DataManager(racerResults, editionResults)
+    new DataManager(racerResults, editionResults, videos)
   }
 
   private def loadRacers(): Seq[String] = loadStringsFromFiles("racers.txt")
@@ -39,12 +43,20 @@ object DataProvider extends Logging {
 
   private def loadEditions(): Seq[String] = loadStringsFromFiles("editions.txt", "extraEditions.txt")
 
+  private def loadVideos(): List[Video] = {
+    try {
+      val json = loadFileIntoString("videos.json")
+      vd.deserializeVideos(json).toList
+    } catch {
+      case t: Throwable => List.empty[Video]
+    }
+  }
+
   private def loadStringsFromFiles(filenames: String*): Seq[String] = {
     filenames.flatMap {
       case f => loadFileIntoString(f).split("\\n").filterNot(_.isEmpty)
     }
   }
-
 
   def loadFileIntoString(path: String): String = {
     debug("Opening resource at path: " + path)
@@ -66,7 +78,7 @@ object DataProvider extends Logging {
   }
 }
 
-case class DataManager(races: List[Race], editions: List[Edition]) {
+case class DataManager(races: List[Race], editions: List[Edition], videos: List[Video]) {
   private val racesMap: Map[String, Race] = races.map(r => r.raceId -> r) toMap
   private val editionsMap: Map[String, Edition] = editions.map(e => e.date.toString -> e) toMap
 
