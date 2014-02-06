@@ -1,4 +1,5 @@
 <% attributes("title") = "Videos" %>
+<% attributes("fitVids") = true %>
 
 <h1>Videos</h1>
 <div id="videos">
@@ -22,7 +23,7 @@ function renderVideos() {
                 + '<h3>Driver</h3>'
                 + '<h4>' + item.racer + '<h4>'
                 + '<h3>Edition</h3>'
-                + '<dd><a href="/editions/' + item.edition + '">' + item.edition + '</a></dd>'
+                + '<dd><a href="/editions/' + item.date + '">' + item.date + '</a></dd>'
             + '</dl>'
         + '</div>'));
         $('#videos').append(newDiv);
