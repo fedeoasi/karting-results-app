@@ -9,7 +9,7 @@ class VideoParsingSpec extends FunSpec with ShouldMatchers {
 
   describe("Video Parsing") {
     it("should parse a video") {
-      val videoJson = "{\"id\": \"WhOIM936iqo\", \"racer\": \"STRIKER\", \"date\": \"2013-07-17\"}"
+      val videoJson = """{"id": "WhOIM936iqo", "racer": "STRIKER", "date": "2013-07-17"}"""
       vd.deserializeVideo(videoJson) should be(Video("WhOIM936iqo", "STRIKER", "2013-07-17"))
     }
 
