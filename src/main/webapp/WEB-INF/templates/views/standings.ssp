@@ -5,4 +5,6 @@
     src='https://docs.google.com/spreadsheet/pub?key=0AtOE1qp3UUMAdDBNTFA4TkhTVDJfVmFEeElqeWFscnc&single=true&gid=0&output=html&widget=true'>
 </iframe>
 
+- render("analytics.ssp")
+
 
