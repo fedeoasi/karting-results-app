@@ -2,17 +2,54 @@
 <% attributes("fitVids") = true %>
 
 <script src='/js/jquery.fitvids.js'></script>
+<script src='/js/facetedsearch.js'></script>
+<script src='/js/underscore.js'></script>
 
 <h1>Videos</h1>
-<div id="videos">
-</div>
+<div id="facets"></div>
+<div id="videos"></div>
 
 <script>
 var videos = {
     "videos": [
-        {"id": "WhOIM936iqo", "racer": "STRIKER", "edition": "2013-07-17"},
-        {"id": "tA0uA1nG7gE", "racer": "meesa", "edition": "2013-11-13"}
+        {"id": "WhOIM936iqo", "racer": "STRIKER", "date": "2013-07-17"},
+        {"id": "tA0uA1nG7gE", "racer": "meesa", "date": "2013-11-13"}
 ]};
+
+var item_template =
+    //'<p>Hello</p>';
+   '<div class="videoDiv row">' +
+       '<div class="video col-md-8">' +
+           '<iframe src="http://www.youtube.com/embed/<\%= obj.id \%>"></iframe>' +
+       '</div>' +
+       '<div class="col-md-4">' +
+            '<dl>' +
+                '<h3>Driver</h3>' +
+                '<h4><\%= obj.racer \%></h4>' +
+                '<h3>Edition</h3>' +
+                '<dd><a href="/editions/<\%= obj.date \%>"><\%= obj.date \%></a></dd>' +
+            '</dl>' +
+       '</div>' +
+   '</div>';
+
+
+var facetSettings = {
+    facets          : {
+        'racer'     : 'Racer',
+        'date'      : 'Edition'
+    },
+    resultSelector  : '#videos',
+    facetSelector   : '#facets',
+    resultTemplate  : item_template,
+    paginationCount : 4,
+    orderByOptions  : {},
+    countTemplate      : '<div class=facettotalcount><\%= count \%> Result(s)</div>',
+    orderByTemplate    : ''
+}
+
+$(facetSettings.resultSelector).bind("facetedsearchresultupdate", function(){
+    $("#videos").fitVids();
+});
 
 function renderVideos() {
     $.each(videos.videos, function(i, item) {
@@ -39,7 +76,10 @@ function loadVideos() {
         context: document.body,
         success: function(data) {
             videos = data;
-            renderVideos();
+            facetSettings.items = data.videos;
+            $.facetelize(facetSettings);
+            $("#videos").fitVids();
+            //renderVideos();
         }
     });
 }

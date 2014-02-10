@@ -135,3 +135,38 @@ a:active {
     padding: 0px !important;
     margin: 0px;
 }
+
+.facetsearch {
+    display: inline-block;
+    vertical-align: top;
+    width: 200px;
+}
+
+.bottomline .facettotalcount {
+    display: inline-block;
+}
+
+.bottomline .deselectstartover {
+    display: inline-block;
+    float: right;
+}
+
+.bottomline .orderby {
+    display: inline-block;
+}
+
+.bottomline .orderby span {
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+}
+
+.bottomline .orderby ul {
+    margin: 0px;
+    padding: 0px;
+    display: inline-block;
+}
+
+.bottomline .orderbyitem {
+    display: inline-block;
+}
