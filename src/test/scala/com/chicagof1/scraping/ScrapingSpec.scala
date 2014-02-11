@@ -4,7 +4,6 @@ import org.scalatest.FunSpec
 import org.scalatest.matchers.ShouldMatchers
 import com.chicagof1.utils.SpecUtils._
 import com.chicagof1.model.RacerResult
-import org.joda.time.Period
 import com.chicagof1.ResultsExporter
 import com.github.nscala_time.time.Imports._
 
@@ -45,7 +44,6 @@ class ScrapingSpec extends FunSpec with ShouldMatchers {
     it("should extract results from a yahoo forwarded email") {
       val results: Seq[RacerResult] = resultsScraper.extract(yahooForwardedHtml, url)
       results.size should be(7)
-      RacerResult("Justin", 1, 14, 30.seconds + 373.millis)
       results(0) should be(RacerResult("Justin", 1, 14, 30.seconds + 373.millis))
       results(6) should be(RacerResult("jDaWg", 7, 12, 38.seconds + 241.millis))
       ResultsExporter.writeCsv("results.csv", results)
