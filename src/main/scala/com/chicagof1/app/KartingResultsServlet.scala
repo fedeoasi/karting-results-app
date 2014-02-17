@@ -61,4 +61,9 @@ class KartingResultsServlet(dataManager: DataManager) extends KartingResultsAppS
     contentType = "application/json"
     vs.serializeVideos(dataManager.videos)
   }
+
+  get("/data/standings") {
+    contentType = "application/json"
+    dataManager.currentChampionship.standings.serialize
+  }
 }

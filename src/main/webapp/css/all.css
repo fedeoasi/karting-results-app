@@ -170,3 +170,28 @@ a:active {
 .bottomline .orderbyitem {
     display: inline-block;
 }
+
+#standingsTable .edition {
+    text-align: center;
+    text-transform: uppercase;
+}
+
+#standingsTable .position {
+    text-align: center;
+}
+
+#standingsTable .points {
+    text-align: center;
+}
+
+#standingsTable .first {
+    background-color: #FFFFBF;
+}
+
+#standingsTable .second {
+    background-color: #DFDFDF;
+}
+
+#standingsTable .third {
+    background-color: #FFDF9F;
+}
