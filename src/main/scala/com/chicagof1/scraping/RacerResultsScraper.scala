@@ -14,9 +14,24 @@ class RacerResultsScraper extends Scraper[Seq[RacerResult]] {
       el => el.children.get(0).text != "Pos") {
       el => {
         val ch = el.children
-        val timeSplit = ch.get(4).text.split("\\.")
-        val time = Period.seconds(timeSplit(0).toInt).plusMillis(timeSplit(1).toInt).toStandardDuration
-        RacerResult(ch.get(3).text, ch.get(0).text.toInt, ch.get(2).text.toInt, time)
+
+        var name = ""
+        var time = ""
+        var kart = 0
+        if(ch.get(1).text.isEmpty) {
+          //Old style html has an empty column
+          name = ch.get(3).text
+          time = ch.get(4).text
+          kart = ch.get(2).text.toInt
+        } else {
+          name = ch.get(1).text
+          time = ch.get(2).text
+        }
+
+        val position = ch.get(0).text.toInt
+        val timeSplit = time.split("\\.")
+        val lapTime = Period.seconds(timeSplit(0).toInt).plusMillis(timeSplit(1).toInt).toStandardDuration
+        RacerResult(name, position, kart, lapTime)
       }
     }
   }

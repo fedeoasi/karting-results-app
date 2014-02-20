@@ -16,6 +16,7 @@ class ScrapingSpec extends FunSpec with ShouldMatchers {
   lazy val forwardedHtml = loadFileIntoString(testResourcesDir + "melrose-forwarded.html")
   lazy val doubleForwardedHtml = loadFileIntoString(testResourcesDir + "double-forwarded.html")
   lazy val yahooForwardedHtml = loadFileIntoString(testResourcesDir + "yahoo-forwarded.html")
+  lazy val gmailFeb2014Html = loadFileIntoString(testResourcesDir + "Feb2014.html")
 
   describe("A Race Results Scraper") {
     it("should extract results from a regular email") {
@@ -30,7 +31,6 @@ class ScrapingSpec extends FunSpec with ShouldMatchers {
       results.size should be(12)
       results(0) should be(RacerResult("Justin", 1, 21, 32.seconds + 605.millis))
       results(11) should be(RacerResult("SuperMario", 12, 13, 37.seconds + 957.millis))
-      ResultsExporter.writeCsv("results.csv", results)
     }
 
     it("should extract results from a double forwarded email") {
@@ -38,7 +38,6 @@ class ScrapingSpec extends FunSpec with ShouldMatchers {
       results.size should be(8)
       results(0) should be(RacerResult("JCLARK18TEAMAR...", 1, 10, 29.seconds + 466.millis))
       results(7) should be(RacerResult("Number 1", 8, 17, 39.seconds + 246.millis))
-      ResultsExporter.writeCsv("results.csv", results)
     }
 
     it("should extract results from a yahoo forwarded email") {
@@ -46,7 +45,13 @@ class ScrapingSpec extends FunSpec with ShouldMatchers {
       results.size should be(7)
       results(0) should be(RacerResult("Justin", 1, 14, 30.seconds + 373.millis))
       results(6) should be(RacerResult("jDaWg", 7, 12, 38.seconds + 241.millis))
-      ResultsExporter.writeCsv("results.csv", results)
+    }
+
+    it("should extract results from a gmail forwarded email as of Feb 2014") {
+      val results: Seq[RacerResult] = resultsScraper.extract(gmailFeb2014Html, url)
+      results.size should be(6)
+      results(0) should be(RacerResult("Michael Wu", 1, 0, 21.seconds + 101.millis))
+      results(5) should be(RacerResult("Federico", 6, 0, 22.seconds + 842.millis))
     }
   }
 

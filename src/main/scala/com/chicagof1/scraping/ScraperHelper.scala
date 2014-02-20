@@ -22,7 +22,8 @@ object ScraperHelper extends Logging {
           transform(element)
         } catch {
           case e: Throwable => {
-            logger.error(s"Error while processing url: ${document.baseUri}")
+            val stackTrace = e.getStackTrace.take(20).mkString("\n")
+            logger.error(s"Error while processing url: ${document.baseUri} -- ${e.getMessage} -- ${stackTrace}")
             getDefault(defaultValue)
           }
         }
@@ -44,7 +45,8 @@ object ScraperHelper extends Logging {
           if (include(element)) Some(transform(element)) else None
         } catch {
           case e: Throwable => {
-            logger.error(s"Error while processing url: ${document.baseUri}")
+            val stackTrace = e.getStackTrace.take(20).mkString("\n")
+            logger.error(s"Error while processing url: ${document.baseUri} -- ${e.getMessage} -- ${stackTrace}")
             None
           }
         }

@@ -5,6 +5,7 @@ import org.scalatest.matchers.ShouldMatchers
 import com.chicagof1.utils.SpecUtils._
 import com.chicagof1.parsing.EmailParser
 import org.jsoup.Jsoup
+import java.io.FileOutputStream
 
 class EmailSpec extends FunSpec with ShouldMatchers {
   val parser: EmailParser = new EmailParser()
@@ -44,6 +45,13 @@ class EmailSpec extends FunSpec with ShouldMatchers {
       val message = parser.parseEmail(testResourcesDir + "yahoo-forwarded.txt")
       val html: String = parser.getFirstHtmlBodyPartContentAsString(message)
       html should include("30.373")
+      Jsoup.parse(html)
+    }
+
+    it("should extract html from a gmail fowarded email as of Feb 2014") {
+      val message = parser.parseEmail(testResourcesDir + "Feb2014-gmail.txt")
+      val html: String = parser.getFirstHtmlBodyPartContentAsString(message)
+      html should include("23.282")
       Jsoup.parse(html)
     }
   }
