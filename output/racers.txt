@@ -23,17 +23,16 @@ Monkey
 M Golitko
 Andrius Petraitis,DRIUS
 Adam
-Shaojun Wu,Michael Wu
+Michael Wu,Shaojun Wu
 Joe Morganti,The Stig
 Bill Swerski
-Monkey
 Victor Birza,Vic-a-B
 James Moeller
 Alec Sampson,Alec
 Lauren Cichock
 Christophe Dupont
 John Grooms
-Jaroslaw Manowsky
+Jerry Manowsky,Jaroslaw Manowsky
 Ian Plasch,RARChevette
 Kristopher Huisinga
 Hannah Grooms
@@ -41,3 +40,4 @@ Marlon Logan
 Juan Pablo Garciabueno,DON FULANO
 Christophe Dupont
 John Grooms
+Matt Thomas,Monkey
