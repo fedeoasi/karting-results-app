@@ -16,6 +16,7 @@ import com.chicagof1.utils.DateUtils
 object DataProvider extends Logging {
   lazy val vd = new VideoDeserializer
 
+
   def dataManager(): DataManager = {
     val racers = loadRacers()
     val races = loadRaces()
@@ -23,7 +24,16 @@ object DataProvider extends Logging {
     val videos = loadVideos()
 
     val racerResults =
-      races.map(name => ResultsImporter.readRace(name, loadFileIntoString(name + ".csv")))
+      races
+        .map(name => ResultsImporter.readRace(name, loadFileIntoString(name + ".csv")))
+        .map(r => Race(r.date, r.time, r.results.map {
+          rr =>
+            val racer = racers.get(rr.name) match {
+              case Some(racerName) => racerName
+              case None => rr.name
+            }
+            RacerResult(racer, rr.position, rr.kart, rr.time)
+          }))
         .sortBy(r => r.raceId).reverse.toList
 
     val editionResults: List[Edition] =
@@ -33,7 +43,10 @@ object DataProvider extends Logging {
            Edition(e.date, e.results.filter(r =>
              racers.contains(r.name))
              .zipWithIndex
-             .map(r => RacerResult(r._1.name, r._2 + 1, r._1.kart, r._1.time)))
+             .map {
+              case (rr, index) =>
+                RacerResult(racers(rr.name), index + 1, rr.kart, rr.time)
+              })
          })
         .sortBy(_.date.toString)
         .reverse
@@ -42,7 +55,19 @@ object DataProvider extends Logging {
     new DataManager(racerResults, editionResults, videos)
   }
 
-  private def loadRacers(): Seq[String] = loadStringsFromFiles("racers.txt")
+  private def loadRacers(): Map[String, String] = {
+    var racerMap = Map.empty[String, String]
+    val lines = loadStringsFromFiles("racers.txt")
+    lines.foreach {
+      l =>
+        val split = l.split(",")
+        val primaryName = split(0)
+        split.foreach {
+          n => racerMap = racerMap.updated(n, primaryName)
+        }
+    }
+    racerMap
+  }
 
   private def loadRaces(): Seq[String] = loadStringsFromFiles("races.txt", "extraRaces.txt")
 
