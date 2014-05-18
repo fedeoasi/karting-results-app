@@ -42,7 +42,7 @@ object ImapRaceExtractor {
         m => {
           val subject = m.getSubject.toLowerCase
           (subject.contains("melrose") && subject.contains("result")) ||
-            subject.contains("race result")
+            subject.contains("race")
         })
       println(s"There are ${filteredMessages.size} emails to process")
 
