@@ -28,4 +28,4 @@ trait HasRacerResults {
   def results: Seq[RacerResult]
 }
 
-case class Video(id: String, racer: String, date: String)
+case class Video(id: String, racer: String, date: String, location: String)

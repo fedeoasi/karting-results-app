@@ -11,10 +11,8 @@
 
 <script>
 var videos = {
-    "videos": [
-        {"id": "WhOIM936iqo", "racer": "STRIKER", "date": "2013-07-17"},
-        {"id": "tA0uA1nG7gE", "racer": "meesa", "date": "2013-11-13"}
-]};
+    "videos": []
+};
 
 var item_template =
     //'<p>Hello</p>';
@@ -28,6 +26,8 @@ var item_template =
                 '<h4><\%= obj.racer \%></h4>' +
                 '<h3>Edition</h3>' +
                 '<dd><a href="/editions/<\%= obj.date \%>"><\%= obj.date \%></a></dd>' +
+                '<h3>Location</h3>' +
+                '<h4><\%= obj.location \%></h4>' +
             '</dl>' +
        '</div>' +
    '</div>';
@@ -36,7 +36,8 @@ var item_template =
 var facetSettings = {
     facets          : {
         'racer'     : 'Racer',
-        'date'      : 'Edition'
+        'date'      : 'Edition',
+        'location'  : 'Location'
     },
     resultSelector  : '#videos',
     facetSelector   : '#facets',
@@ -50,25 +51,6 @@ var facetSettings = {
 $(facetSettings.resultSelector).bind("facetedsearchresultupdate", function(){
     $("#videos").fitVids();
 });
-
-function renderVideos() {
-    $.each(videos.videos, function(i, item) {
-        var newDiv = $('<div class="videoDiv row"></div>');
-        newDiv.append($('<div class="video col-md-8">' +
-            '<iframe src="http://www.youtube.com/embed/' + item.id + '"></iframe>' +
-        '</div>'));
-        newDiv.append($('<div class="col-md-4">'
-            + '<dl>'
-                + '<h3>Driver</h3>'
-                + '<h4>' + item.racer + '<h4>'
-                + '<h3>Edition</h3>'
-                + '<dd><a href="/editions/' + item.date + '">' + item.date + '</a></dd>'
-            + '</dl>'
-        + '</div>'));
-        $('#videos').append(newDiv);
-        $("#videos").fitVids();
-    });
-}
 
 function loadVideos() {
     $.ajax({
