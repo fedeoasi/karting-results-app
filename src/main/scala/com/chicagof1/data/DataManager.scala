@@ -78,7 +78,10 @@ object DataProvider extends Logging {
       val json = loadFileIntoString("videos.json")
       vd.deserializeVideos(json).toList
     } catch {
-      case t: Throwable => List.empty[Video]
+      case t: Throwable => {
+        logger.error("Could not load videos", t)
+        List.empty[Video]
+      }
     }
   }
 
