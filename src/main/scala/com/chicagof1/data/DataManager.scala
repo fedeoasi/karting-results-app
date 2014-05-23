@@ -11,49 +11,65 @@ import com.chicagof1.model.Video
 import com.chicagof1.model.Race
 import com.chicagof1.utils.{FileUtils, DateUtils}
 import FileUtils._
+import scala.concurrent.{Await, Future}
+import scala.concurrent.ExecutionContext.Implicits.global
+import scala.concurrent.duration._
+import scala.language.postfixOps
 
 object DataProvider extends Logging {
   lazy val vd = new VideoDeserializer
 
   def dataManager(): DataManager = {
-    val racers = loadRacers()
-    val races = loadRaces()
-    val editions = loadEditions()
-    val videos = loadVideos()
+    val getRacerAliases = loadRacerAliasMap()
+    val getRaceNames = loadRaceNames()
+    val getEditions = loadEditionNames()
+    val getVideos = loadVideos()
 
-    val racerResults =
-      races
-        .map(name => ResultsImporter.readRace(name, loadFileIntoString(name + ".csv")))
-        .map(r => Race(r.date, r.time, r.results.map {
-          rr =>
-            val racer = racers.get(rr.name) match {
-              case Some(racerName) => racerName
-              case None => rr.name
-            }
-            RacerResult(racer, rr.position, rr.kart, rr.time)
-          }))
-        .sortBy(r => r.raceId).reverse.toList
+    val getDataManager = for {
+      racerMap <- getRacerAliases
+      raceNames <- getRaceNames
+      editions <- getEditions
+      videos <- getVideos
+    } yield new DataManager(extractRaces(raceNames, racerMap), extractEditions(racerMap, editions), videos)
+    Await.result(getDataManager, 60 seconds)
+  }
 
+  def extractEditions(racers: Map[String, String], editions: Seq[String]): List[Edition] = {
     val editionResults: List[Edition] =
-      editions.map(name =>
+      editions.par.map(name =>
         ResultsImporter.readEdition(name, loadFileIntoString("edition/" + name + ".csv")))
         .map(e => {
-           Edition(e.date, e.results.filter(r =>
-             racers.contains(r.name))
-             .zipWithIndex
-             .map {
-              case (rr, index) =>
-                RacerResult(racers(rr.name), index + 1, rr.kart, rr.time)
-              })
-         })
+        Edition(e.date, e.results.filter(r =>
+          racers.contains(r.name))
+          .zipWithIndex
+          .map {
+          case (rr, index) =>
+            RacerResult(racers(rr.name), index + 1, rr.kart, rr.time)
+        })
+      }).toList
         .sortBy(_.date.toString)
         .reverse
         .toList
-    info(s"Imported ${races.size} races and ${editions.size} editions")
-    new DataManager(racerResults, editionResults, videos)
+    editionResults
   }
 
-  private def loadRacers(): Map[String, String] = {
+  def extractRaces(races: Seq[String], racerAliases: Map[String, String]): List[Race] = {
+    val racerResults =
+      races.par
+        .map(name => ResultsImporter.readRace(name, loadFileIntoString(name + ".csv")))
+        .map(r => Race(r.date, r.time, r.results.map {
+        rr =>
+          val racer = racerAliases.get(rr.name) match {
+            case Some(racerName) => racerName
+            case None => rr.name
+          }
+          RacerResult(racer, rr.position, rr.kart, rr.time)
+      })).toList
+        .sortBy(r => r.raceId).reverse.toList
+    racerResults
+  }
+
+  private def loadRacerAliasMap(): Future[Map[String, String]] = Future {
     var racerMap = Map.empty[String, String]
     val lines = loadStringsFromFiles("racers.txt")
     lines.foreach {
@@ -67,11 +83,15 @@ object DataProvider extends Logging {
     racerMap
   }
 
-  private def loadRaces(): Seq[String] = loadStringsFromFiles("races.txt", "extraRaces.txt")
+  private def loadRaceNames(): Future[Seq[String]] = Future {
+    loadStringsFromFiles("races.txt", "extraRaces.txt")
+  }
 
-  private def loadEditions(): Seq[String] = loadStringsFromFiles("editions.txt", "extraEditions.txt")
+  private def loadEditionNames(): Future[Seq[String]] = Future {
+    loadStringsFromFiles("editions.txt", "extraEditions.txt")
+  }
 
-  private def loadVideos(): List[Video] = {
+  private def loadVideos(): Future[List[Video]] = Future {
     try {
       val json = loadFileIntoString("videos.json")
       vd.deserializeVideos(json).toList

@@ -5,8 +5,13 @@ import org.scalatra._
 import javax.servlet.ServletContext
 
 class ScalatraBootstrap extends LifeCycle with Logging {
+  val oneMillion = 1000000
+
   override def init(context: ServletContext) {
+    val start = System.nanoTime()
     val dataManager = DataProvider.dataManager()
+    val stop = System.nanoTime()
+    info(s"Loaded data manager in ${(stop - start) / oneMillion} millis")
     context.mount(new KartingResultsServlet(dataManager), "/*")
   }
 
