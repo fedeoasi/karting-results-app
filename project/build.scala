@@ -58,12 +58,11 @@ object KartingApplicationBuild extends Build {
         "joda-time" % "joda-time" % "2.3",
         "com.github.nscala-time" %% "nscala-time" % "1.0.0",
         "org.joda"       % "joda-convert"        % "1.6",
-        "org.clapper"    % "grizzled-slf4j_2.10" % "1.0.1",
-        "javax.mail" % "mail" % "1.4.1",
-        "org.apache.commons" % "commons-io" % "1.3.2",
-        "org.scala-lang" % "scala-reflect" % "2.10.0",
+        "org.clapper"    %% "grizzled-slf4j" % "1.0.2",
+        "javax.mail" % "mail" % "1.4.7",
+        "org.scala-lang" % "scala-reflect" % ScalaVersion,
         "com.github.tototoshi" %% "scala-csv" % "1.0.0",
-        "org.eclipse.jetty" % "jetty-webapp" % "8.1.8.v20121106" % "container",
+        "org.eclipse.jetty" % "jetty-webapp" % "9.1.5.v20140505" % "container",
         "org.eclipse.jetty.orbit" % "javax.servlet" % "3.0.0.v201112011016" % "container;provided;test" artifacts (Artifact("javax.servlet", "jar", "jar"))
       ),
       scalateTemplateConfig in Compile <<= (sourceDirectory in Compile){ base =>
