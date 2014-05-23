@@ -11,7 +11,7 @@ object KartingApplicationBuild extends Build {
   val Name = "Karting Results Application"
   val Version = "0.1.0-SNAPSHOT"
   val ScalaVersion = "2.10.0"
-  val ScalatraVersion = "2.2.1"
+  val ScalatraVersion = "2.2.2"
 
   def containerConf = config("container")
 
@@ -50,14 +50,14 @@ object KartingApplicationBuild extends Build {
         libraryDependencies ++= Seq(
         "org.scalatra" %% "scalatra" % ScalatraVersion,
         "org.scalatra" %% "scalatra-scalate" % ScalatraVersion,
-        "org.scalatest"  %% "scalatest" % "1.9.1" % "test",
+        "org.scalatest"  %% "scalatest" % "2.1.6" % "test",
         "org.apache.commons" % "commons-io" % "1.3.2",
-        "org.json4s" %% "json4s-jackson" % "3.2.4",
-        "ch.qos.logback" % "logback-classic"     % "1.0.13",
-        "org.jsoup" % "jsoup" % "1.7.2",
-        "joda-time" % "joda-time" % "2.2",
-        "com.github.nscala-time" %% "nscala-time" % "0.8.0",
-        "org.joda"       % "joda-convert"        % "1.2",
+        "org.json4s" %% "json4s-jackson" % "3.2.10",
+        "ch.qos.logback" % "logback-classic"     % "1.1.2",
+        "org.jsoup" % "jsoup" % "1.7.3",
+        "joda-time" % "joda-time" % "2.3",
+        "com.github.nscala-time" %% "nscala-time" % "1.0.0",
+        "org.joda"       % "joda-convert"        % "1.6",
         "org.clapper"    % "grizzled-slf4j_2.10" % "1.0.1",
         "javax.mail" % "mail" % "1.4.1",
         "org.apache.commons" % "commons-io" % "1.3.2",
