@@ -1,4 +1,5 @@
--@ val edition: com.chicagof1.model.Edition
+-@ val editionWithRaces: com.chicagof1.model.EditionWithRaces
+- val edition = editionWithRaces.edition
 - attributes("title") = s"Edition ${edition.printId}"
 - attributes("titleName") = s"Edition ${edition.printId}"
 - attributes("source") = "/data/editions/" + edition.date
@@ -6,5 +7,13 @@
 h1= s"Edition ${edition.printId}"
 #content
 - render("racer-results.jade")
+
+h2 Individual Races
+ul(class='list-unstyled')
+  - for(r <- editionWithRaces.races) {
+    li
+      .race
+        a(href='/races/#{r.raceId}')= r.raceId
+  - }
 
 - render("analytics.ssp")

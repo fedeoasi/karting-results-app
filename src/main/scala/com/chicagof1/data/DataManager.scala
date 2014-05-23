@@ -1,14 +1,10 @@
 package com.chicagof1.data
 
-import com.chicagof1.model._
 import com.chicagof1.ResultsImporter
 import grizzled.slf4j.Logging
 import com.chicagof1.parsing.VideoDeserializer
 import org.joda.time.LocalDate
-import com.chicagof1.model.RacerResult
-import com.chicagof1.model.Edition
-import com.chicagof1.model.Video
-import com.chicagof1.model.Race
+import com.chicagof1.model._
 import com.chicagof1.utils.{FileUtils, DateUtils}
 import FileUtils._
 import scala.concurrent.{Await, Future}
@@ -20,17 +16,16 @@ object DataProvider extends Logging {
   lazy val vd = new VideoDeserializer
 
   def dataManager(): DataManager = {
-    val getRacerAliases = loadRacerAliasMap()
-    val getRaceNames = loadRaceNames()
-    val getEditions = loadEditionNames()
-    val getVideos = loadVideos()
-
     val getDataManager = for {
-      racerMap <- getRacerAliases
-      raceNames <- getRaceNames
-      editions <- getEditions
-      videos <- getVideos
-    } yield new DataManager(extractRaces(raceNames, racerMap), extractEditions(racerMap, editions), videos)
+      racerMap <- loadRacerAliasMap()
+      raceNames <- loadRaceNames()
+      editions <- loadEditionNames()
+      videos <- loadVideos()
+    } yield new DataManager(
+        extractRaces(raceNames, racerMap),
+        extractEditions(racerMap, editions),
+        videos
+      )
     Await.result(getDataManager, 60 seconds)
   }
 
@@ -107,9 +102,13 @@ object DataProvider extends Logging {
 case class DataManager(races: List[Race], editions: List[Edition], videos: List[Video]) {
   private val racesMap: Map[String, Race] = races.map(r => r.raceId -> r).toMap
   private val editionsMap: Map[String, Edition] = editions.map(e => e.date.toString -> e).toMap
+  lazy val editionsWithRaces: List[EditionWithRaces] = buildEditionsWithRaces()
+  lazy val editionWithRacesMap: Map[String, EditionWithRaces] =
+    editionsWithRaces.map(er => er.edition.date.toString -> er).toMap
 
   def getRaceById(id: String): Option[Race] = racesMap.get(id)
   def getEditionById(id: String): Option[Edition] = editionsMap.get(id)
+  def getEditionWithRacesById(id: String): Option[EditionWithRaces] = editionWithRacesMap.get(id)
 
   def currentChampionship: Championship = {
     buildMonthlyChampionship(
@@ -123,8 +122,7 @@ case class DataManager(races: List[Race], editions: List[Edition], videos: List[
     val champEditions = months.zipWithIndex.map {
       case (m, i) => {
         val edOpt = editions
-          .filter(e => m.contains(e.date.toDateTimeAtStartOfDay))
-          .headOption
+          .find(e => m.contains(e.date.toDateTimeAtStartOfDay))
         val name = m.getStart.toString("MMM")
         edOpt match {
           case Some(ed) => ReportedEditionInChampionship(i + 1, name, ed)
@@ -133,5 +131,10 @@ case class DataManager(races: List[Race], editions: List[Edition], videos: List[
       }
     }
     Championship(name, champEditions, new ChicagoF1PointsSystem(months.size))
+  }
+
+  def buildEditionsWithRaces(): List[EditionWithRaces] = {
+    val racesByDate = races.groupBy(_.date)
+    editions.map(e => EditionWithRaces(e, racesByDate.getOrElse(e.date, List())))
   }
 }

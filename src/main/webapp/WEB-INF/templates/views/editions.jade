@@ -1,10 +1,11 @@
 - attributes("title") = "List of Editions"
 - attributes("headline") = "Editions"
--@ val editions: List[com.chicagof1.model.Edition]
+-@ val editionsWithRaces: List[com.chicagof1.model.EditionWithRaces]
 
 h1 Editions
 ul(class='editions list-unstyled')
-  - for(e <- editions) {
+  - for(er <- editionsWithRaces) {
+  -   val e = er.edition
   li
     .edition
       .printId

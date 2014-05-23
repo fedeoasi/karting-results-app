@@ -29,3 +29,5 @@ trait HasRacerResults {
 }
 
 case class Video(id: String, racer: String, date: String, location: String)
+
+case class EditionWithRaces(edition: Edition, races: Seq[Race])

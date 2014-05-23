@@ -36,7 +36,7 @@ class DataManagerSpec extends FunSpec with ShouldMatchers {
       firstRace should not be None
     }
 
-    it("should find a non-existent race") {
+    it("should return None for a a non-existent race") {
       val firstRace = baseDataManager.getRaceById("2013-01-01-08:30")
       firstRace should be(None)
     }
@@ -62,7 +62,7 @@ class DataManagerSpec extends FunSpec with ShouldMatchers {
       champ.editions(11) should be(NonReportedEditionInChampionship(12, "Dec"))
     }
 
-    it("should create use the Chicago F1 points system") {
+    it("should use the Chicago F1 points system") {
       val champ = baseDataManager.buildMonthlyChampionship(
         "Chicago F1 2013",
         LocalDate.parse("2013-01-01"),
@@ -82,6 +82,15 @@ class DataManagerSpec extends FunSpec with ShouldMatchers {
       pointsLastEdition(19) should be(1)
       val pointsAfterLastEdition = champ.pointsSystem.pointsForEdition(13)
       pointsAfterLastEdition.size should be(0)
+    }
+
+    it("should build the race - edition relationship") {
+      baseDataManager.editionsWithRaces should be(
+        List(
+          EditionWithRaces(edition1, List(race11, race12)),
+          EditionWithRaces(edition2, List(race21))
+        )
+      )
     }
   }
 }

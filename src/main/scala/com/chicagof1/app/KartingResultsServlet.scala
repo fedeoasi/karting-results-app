@@ -13,12 +13,6 @@ class KartingResultsServlet(dataManager: DataManager) extends KartingResultsAppS
     ssp("index")
   }
 
-  get("/races") {
-    contentType = "text/html"
-    val raceIds = dataManager.races.map(_.raceId)
-    jade("races", "raceIds" -> raceIds)
-  }
-
   get("/races/:id") {
     contentType = "text/html"
     val raceId = params("id")
@@ -37,22 +31,22 @@ class KartingResultsServlet(dataManager: DataManager) extends KartingResultsAppS
 
   get("/editions") {
     contentType = "text/html"
-    val editions = dataManager.editions
-    jade("editions", "editions" -> editions)
+    val editions = dataManager.editionsWithRaces
+    jade("editions", "editionsWithRaces" -> editions)
   }
 
   get("/editions/:id") {
     contentType = "text/html"
     val edtionId = params("id")
-    val edition = dataManager.getEditionById(edtionId)
-    jade("edition", "edition" -> edition.get)
+    val editionWithRaces = dataManager.getEditionWithRacesById(edtionId)
+    jade("edition", "editionWithRaces" -> editionWithRaces.get)
   }
 
   get("/data/editions/:id") {
     contentType = "application/json"
     val editionId = params("id")
-    val edition = dataManager.getEditionById(editionId)
-    val data = edition.get.results.map(r => List[String](r.name, r.position.toString, r.kart.toString, r.formattedTime))
+    val edition = dataManager.getEditionWithRacesById(editionId)
+    val data = edition.get.edition.results.map(r => List[String](r.name, r.position.toString, r.kart.toString, r.formattedTime))
     val json = "aaData" -> data
     compact(render(json))
   }
