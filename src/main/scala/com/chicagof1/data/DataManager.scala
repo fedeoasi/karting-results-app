@@ -44,7 +44,6 @@ object DataProvider extends Logging {
       }).toList
         .sortBy(_.date.toString)
         .reverse
-        .toList
     editionResults
   }
 
