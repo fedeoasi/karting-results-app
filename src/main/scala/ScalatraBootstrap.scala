@@ -8,6 +8,7 @@ class ScalatraBootstrap extends LifeCycle with Logging {
   val oneMillion = 1000000
 
   override def init(context: ServletContext) {
+    context.setInitParameter(org.scalatra.EnvironmentKey, "production")
     val start = System.nanoTime()
     val dataManager = DataProvider.dataManager()
     val stop = System.nanoTime()
