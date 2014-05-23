@@ -2,8 +2,6 @@ package com.chicagof1.data
 
 import com.chicagof1.model._
 import com.chicagof1.ResultsImporter
-import java.io.StringWriter
-import org.apache.commons.io.IOUtils
 import grizzled.slf4j.Logging
 import com.chicagof1.parsing.VideoDeserializer
 import org.joda.time.LocalDate
@@ -11,11 +9,11 @@ import com.chicagof1.model.RacerResult
 import com.chicagof1.model.Edition
 import com.chicagof1.model.Video
 import com.chicagof1.model.Race
-import com.chicagof1.utils.DateUtils
+import com.chicagof1.utils.{FileUtils, DateUtils}
+import FileUtils._
 
 object DataProvider extends Logging {
   lazy val vd = new VideoDeserializer
-
 
   def dataManager(): DataManager = {
     val racers = loadRacers()
@@ -82,31 +80,6 @@ object DataProvider extends Logging {
         logger.error("Could not load videos", t)
         List.empty[Video]
       }
-    }
-  }
-
-  private def loadStringsFromFiles(filenames: String*): Seq[String] = {
-    filenames.flatMap {
-      case f => loadFileIntoString(f).split("\\n").filterNot(_.isEmpty)
-    }
-  }
-
-  def loadFileIntoString(path: String): String = {
-    debug("Opening resource at path: " + path)
-    val racesStream = Thread.currentThread().getContextClassLoader.getResourceAsStream(path)
-    if(racesStream == null) {
-      error("Unable to stream resource at path: " + path)
-    }
-    val writer = new StringWriter()
-    try {
-      IOUtils.copy(racesStream, writer, "UTF-8")
-      writer.toString
-    } catch {
-      case t: Throwable => {
-        error("Error while processing resource: " + path.toString)
-        println(t.printStackTrace())
-      }
-      ""
     }
   }
 }
