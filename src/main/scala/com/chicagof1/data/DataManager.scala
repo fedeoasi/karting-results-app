@@ -11,25 +11,27 @@ import scala.concurrent.{Await, Future}
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.duration._
 import scala.language.postfixOps
+import scala.async.Async.{async, await}
 
 object DataProvider extends Logging {
   lazy val vd = new VideoDeserializer
 
   def dataManager(): DataManager = {
-    val getDataManager = for {
-      racerMap <- loadRacerAliasMap()
-      raceNames <- loadRaceNames()
-      editions <- loadEditionNames()
-      videos <- loadVideos()
-    } yield new DataManager(
-        extractRaces(raceNames, racerMap),
-        extractEditions(racerMap, editions),
-        videos
-      )
-    Await.result(getDataManager, 60 seconds)
+    val asyncDataManager = async {
+      val videosFuture = Future { loadVideos() }
+      val racerMapFuture = Future { loadRacerAliasMap() }
+      val raceNamesFuture = Future { loadRaceNames() }
+      val editionNamesFuture = Future { loadEditionNames() }
+      val editionsFuture = async { extractEditions(await(racerMapFuture), await(editionNamesFuture)) }
+      val racesFuture = async { extractRaces(await(raceNamesFuture), await(racerMapFuture)) }
+      new DataManager(await(racesFuture), await(editionsFuture), await(videosFuture))
+    }
+    logger.info("Waiting...")
+    Await.result(asyncDataManager, 60 seconds)
   }
 
   def extractEditions(racers: Map[String, String], editions: Seq[String]): List[Edition] = {
+    logger.info("Starting to extract editions")
     val editionResults: List[Edition] =
       editions.par.map(name =>
         ResultsImporter.readEdition(name, loadFileIntoString("edition/" + name + ".csv")))
@@ -44,10 +46,12 @@ object DataProvider extends Logging {
       }).toList
         .sortBy(_.date.toString)
         .reverse
+    logger.info("Finished extracting editions")
     editionResults
   }
 
   def extractRaces(races: Seq[String], racerAliases: Map[String, String]): List[Race] = {
+    logger.info("Starting to extract races")
     val racerResults =
       races.par
         .map(name => ResultsImporter.readRace(name, loadFileIntoString(name + ".csv")))
@@ -60,10 +64,12 @@ object DataProvider extends Logging {
           RacerResult(racer, rr.position, rr.kart, rr.time)
       })).toList
         .sortBy(r => r.raceId).reverse.toList
+    logger.info("Finished extracting races")
     racerResults
   }
 
-  private def loadRacerAliasMap(): Future[Map[String, String]] = Future {
+  private def loadRacerAliasMap(): Map[String, String] = {
+    logger.info("Starting to load racer alias map")
     var racerMap = Map.empty[String, String]
     val lines = loadStringsFromFiles("racers.txt")
     lines.foreach {
@@ -74,18 +80,26 @@ object DataProvider extends Logging {
           n => racerMap = racerMap.updated(n, primaryName)
         }
     }
+    logger.info("Finished loading racer alias map")
     racerMap
   }
 
-  private def loadRaceNames(): Future[Seq[String]] = Future {
-    loadStringsFromFiles("races.txt", "extraRaces.txt")
+  private def loadRaceNames(): Seq[String] = {
+    logger.info("Starting to load race names")
+    val races  = loadStringsFromFiles("races.txt", "extraRaces.txt")
+    logger.info("Finished loading race names")
+    races
   }
 
-  private def loadEditionNames(): Future[Seq[String]] = Future {
-    loadStringsFromFiles("editions.txt", "extraEditions.txt")
+  private def loadEditionNames(): Seq[String] = {
+    logger.info("Starting to load edition names")
+    val editionNames = loadStringsFromFiles("editions.txt", "extraEditions.txt")
+    logger.info("Finished loading edition names")
+    editionNames
   }
 
-  private def loadVideos(): Future[List[Video]] = Future {
+  private def loadVideos(): List[Video] = {
+    logger.info("Starting to load videos")
     try {
       val json = loadFileIntoString("videos.json")
       vd.deserializeVideos(json).toList
@@ -94,6 +108,8 @@ object DataProvider extends Logging {
         logger.error("Could not load videos", t)
         List.empty[Video]
       }
+    } finally {
+      logger.info("Finished loading videos")
     }
   }
 }
