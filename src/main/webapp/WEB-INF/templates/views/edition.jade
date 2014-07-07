@@ -9,7 +9,7 @@ h1= s"Edition ${edition.printId}"
 - render("racer-results.jade")
 
 h2 Individual Races
-ul(class='list-unstyled')
+ul(class='list-unstyled floating')
   - for(r <- editionWithRaces.races) {
     li
       .race

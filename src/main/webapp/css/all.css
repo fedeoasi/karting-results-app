@@ -2,7 +2,7 @@
     width: 100%;
 }
 
-ul li {
+ul.floating li {
     float:left;
     overflow: auto;
 }

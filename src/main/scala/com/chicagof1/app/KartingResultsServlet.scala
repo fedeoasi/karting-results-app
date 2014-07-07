@@ -7,11 +7,19 @@ import com.chicagof1.parsing.VideoSerializer
 import org.scalatra.{AsyncResult, FutureSupport}
 import scala.concurrent.{Future, ExecutionContext}
 import scala.concurrent.ExecutionContext.Implicits.global
+import scala.collection.JavaConverters._
 
 class KartingResultsServlet(dataManager: DataManager) extends KartingResultsAppStack with FutureSupport {
   val vs = new VideoSerializer
 
   override protected implicit def executor: ExecutionContext = global
+
+  get("/trace") {
+    contentType = "text/html"
+    val traceList = Thread.getAllStackTraces.asScala.toList
+    val sortedTraceList = traceList.sortBy(_._1.getName.toLowerCase)
+    jade("trace", "threadsAndTraces" -> sortedTraceList)
+  }
 
   get("/") {
     new AsyncResult() {

@@ -60,6 +60,7 @@ object KartingApplicationBuild extends Build {
         "org.clapper"    %% "grizzled-slf4j" % "1.0.2",
         "javax.mail" % "mail" % "1.4.7",
         "org.scala-lang" % "scala-reflect" % ScalaVersion,
+        "org.scala-lang" % "scala-compiler" % ScalaVersion,
         "com.github.tototoshi" %% "scala-csv" % "1.0.0",
         "org.eclipse.jetty" % "jetty-webapp" % "9.1.5.v20140505" % "container",
         "org.eclipse.jetty.orbit" % "javax.servlet" % "3.0.0.v201112011016" % "container;provided;test" artifacts (Artifact("javax.servlet", "jar", "jar")),

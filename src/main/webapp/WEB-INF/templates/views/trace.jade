@@ -1,0 +1,22 @@
+- attributes("title") = "What Are Our Threads Doing"
+- attributes("headline") = "Traces"
+-@ val threadsAndTraces: List[(Thread, Array[StackTraceElement])]
+
+h1 Threads
+ul(class='list-unstyled')
+  - for(tt <- threadsAndTraces) {
+  -   val thread = tt._1
+  li
+    a(href='trace##{thread.getName}')= thread.getName
+  - }
+
+h1 Traces
+- for(tt <- threadsAndTraces) {
+-   val thread = tt._1
+-   val trace: Array[StackTraceElement] = tt._2
+h2(id="#{thread.getName}")= thread.getName
+- for (ste <- trace) {
+t= ste
+br
+- }
+- }
