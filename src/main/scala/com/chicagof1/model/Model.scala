@@ -4,19 +4,14 @@ import org.joda.time.{LocalTime, LocalDate, Duration}
 
 case class RacerResult(name: String, position: Int, kart: Int, time: Duration) {
   def formattedTime = {
-    if(time.getMillis == 0) {
-      "-"
-    } else {
-      time.getStandardSeconds + ":%03d".format(time.getMillis % 1000)
-    }
+    if(time.getMillis == 0) "-"
+    else time.getStandardSeconds + ":%03d".format(time.getMillis % 1000)
   }
 }
 case class EditionResult(name: String, kart: Int, time: Duration)
 
 case class Race(date: LocalDate, time: LocalTime, results: Seq[RacerResult]) {
-  def raceId: String = {
-    date.toString + "-" + time.toString("hh:mm")
-  }
+  def raceId: String = s"${date.toString}-${time.toString("hh:mm")}"
 }
 
 case class Edition(date: LocalDate, results: Seq[RacerResult]) {
