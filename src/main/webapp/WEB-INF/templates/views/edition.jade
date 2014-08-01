@@ -8,6 +8,7 @@ h1= s"Edition ${edition.printId}"
 #content
 - render("racer-results.jade")
 
+- if(editionWithRaces.races.size > 0) {
 h2 Individual Races
 ul(class='list-unstyled floating')
   - for(r <- editionWithRaces.races) {
@@ -15,5 +16,7 @@ ul(class='list-unstyled floating')
       .race
         a(href='/races/#{r.raceId}')= r.raceId
   - }
+- }
 
+- render("fb-comments.ssp")
 - render("analytics.ssp")

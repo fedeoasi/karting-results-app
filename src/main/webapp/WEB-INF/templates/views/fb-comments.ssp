@@ -1,0 +1,14 @@
+<script>
+(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=730413776978159";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));
+
+document.write("<div class='fb-comments' data-href='" + window.location.href + "' data-num-posts='5' data-colorscheme='light' data-width='100%'></div>");
+</script>
+
+
+
