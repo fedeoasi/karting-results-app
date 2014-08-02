@@ -199,3 +199,7 @@ a:active {
 .activefacet {
     font-weight: bold;
 }
+
+.racerHeader {
+    min-width: 200px;
+}

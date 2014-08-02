@@ -21,7 +21,7 @@ function buildHeader(editions) {
     var header = $("<thead></thead>");
     var row = $('<tr></tr>');
     row.append($("<th></th>"));
-    row.append($("<th>Racer</th>"));
+    row.append($('<th class="racerHeader">Racer</th>'));
     $.each(editions, function(i, item) {
         row.append($('<th class="edition">' + item + "</th>"));
     });
