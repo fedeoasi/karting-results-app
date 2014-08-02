@@ -195,3 +195,7 @@ a:active {
 #standingsTable .third {
     background-color: #FFDF9F;
 }
+
+.activefacet {
+    font-weight: bold;
+}
