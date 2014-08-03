@@ -2,9 +2,8 @@ package com.chicagof1.data
 
 import org.joda.time.LocalDate
 import com.chicagof1.model._
-import com.chicagof1.utils.{FileUtils, DateUtils}
+import com.chicagof1.utils.DateUtils
 import scala.language.postfixOps
-import scala.async.Async.async
 
 case class DataManager(races: List[Race], editions: List[Edition], videos: List[Video]) {
   private val racesMap: Map[String, Race] = races.map(r => r.raceId -> r).toMap

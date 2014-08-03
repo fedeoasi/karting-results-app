@@ -2,7 +2,7 @@ package com.chicagof1.data
 
 import com.chicagof1.ResultsImporter
 import grizzled.slf4j.Logging
-import com.chicagof1.parsing.VideoDeserializer
+import com.chicagof1.parsing.{RacerDeserializer, VideoDeserializer}
 import com.chicagof1.model._
 import com.chicagof1.utils.FileUtils
 import FileUtils._
@@ -14,13 +14,15 @@ import scala.async.Async.{async, await}
 
 object DataProvider extends Logging {
   lazy val vd = new VideoDeserializer
+  lazy val rd = new RacerDeserializer
 
   def dataManager(): DataManager = {
     val asyncDataManager = async {
       val videosFuture = Future { loadVideos() }
-      val racerMapFuture = Future { loadRacerAliasMap() }
+      val racersFuture = Future { loadRacers() }
       val raceNamesFuture = Future { loadRaceNames() }
       val editionNamesFuture = Future { loadEditionNames() }
+      val racerMapFuture = async { extractRacerAliasMap(await(racersFuture)) }
       val editionsFuture = async { extractEditions(await(racerMapFuture), await(editionNamesFuture)) }
       val racesFuture = async { extractRaces(await(raceNamesFuture), await(racerMapFuture)) }
       new DataManager(await(racesFuture), await(editionsFuture), await(videosFuture))
@@ -67,15 +69,13 @@ object DataProvider extends Logging {
     racerResults
   }
 
-  private def loadRacerAliasMap(): Map[String, String] = {
+  private def extractRacerAliasMap(racerDaos: Seq[RacerDao]): Map[String, String] = {
     logger.info("Starting to load racer alias map")
     var racerMap = Map.empty[String, String]
-    val lines = loadStringsFromFiles("racers.txt")
-    lines.foreach {
-      l =>
-        val split = l.split(",")
-        val primaryName = split(0)
-        split.foreach {
+    racerDaos.foreach {
+      r =>
+        val primaryName = r.name
+        (primaryName :: r.aliases).foreach {
           n => racerMap = racerMap.updated(n, primaryName)
         }
     }
@@ -109,6 +109,21 @@ object DataProvider extends Logging {
       }
     } finally {
       logger.info("Finished loading videos")
+    }
+  }
+
+  private def loadRacers(): List[RacerDao] = {
+    logger.info("Starting to load racers")
+    try {
+      val json = loadFileIntoString("racers.json")
+      rd.deserializeRacerDaos(json).toList
+    } catch {
+      case t: Throwable => {
+        logger.error("Could not load racers", t)
+        List.empty[RacerDao]
+      }
+    } finally {
+      logger.info("Finished loading racers")
     }
   }
 }
