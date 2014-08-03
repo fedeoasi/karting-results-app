@@ -1,0 +1,26 @@
+<%
+    val name = attributes("name")
+    attributes("title") = s"$name - Racer Statistics"
+%>
+
+<h1 class="pageTitle"><%= name %> - Racer Statistics</h1>
+
+<div id="racerDiv">
+    <div id="racerStandingsStatsDiv">
+        <h3>Current Championship</h3>
+    </div>
+    <div id="racerEditionsStatsDiv">
+        <h3>Overall stats</h3>
+    </div>
+    <div id="racerOtherStatsDiv">
+        <h3>Others</h3>
+    </div>
+</div>
+
+<script>
+  var racerId = <%= attributes("racerId") %>
+</script>
+
+<script src="/js/racerStats.js">
+
+<% render("analytics.ssp") %>

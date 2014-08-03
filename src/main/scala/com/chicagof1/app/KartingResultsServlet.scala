@@ -3,14 +3,15 @@ package com.chicagof1.app
 import org.json4s.jackson.JsonMethods._
 import org.json4s.JsonDSL._
 import com.chicagof1.data.DataManager
-import com.chicagof1.parsing.VideoSerializer
-import org.scalatra.{AsyncResult, FutureSupport}
+import com.chicagof1.parsing.{RacerWithStatsSerializer, VideoSerializer}
+import org.scalatra.{NotFound, Ok, AsyncResult, FutureSupport}
 import scala.concurrent.{Future, ExecutionContext}
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.collection.JavaConverters._
 
 class KartingResultsServlet(dataManager: DataManager) extends KartingResultsAppStack with FutureSupport {
   val vs = new VideoSerializer
+  val rwss = new RacerWithStatsSerializer
 
   override protected implicit def executor: ExecutionContext = global
 
@@ -47,7 +48,9 @@ class KartingResultsServlet(dataManager: DataManager) extends KartingResultsAppS
         contentType = "application/json"
         val raceId = params("id")
         val race = dataManager.getRaceById(raceId)
-        val data = race.get.results.map(r => List[String](r.name, r.position.toString, r.kart.toString, r.formattedTime))
+        val data = race.get.results.map {
+          r => List[String](dataManager.racerLink(r.name), r.position.toString, r.kart.toString, r.formattedTime)
+        }
         val json = "aaData" -> data
         compact(render(json))
       }
@@ -81,7 +84,9 @@ class KartingResultsServlet(dataManager: DataManager) extends KartingResultsAppS
         contentType = "application/json"
         val editionId = params("id")
         val edition = dataManager.getEditionWithRacesById(editionId)
-        val data = edition.get.edition.results.map(r => List[String](r.name, r.position.toString, r.kart.toString, r.formattedTime))
+        val data = edition.get.edition.results.map {
+          r => List[String](dataManager.racerLink(r.name), r.position.toString, r.kart.toString, r.formattedTime)
+        }
         val json = "aaData" -> data
         compact(render(json))
       }
@@ -101,7 +106,44 @@ class KartingResultsServlet(dataManager: DataManager) extends KartingResultsAppS
     new AsyncResult() {
       override val is = Future {
         contentType = "application/json"
-        dataManager.currentChampionship.standings.serialize
+        val standings = dataManager.currentChampionship.standings
+        val racerLinks = standings.orderedRacers.map {
+          r => dataManager.racerLink(r._1)
+        }
+        standings.serialize(racerLinks)
+      }
+    }
+  }
+
+  get("/data/racers/:id") {
+    val racerIdString = params("id")
+    new AsyncResult() {
+      override val is = Future {
+        contentType = "application/json"
+        val racerId = racerIdString.toInt
+        dataManager.getRacerById(racerId) match {
+          case Some(racer) =>
+            val racerWithStats = dataManager.racerStatsFor(racer.name)
+            rwss.serializeRacerWithStats(racerWithStats)
+          case None =>
+            NotFound()
+        }
+      }
+    }
+  }
+
+  get("/racers/:id") {
+    val racerIdString = params("id")
+    new AsyncResult() {
+      override val is = Future {
+        contentType = "text/html"
+        val racerId = racerIdString.toInt
+        dataManager.getRacerById(racerId) match {
+          case Some(racer) =>
+            ssp("racer", "racerId" -> racerId, "name" -> racer.name)
+          case None =>
+            NotFound()
+        }
       }
     }
   }

@@ -60,4 +60,6 @@ function buildBody(racers, editions, data) {
     return body;
 }
 
-loadStandings();
+$(window).load(function() {
+    loadStandings();
+});

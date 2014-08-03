@@ -88,9 +88,9 @@ class Standings(editions: Seq[EditionInChampionship], pointsSystem: PointsSystem
     ("points" -> pp.points)
   }
 
-  val serialize: String = {
+  def serialize(orderedRacerLinks: Seq[String]): String = {
     val json =
-      ("racers" -> orderedRacers.map(_._1)) ~
+      ("racers" -> orderedRacerLinks) ~
       ("editions" -> editions.map(_.name)) ~
       ("data" -> orderedRacers.zipWithIndex.map {
         case ((r, p), pos) => racerPoints(r) :+ PositionAndPoints(pos + 1, p)

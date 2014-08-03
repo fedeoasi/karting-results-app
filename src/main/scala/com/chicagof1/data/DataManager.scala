@@ -56,4 +56,11 @@ case class DataManager(racers: List[Racer], races: List[Race], editions: List[Ed
       case None => throw new IllegalArgumentException(s"No racer named: $name")
     }
   }
+
+  def racerLink(name: String): String = {
+    racersByName.get(name) match {
+      case Some(r) => s"<a href='/racers/${r.id}' class='racerLink'>$name</a>"
+      case None => s"<span class='racerNoLink'>$name</span>"
+    }
+  }
 }

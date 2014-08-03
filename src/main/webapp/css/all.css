@@ -234,7 +234,7 @@ a:active {
 
 #standingsTable .points {
     text-align: center;
-    font-weight: 400 !important;
+    font-weight: 300 !important;
 }
 
 #standingsTable .first {
@@ -317,9 +317,57 @@ h1.pageTitle {
 }
 
 .table-striped > tbody > tr:nth-child(2n) > td, .table-striped > tbody > tr:nth-child(2n) > th {
-    background-color:  rgba(240, 240, 240, 0.6) !important;
+    background-color:  rgba(220, 220, 220, 0.6) !important;
 }
 
 .table-striped > tbody > tr:nth-child(2n+1) > td, .table-striped > tbody > tr:nth-child(2n+1) > th {
-    background-color: rgba(220, 220, 220, 0.6) !important;
+    background-color: rgba(240, 240, 240, 0.6) !important;
+}
+
+.table-striped tr td, .table-striped tr td a {
+    color: #222 !important;
+    font-weight: 100 !important;
+    font-size: 18px;
+}
+
+#racerStandingsStatsDiv, #racerEditionsStatsDiv, #racerOtherStatsDiv {
+    color: #ddd;
+    padding: 10px;
+    margin-bottom: 5px;
+}
+
+#racerStandingsStatsDiv {
+    background: #B51411;
+}
+
+#racerEditionsStatsDiv {
+    background: rgba(50, 50, 50, 0.8);
+}
+
+#racerOtherStatsDiv {
+    background: rgba(10, 10, 10, 0.8);
+}
+
+#racerDiv span {
+    display: block;
+}
+
+#racerDiv h3 {
+    margin-top: 0px !important;
+}
+
+span.racerStatsKey {
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+    font-weight: 100 !important;
+}
+
+span.racerStatsValue {
+    margin-top: 0px !important;
+    margin-bottom: 0px !important;
+    font-weight: 400 !important;
+}
+
+a.racerLink {
+    color: #333;
 }
