@@ -4,7 +4,7 @@
 - attributes("titleName") = s"Edition ${edition.printId}"
 - attributes("source") = "/data/editions/" + edition.date
 
-h1= s"Edition ${edition.printId}"
+h1(class='pageTitle')= s"Edition ${edition.printId}"
 #content
 - render("racer-results.jade")
 
@@ -17,6 +17,7 @@ ul(class='list-unstyled floating')
         a(href='/races/#{r.raceId}')= r.raceId
   - }
 - }
+.clear
 
 - render("fb-comments.ssp")
 - render("analytics.ssp")

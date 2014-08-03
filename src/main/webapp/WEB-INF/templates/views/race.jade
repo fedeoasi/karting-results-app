@@ -3,7 +3,7 @@
 - attributes("titleName") = "Races"
 - attributes("source") = "/data/races/" + race.raceId
 
-h1= s"Race ${race.raceId}"
+h1(class='pageTitle')= s"Race ${race.raceId}"
 #content
 - render("racer-results.jade")
 

@@ -5,9 +5,12 @@
 <script src='/js/facetedsearch.js'></script>
 <script src='/js/underscore.js'></script>
 
-<h1>Videos</h1>
-<div id="facets"></div>
-<div id="videos"></div>
+<div>
+    <h1 class="pageTitle">Videos</h1>
+    <div id="facets"></div>
+    <div id="videos"></div>
+</div>
+
 
 <script>
 var videos = {
@@ -17,17 +20,17 @@ var videos = {
 var item_template =
     //'<p>Hello</p>';
    '<div class="videoDiv row">' +
-       '<div class="video col-md-8">' +
+       '<div class="video col-md-9">' +
            '<iframe src="http://www.youtube.com/embed/<\%= obj.id \%>"></iframe>' +
        '</div>' +
-       '<div class="col-md-4">' +
+       '<div class="col-md-3">' +
             '<dl>' +
-                '<h3>Driver</h3>' +
-                '<h4><\%= obj.racer \%></h4>' +
-                '<h3>Edition</h3>' +
-                '<dd><a href="/editions/<\%= obj.date \%>"><\%= obj.date \%></a></dd>' +
-                '<h3>Location</h3>' +
-                '<h4><\%= obj.location \%></h4>' +
+                '<h4 class="videoDetailKey">Driver</h4>' +
+                '<p class="videoDetailValue"><\%= obj.racer \%></p>' +
+                '<h4 class="videoDetailKey">Edition</h4>' +
+                '<dd class="videoDetailValue"><a href="/editions/<\%= obj.date \%>"><\%= obj.date \%></a></dd>' +
+                '<h4 class="videoDetailKey">Location</h4>' +
+                '<p class="videoDetailValue"><\%= obj.location \%></p>' +
             '</dl>' +
        '</div>' +
    '</div>';

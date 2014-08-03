@@ -2,18 +2,17 @@
 - attributes("headline") = "Editions"
 -@ val editionsWithRaces: List[com.chicagof1.model.EditionWithRaces]
 
-h1 Editions
+h1(class='pageTitle') Editions
 ul(class='editions list-unstyled floating')
   - for(er <- editionsWithRaces) {
   -   val e = er.edition
   li
-    .edition
-      .printId
-        a(href='editions/#{e.date}')= e.printId
-      .detail
-        h3= e.winner
-        p= e.results(0).formattedTime
-        p= e.date
+    .editionDiv
+      a(href='editions/#{e.date}')
+        .editionData
+          h3(class='editionId')= e.printId
+          h3(class='winner')= e.winner
+          p(class='time')= e.results(0).formattedTime
   - }
 
 - render("analytics.ssp")

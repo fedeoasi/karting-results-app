@@ -9,7 +9,7 @@ function loadStandings() {
 }
 
 function renderStandingsTable(standings) {
-    var table = $('<table id="standingsTable" class="table table-striped table-bordered"></table>');
+    var table = $('<table id="standingsTable" class="table table table-striped table-hover table-bordered"></table>');
     var header = buildHeader(standings.editions);
     var body = buildBody(standings.racers, standings.editions, standings.data);
     table.append(header);
@@ -20,7 +20,7 @@ function renderStandingsTable(standings) {
 function buildHeader(editions) {
     var header = $("<thead></thead>");
     var row = $('<tr></tr>');
-    row.append($("<th></th>"));
+    row.append($("<th>Pos</th>"));
     row.append($('<th class="racerHeader">Racer</th>'));
     $.each(editions, function(i, item) {
         row.append($('<th class="edition">' + item + "</th>"));
@@ -46,8 +46,8 @@ function buildBody(racers, editions, data) {
     var body = $("<tbody></tbody>");
     $.each(racers, function(i, racer) {
         var row = $("<tr></tr>");
-        row.append($('<td class="position">' + (i + 1) + "</td>"));
-        row.append($("<td>" + racer + "</td>"));
+        row.append($('<td class="position">' + (i + 1) + '</td>'));
+        row.append($('<td class="racer">' + racer + '</td>'));
         $.each(data[i], function(j, positionAndPoints) {
             var position = positionAndPoints.position;
             var points = positionAndPoints.points;

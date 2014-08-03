@@ -1,6 +1,6 @@
 -@ val source: String
 
-table(id='example' class='table table-striped')
+table(id='racerResultsTable' class='table table-hover table-striped')
   thead
     tr
       th Racer
@@ -10,7 +10,7 @@ table(id='example' class='table table-striped')
   tbody
   :!javascript
     $(document).ready(function() {
-      $('#example').dataTable( {
+      $('#racerResultsTable').dataTable( {
     	"bProcessing": true,
         "sAjaxSource": '#{source}',
         "bPaginate": false,

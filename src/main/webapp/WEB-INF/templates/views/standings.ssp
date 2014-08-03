@@ -1,12 +1,10 @@
-<% attributes("title") = "Chicago F1 Karting - 2014 Standings" %>
+<% attributes("title") = "Chicago F1 - 2014 Standings" %>
 
-<h1>Chicago F1 Karting - 2014 Standings</h1>
+<h1 class="pageTitle">Chicago F1 <span class='number'><i>2014</i></span> Standings</h1>
 
 <div id="standings"></div>
 
 <script src="/js/standingsTable.js">
-
-
 
 <% render("analytics.ssp") %>
 

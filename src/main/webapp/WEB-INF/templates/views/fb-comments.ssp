@@ -7,8 +7,5 @@
   fjs.parentNode.insertBefore(js, fjs);
 }(document, 'script', 'facebook-jssdk'));
 
-document.write("<div class='fb-comments' data-href='" + window.location.href + "' data-num-posts='5' data-colorscheme='light' data-width='100%'></div>");
+document.write("<div class='wrapFbComments'><div class='fb-comments' data-href='" + window.location.href + "' data-num-posts='5' data-colorscheme='light' data-width='100%'></div></div>");
 </script>
-
-
-
