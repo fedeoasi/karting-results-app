@@ -34,7 +34,5 @@ class ChampionshipSpec extends FunSpec with ShouldMatchers {
       racers(0) should be(("A", 59))
       racers(3) should be(("D", 18))
     }
-
-
   }
 }
