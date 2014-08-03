@@ -2,7 +2,6 @@ Meesa Maeng,meesa
 Justin Royster,Justin
 David Quednau
 Federico Caimi,Federico
-Andrius
 Marcello Guarro
 Theodore Birks,STRIKER
 Jose Torres,Joey T
@@ -19,7 +18,7 @@ Anders
 sharan
 Daniel Nikonchik
 Mark Golitko,M Golitko
-Andrius Petraitis,DRIUS
+Andrius Petraitis,DRIUS,Andrius
 Adam Bishop,Adam
 Michael Wu,Shaojun Wu
 Joe Morganti,The Stig
