@@ -1,7 +1,6 @@
 package com.chicagof1.scraping
 
 import org.scalatest.{Matchers, FunSpec}
-import org.scalatest.Matchers
 import com.chicagof1.utils.SpecUtils._
 import com.chicagof1.model.RacerResult
 import com.chicagof1.ResultsExporter
