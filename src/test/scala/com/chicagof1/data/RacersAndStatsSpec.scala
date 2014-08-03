@@ -1,8 +1,14 @@
 package com.chicagof1.data
 
 import org.scalatest.{Matchers, FunSpec}
-import com.chicagof1.model.RacerDao
+import com.chicagof1.model._
 import com.chicagof1.parsing.{RacerSerializer, RacerDeserializer}
+import org.joda.time.{LocalTime, LocalDate}
+import com.github.nscala_time.time.Imports._
+import com.chicagof1.model.Racer
+import com.chicagof1.model.RacerDao
+import com.chicagof1.model.RacerResult
+import com.chicagof1.model.Race
 
 class RacersAndStatsSpec extends FunSpec with Matchers {
   val rd = new RacerDeserializer
@@ -40,6 +46,47 @@ class RacersAndStatsSpec extends FunSpec with Matchers {
 
     it("should parse a seq of videos") {
       rs.serializeRacerDaos(racerSeq) should be(racersJson.replaceAll("\\n", ""))
+    }
+  }
+
+  describe("Racer with statistics") {
+    val racers = List(Racer(1, "A", "USA"), Racer(2, "B", "USA"), Racer(3, "C", "USA"))
+    val videos = List(
+      Video("a", "B", "2014-02-01", "Melrose")
+    )
+    val dm = new DataManager(
+      racers,
+      List(Race(LocalDate.parse("2014-01-01"), LocalTime.parse("20:00"),
+        Seq(
+          RacerResult("A", 1, 10, 29.seconds + 0.millis),
+          RacerResult("B", 2, 2, 29.seconds + 500.millis),
+          RacerResult("C", 3, 4, 30.seconds + 0.millis)
+        ))),
+      List(Edition(LocalDate.parse("2014-02-01"),
+        Seq(
+          RacerResult("A", 1, 10, 29.seconds + 200.millis),
+          RacerResult("C", 2, 2, 29.seconds + 600.millis),
+          RacerResult("B", 3, 4, 30.seconds + 0.millis)
+      )),
+        Edition(LocalDate.parse("2014-03-01"),
+          Seq(
+            RacerResult("A", 1, 10, 29.seconds + 200.millis),
+            RacerResult("B", 2, 2, 29.seconds + 600.millis),
+            RacerResult("C", 3, 4, 30.seconds + 0.millis)
+          ))),
+      videos
+    )
+
+    it("should compute stats for a racer") {
+      dm.racerStatsFor("A") should be(
+        RacerWithStats(racers(0), 1, 40, 2, 1, 1.0, 0)
+      )
+      dm.racerStatsFor("B") should be(
+        RacerWithStats(racers(1), 2, 37, 0, 0, 2.5, 1)
+      )
+      dm.racerStatsFor("C") should be(
+        RacerWithStats(racers(2), 3, 37, 0, 0, 2.5, 0)
+      )
     }
   }
 }

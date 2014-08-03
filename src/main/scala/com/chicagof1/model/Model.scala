@@ -10,16 +10,16 @@ case class RacerResult(name: String, position: Int, kart: Int, time: Duration) {
 }
 case class EditionResult(name: String, kart: Int, time: Duration)
 
-case class Race(date: LocalDate, time: LocalTime, results: Seq[RacerResult]) {
+case class Race(date: LocalDate, time: LocalTime, results: Seq[RacerResult]) extends HasRacerResults {
   def raceId: String = s"${date.toString}-${time.toString("hh:mm")}"
 }
 
-case class Edition(date: LocalDate, results: Seq[RacerResult]) {
-  def winner: String = results(0).name
+case class Edition(date: LocalDate, results: Seq[RacerResult]) extends HasRacerResults {
   def printId: String = date.toString("MMM yyyy")
 }
 
 trait HasRacerResults {
+  def winner: String = results(0).name
   def results: Seq[RacerResult]
 }
 

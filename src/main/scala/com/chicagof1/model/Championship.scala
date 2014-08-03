@@ -65,6 +65,14 @@ class Standings(editions: Seq[EditionInChampionship], pointsSystem: PointsSystem
     .sortBy(_._2)
     .reverse
 
+  def racerTotalPoints(racer: String): PositionAndPoints = {
+    orderedRacers.zipWithIndex.find {
+      case ((r, _), _) => r == racer
+    }.map {
+      case ((_, points), pos) => PositionAndPoints(pos + 1, points)
+    }.get
+  }
+
   def racerPoints(racer: String): Seq[PositionAndPoints] = {
     standingsByRace.map {
       case map =>

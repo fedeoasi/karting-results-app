@@ -19,13 +19,14 @@ object DataProvider extends Logging {
   def dataManager(): DataManager = {
     val asyncDataManager = async {
       val videosFuture = Future { loadVideos() }
-      val racersFuture = Future { loadRacers() }
+      val racerDaosFuture = Future { loadRacers() }
       val raceNamesFuture = Future { loadRaceNames() }
       val editionNamesFuture = Future { loadEditionNames() }
-      val racerMapFuture = async { extractRacerAliasMap(await(racersFuture)) }
+      val racerMapFuture = async { extractRacerAliasMap(await(racerDaosFuture)) }
       val editionsFuture = async { extractEditions(await(racerMapFuture), await(editionNamesFuture)) }
       val racesFuture = async { extractRaces(await(raceNamesFuture), await(racerMapFuture)) }
-      new DataManager(await(racesFuture), await(editionsFuture), await(videosFuture))
+      val racersFuture = async { await(racerDaosFuture).map { r => Racer(r.id, r.name, r.flag) } }
+      new DataManager(await(racersFuture), await(racesFuture), await(editionsFuture), await(videosFuture))
     }
     logger.info("Waiting...")
     Await.result(asyncDataManager, 60 seconds)
