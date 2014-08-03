@@ -3,10 +3,9 @@ package com.chicagof1.parsing
 import org.json4s.jackson.JsonMethods._
 import org.json4s.jackson.Serialization._
 import com.chicagof1.model.Video
-import org.json4s.DefaultFormats
 
 class VideoDeserializer {
-  implicit lazy val formats = DefaultFormats
+  import ModelSerialization._
 
   def deserializeVideo(json: String): Video = {
     val ast = parse(json)
@@ -20,7 +19,7 @@ class VideoDeserializer {
 }
 
 class VideoSerializer {
-  implicit lazy val formats = DefaultFormats
+  import ModelSerialization._
 
   def serializeVideo(video: Video): String = {
     write(video)

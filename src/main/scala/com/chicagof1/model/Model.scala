@@ -26,3 +26,6 @@ trait HasRacerResults {
 case class Video(id: String, racer: String, date: String, location: String)
 
 case class EditionWithRaces(edition: Edition, races: Seq[Race])
+
+case class RacerDao(id: Int, name: String, aliases: List[String], flag: String)
+case class Racer(id: Int, name: String, flag: String)
