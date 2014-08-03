@@ -1,11 +1,11 @@
 package com.chicagof1.utils
 
 import org.scalatest.FunSpec
-import org.scalatest.matchers.ShouldMatchers
+import org.scalatest.Matchers
 
 import DateUtils._
 
-class DateUtilsSpec extends FunSpec with ShouldMatchers {
+class DateUtilsSpec extends FunSpec with Matchers {
   describe("DateUtils") {
     it("should create a month") {
       val jan = month("2014-01-01")

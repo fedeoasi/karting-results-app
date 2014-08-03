@@ -1,10 +1,10 @@
 package com.chicagof1.parsing
 
 import org.scalatest.FunSpec
-import org.scalatest.matchers.ShouldMatchers
+import org.scalatest.Matchers
 import com.chicagof1.model.Video
 
-class VideoParsingSpec extends FunSpec with ShouldMatchers {
+class VideoParsingSpec extends FunSpec with Matchers {
   val vd = new VideoDeserializer
 
   describe("Video Parsing") {

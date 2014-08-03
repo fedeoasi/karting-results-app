@@ -1,12 +1,11 @@
 package com.chicagof1
 
-import org.scalatest.FunSpec
-import org.scalatest.matchers.ShouldMatchers
+import org.scalatest.{Matchers, FunSpec}
 import com.chicagof1.utils.SpecUtils._
 import com.chicagof1.model.RacerResult
 import org.joda.time.Period
 
-class ResultsImporterSpec extends FunSpec with ShouldMatchers {
+class ResultsImporterSpec extends FunSpec with Matchers {
   val raceFilename: String = "2013-01-23 - 08:48.csv"
   val raceGapsFilename: String = "2014-01-01 - 01:01.csv"
   val racerResultCsv = testResourcesDir + raceFilename

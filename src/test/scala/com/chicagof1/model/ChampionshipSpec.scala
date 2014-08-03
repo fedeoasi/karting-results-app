@@ -1,11 +1,11 @@
 package com.chicagof1.model
 
-import org.scalatest.matchers.ShouldMatchers
+import org.scalatest.Matchers
 import org.scalatest.FunSpec
 import org.joda.time.LocalDate
 import com.github.nscala_time.time.Imports._
 
-class ChampionshipSpec extends FunSpec with ShouldMatchers {
+class ChampionshipSpec extends FunSpec with Matchers {
   val janRes = Seq[RacerResult](
     RacerResult("A", 1, 5, 1.minute + 1.second),
     RacerResult("C", 2, 8, 1.minute + 2.second),

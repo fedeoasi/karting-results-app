@@ -1,13 +1,12 @@
 package com.chicagof1.email
 
 import org.scalatest.FunSpec
-import org.scalatest.matchers.ShouldMatchers
+import org.scalatest.Matchers
 import com.chicagof1.utils.SpecUtils._
 import com.chicagof1.parsing.EmailParser
 import org.jsoup.Jsoup
-import java.io.FileOutputStream
 
-class EmailSpec extends FunSpec with ShouldMatchers {
+class EmailSpec extends FunSpec with Matchers {
   val parser: EmailParser = new EmailParser()
 
   describe("Email") {

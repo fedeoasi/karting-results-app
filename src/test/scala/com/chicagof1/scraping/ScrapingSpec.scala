@@ -1,13 +1,13 @@
 package com.chicagof1.scraping
 
-import org.scalatest.FunSpec
-import org.scalatest.matchers.ShouldMatchers
+import org.scalatest.{Matchers, FunSpec}
+import org.scalatest.Matchers
 import com.chicagof1.utils.SpecUtils._
 import com.chicagof1.model.RacerResult
 import com.chicagof1.ResultsExporter
 import com.github.nscala_time.time.Imports._
 
-class ScrapingSpec extends FunSpec with ShouldMatchers {
+class ScrapingSpec extends FunSpec with Matchers {
   val url = "http://www.testuri.com/"
   val resultsScraper = new RacerResultsScraper
   val raceScraper = new RaceScraper

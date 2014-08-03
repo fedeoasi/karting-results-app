@@ -1,7 +1,6 @@
 package com.chicagof1.data
 
-import org.scalatest.FunSpec
-import org.scalatest.matchers.ShouldMatchers
+import org.scalatest.{Matchers, FunSpec}
 import com.chicagof1.model._
 import org.joda.time.{LocalTime, LocalDate}
 import com.chicagof1.model.Edition
@@ -9,7 +8,7 @@ import com.chicagof1.model.RacerResult
 import com.chicagof1.model.Video
 import com.chicagof1.model.Race
 
-class DataManagerSpec extends FunSpec with ShouldMatchers {
+class DataManagerSpec extends FunSpec with Matchers {
   val race11 = Race(LocalDate.parse("2013-01-01"), LocalTime.parse("08:00"), List[RacerResult]())
   val race12 = Race(LocalDate.parse("2013-01-01"), LocalTime.parse("09:00"), List[RacerResult]())
   val race21 = Race(LocalDate.parse("2013-02-01"), LocalTime.parse("08:00"), List[RacerResult]())
