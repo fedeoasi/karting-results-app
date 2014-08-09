@@ -4,6 +4,33 @@ body {
     background-color: #171518 !important;
     background-attachment: fixed;
     color: #344644;
+    font-family: 'Open Sans',sans-serif !important;
+    font-weight: 400 !important;
+    font-size: 16px !important;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Open Sans',sans-serif !important;
+    font-weight: 300 !important;
+}
+
+h1, h2, h3 {
+    margin-bottom: 10px !important;
+    margin-top: 10px !important;
+}
+
+h1.pageTitle {
+    color: #610305;
+}
+
+.center { text-align: center; }
+
+.clear { clear:both; }
+
+.container.jumbo {
+    padding: 0px 5px 10px 5px;
+    background: rgba(200, 200, 200, 0.8);
+    min-height: 1000px;
 }
 
 .standardTable {
@@ -11,9 +38,31 @@ body {
     background-color: white;
 }
 
-ul.editions {
-    display:table !important;
-    margin: 0 auto !important;
+li a {
+    display: block;
+    color: #000;
+    text-decoration: none;
+}
+
+li:hover {
+  background: #94100E;
+  cursor: pointer;
+}
+
+a:hover {
+    background: #94100E;
+    color: #eee !important;
+    text-decoration:none !important;
+}
+
+a:visited {
+    //color: #eee !important;
+    text-decoration:none !important;
+}
+
+a:active {
+    color: #eee !important;
+    text-decoration:none !important;
 }
 
 ul.floating li {
@@ -21,14 +70,41 @@ ul.floating li {
     overflow: auto;
 }
 
-ul.editions li {
-    margin: 1px;
-    background: #eee;
-    border: solid 1px #ccc;
+/* Bootstrap hacks for tables */
+.table-striped > tbody > tr:nth-child(2n) > td, .table-striped > tbody > tr:nth-child(2n) > th {
+    background-color:  rgba(220, 220, 220, 0.6) !important;
 }
 
-.editions h3 {
-    width: 100%;
+.table-striped > tbody > tr:nth-child(2n+1) > td, .table-striped > tbody > tr:nth-child(2n+1) > th {
+    background-color: rgba(240, 240, 240, 0.6) !important;
+}
+
+.table-striped tr td, .table-striped tr td a {
+    color: #222 !important;
+    font-weight: 100 !important;
+    font-size: 18px;
+}
+
+/* Editions page */
+.editionDiv {
+    float:left;
+    color: #ddd;
+    background: #B51411;
+    text-align: center;
+}
+
+.editionDiv a {
+    //padding: 35px 10px 10px 10px;
+    display: block;
+    color: #eee;
+    //height: 120px;
+    min-width: 250px;
+    font-size: 28px;
+    font-weight: 100 !important;
+}
+
+ul.editions li {
+    margin: 2px;
 }
 
 .editions .editionData {
@@ -57,42 +133,7 @@ ul.editions li {
     font-weight: 100 !important;
 }
 
-.editionDiv {
-    float:left;
-    color: #ddd;
-    background: #B51411;
-    text-align: center;
-}
-
-.editionDiv a {
-    //padding: 35px 10px 10px 10px;
-    display: block;
-    color: #eee;
-    //height: 120px;
-    min-width: 250px;
-    font-size: 28px;
-    font-weight: 100 !important;
-}
-
-li a {
-    display: block;
-    color: #000;
-    text-decoration: none;
-}
-
-li:hover {
-  background: #94100E;
-  cursor: pointer;
-}
-
-.center {
-    text-align: center;
-}
-
-.clear {
-    clear:both;
-}
-
+/* Racer results (used in Race and Edition pages)*/
 #racerResultsTable_filter {
     margin-bottom: 50px;
 }
@@ -101,128 +142,11 @@ li:hover {
     background-color: white;
 }
 
-li .race {
-}
-
 li .race a {
     padding: 20px 40px;
 }
 
-a:hover {
-    background: #94100E;
-    color: #eee !important;
-    text-decoration:none !important;
-}
-
-a:visited {
-    //color: #eee !important;
-    text-decoration:none !important;
-}
-
-a:active {
-    color: #eee !important;
-    text-decoration:none !important;
-}
-
-#nav {
-    margin-bottom: 0;
-}
-
-.activefacet {
-    font-weight: bold;
-    color: eee;
-}
-
-.facetitem:hover {
-    color: #cc3322;
-}
-
-.jumbo {
-    background-color: #EEEEEE;
-    padding: 15px;
-    //font-size: 14px;
-}
-
-.jumbo h1 {
-    font-size: 35px;
-}
-
-.jumbo p {
-    font-size: 17px;
-}
-
-.fb-like-box {
-    margin-top: 10px;
-}
-
-#twitter-f1 {
-    margin-top: 10px;
-}
-
-#videos {
-    //font-size: 14px;
-}
-
-.videoDiv.row {
-    background-color: rgba(10, 10, 10, 0.8);
-    padding: 0px !important;
-    margin: 0 0px 5px 0px;
-    color: white;
-}
-
-.video {
-    background-color: #ddd;
-    padding: 0px !important;
-    margin: 0px;
-}
-
-#facets {
-    background: rgba(10, 10, 10, 0.8);
-    padding: 0px 10px;
-    color: #fff;
-    margin-bottom: 5px;
-    font-weight: 100 !important;
-}
-
-.facetsearch {
-    display: inline-block;
-    vertical-align: top;
-    width: 200px;
-}
-
-.bottomline .facettotalcount {
-    display: inline-block;
-}
-
-.bottomline .deselectstartover {
-    display: inline-block;
-    float: right;
-}
-
-.bottomline .orderby {
-    display: inline-block;
-}
-
-.bottomline .orderby span {
-    margin: 0;
-    padding: 0;
-    display: inline-block;
-}
-
-.bottomline .orderby ul {
-    margin: 0px;
-    padding: 0px;
-    display: inline-block;
-}
-
-.bottomline .orderbyitem {
-    display: inline-block;
-}
-
-#standingsTable {
-//    color: #fff;
-}
-
+/* Standings page */
 #standingsTable .edition {
     text-align: center;
     text-transform: uppercase;
@@ -263,71 +187,10 @@ a:active {
 
 #standingsTable {
     background-color: white;
-    //font-size: 30px !important;
-}
-
-h1, h2, h3, h4, h5, h6 {
-    font-family: 'Open Sans',sans-serif !important;
-    font-weight: 300 !important;
 }
 
 .number {
     font-weight: 400 !important;
-}
-
-.videoDetailKey {
-    margin-top: 0px;
-    margin-bottom: 0px;
-}
-
-.videoDetailValue {
-    margin-top: 0px;
-    margin-bottom: 5px;
-    font-weight: 400 !important;
-    font-size: 20px;
-}
-
-body {
-    font-family: 'Open Sans',sans-serif !important;
-    font-weight: 400 !important;
-    font-size: 16px !important;
-}
-
-.fb-like-box {
-    background-color: white;
-}
-
-.container.jumbo {
-    padding: 0px 5px 10px 5px;
-    background: rgba(200, 200, 200, 0.8);
-    min-height: 1000px;
-}
-
-h1, h2, h3 {
-    margin-bottom: 10px !important;
-    margin-top: 10px !important;
-}
-
-.wrapFbComments {
-    background-color: rgba(250, 250, 250, 1) !important;
-}
-
-h1.pageTitle {
-    color: #610305;
-}
-
-.table-striped > tbody > tr:nth-child(2n) > td, .table-striped > tbody > tr:nth-child(2n) > th {
-    background-color:  rgba(220, 220, 220, 0.6) !important;
-}
-
-.table-striped > tbody > tr:nth-child(2n+1) > td, .table-striped > tbody > tr:nth-child(2n+1) > th {
-    background-color: rgba(240, 240, 240, 0.6) !important;
-}
-
-.table-striped tr td, .table-striped tr td a {
-    color: #222 !important;
-    font-weight: 100 !important;
-    font-size: 18px;
 }
 
 #racerStandingsStatsDiv, #racerEditionsStatsDiv, #racerOtherStatsDiv {
@@ -370,4 +233,102 @@ span.racerStatsValue {
 
 a.racerLink {
     color: #333;
+}
+
+/* Facebook like box */
+.fb-like-box {
+    margin-top: 10px;
+    background-color: white;
+}
+
+.wrapFbComments {
+    background-color: rgba(250, 250, 250, 1) !important;
+}
+
+/* Twitter stream */
+#twitter-f1 {
+    margin-top: 10px;
+}
+
+/* Videos page and faceted search */
+#videos {
+    //font-size: 14px;
+}
+
+.videoDiv.row {
+    background-color: rgba(10, 10, 10, 0.8);
+    padding: 0px !important;
+    margin: 0 0px 5px 0px;
+    color: white;
+}
+
+.video {
+    background-color: #ddd;
+    padding: 0px !important;
+    margin: 0px;
+}
+
+#facets {
+    background: rgba(10, 10, 10, 0.8);
+    padding: 0px 10px;
+    color: #fff;
+    margin-bottom: 5px;
+    font-weight: 100 !important;
+}
+
+.facetsearch {
+    display: inline-block;
+    vertical-align: top;
+    width: 200px;
+}
+
+.activefacet {
+    font-weight: bold;
+    color: eee;
+}
+
+.facetitem:hover {
+    color: #cc3322;
+}
+
+.bottomline .facettotalcount {
+    display: inline-block;
+}
+
+.bottomline .deselectstartover {
+    display: inline-block;
+    float: right;
+}
+
+.bottomline .orderby {
+    display: inline-block;
+}
+
+.bottomline .orderby span {
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+}
+
+.bottomline .orderby ul {
+    margin: 0px;
+    padding: 0px;
+    display: inline-block;
+}
+
+.bottomline .orderbyitem {
+    display: inline-block;
+}
+
+.videoDetailKey {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    font-size: 15px;
+}
+
+.videoDetailValue {
+    margin-top: 0px;
+    margin-bottom: 5px;
+    font-weight: 400 !important;
+    font-size: 16px;
 }
