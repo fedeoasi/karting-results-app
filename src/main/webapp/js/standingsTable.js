@@ -53,7 +53,11 @@ function buildBody(racers, editions, data) {
             var points = positionAndPoints.points;
             var tdClass = colorClass(position)
             var pointsToDisplay = (position > 0 ? points : "")
-            row.append($('<td class="points ' + tdClass + '">' + pointsToDisplay + "</td>"));
+            var pointsTotalClass = '';
+            if(data[i].length && j == data[i].length - 1) {
+                pointsTotalClass = "pointsTotal";
+            }
+            row.append($('<td class="points ' + tdClass + ' ' + pointsTotalClass + '">' + pointsToDisplay + "</td>"));
         });
         body.append(row);
     });

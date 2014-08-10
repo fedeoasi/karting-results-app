@@ -44,14 +44,7 @@ li a {
     text-decoration: none;
 }
 
-li:hover {
-  background: #94100E;
-  cursor: pointer;
-}
-
 a:hover {
-    background: #94100E;
-    color: #eee !important;
     text-decoration:none !important;
 }
 
@@ -107,6 +100,16 @@ ul.editions li {
     margin: 2px;
 }
 
+.editionDiv a:hover {
+    background: #94100E;
+    color: #eee !important;
+}
+
+.editionDiv a:visited {
+    color: #eee !important;
+    text-decoration: none !important;
+}
+
 .editions .editionData {
     padding: 10px;
 }
@@ -160,6 +163,11 @@ li .race a {
     text-align: center;
     font-weight: 300 !important;
 }
+
+#standingsTable .points.pointsTotal {
+    font-weight: 400 !important;
+}
+
 
 #standingsTable .first {
     background-color: #FFec88 !important;
@@ -231,8 +239,9 @@ span.racerStatsValue {
     font-weight: 400 !important;
 }
 
-a.racerLink {
-    color: #333;
+td.racer a:hover {
+    background: #B51411 !important;
+    color: #eee !important;
 }
 
 /* Facebook like box */
@@ -283,12 +292,12 @@ a.racerLink {
 }
 
 .activefacet {
-    font-weight: bold;
+    font-weight: 400 !important;
     color: eee;
 }
 
 .facetitem:hover {
-    color: #cc3322;
+    color: #ff2020;
 }
 
 .bottomline .facettotalcount {
