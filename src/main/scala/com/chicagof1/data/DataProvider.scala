@@ -43,7 +43,7 @@ object DataProvider extends Logging {
           .zipWithIndex
           .map {
           case (rr, index) =>
-            RacerResult(racers(rr.name), index + 1, rr.kart, rr.time)
+            RacerResult(racers(rr.name), index + 1, rr.kart, rr.time, rr.penalty)
         })
       }).toList
         .sortBy(_.date.toString)
