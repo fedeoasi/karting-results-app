@@ -45,5 +45,9 @@
     {"id":44,"name":"Thomas","aliases":[],"flag":"USA"},
     {"id":45,"name":"Michael Summers","aliases":["Jim Bob Dupree"],"flag":"USA"},
     {"id":46,"name":"Jason Camlic","aliases":[],"flag":"USA"},
-    {"id":47,"name":"Mark Golitko","aliases":["M Golitko"],"flag":"USA"}
+    {"id":47,"name":"Mark Golitko","aliases":["M Golitko"],"flag":"USA"},
+    {"id":48,"name":"Weilun","aliases":[],"flag":"CHI"},
+    {"id":49,"name":"Jonathan Small","aliases":[],"flag":"USA"},
+    {"id":50,"name":"Nate","aliases":[],"flag":"USA"},
+    {"id":51,"name":"Ralph Buelling","aliases":[],"flag":"GER"}
 ]}
