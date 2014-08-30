@@ -6,6 +6,7 @@
 
 <script src="/js/standingsTable.js">
 
+<% render("fb-comments.ssp") %>
 <% render("analytics.ssp") %>
 
 
