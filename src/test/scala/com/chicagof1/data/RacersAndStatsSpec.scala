@@ -79,14 +79,16 @@ class RacersAndStatsSpec extends FunSpec with Matchers {
 
     it("should compute stats for a racer") {
       dm.racerStatsFor("A") should be(
-        RacerWithStats(racers(0), 1, 40, 2, 1, 1.0, 0)
+        RacerWithStats(racers(0), 1, 40, 2, 1, 1.0, buildPositionCount(Seq(2)), 0)
       )
       dm.racerStatsFor("B") should be(
-        RacerWithStats(racers(1), 2, 37, 0, 0, 2.5, 1)
+        RacerWithStats(racers(1), 2, 37, 0, 0, 2.5, buildPositionCount(Seq(0, 1, 1)), 1)
       )
       dm.racerStatsFor("C") should be(
-        RacerWithStats(racers(2), 3, 37, 0, 0, 2.5, 0)
+        RacerWithStats(racers(2), 3, 37, 0, 0, 2.5, buildPositionCount(Seq(0, 1, 1)), 0)
       )
     }
   }
+
+  private def buildPositionCount(counts: Seq[Int]): Seq[Int] = counts.padTo(24, 0)
 }

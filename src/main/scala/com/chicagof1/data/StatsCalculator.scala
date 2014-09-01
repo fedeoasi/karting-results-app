@@ -12,6 +12,7 @@ case class RacerWithStats(racer: Racer,
                           editionWinCount: Int,
                           raceWinCount: Int,
                           avgEditionPosition: Double,
+                          editionPosHistogram: Seq[Int],
                           videosCount: Int)
 
 class StatsCalculator {
@@ -22,13 +23,17 @@ class StatsCalculator {
         .find(_.name == racer.name)
         .map(_.position)
     }
-
+    val groupedPositions: Map[Int, List[Int]] = editionPositions.groupBy(_.toInt)
+    val positionCounts = 1 to 24 map {
+      i => groupedPositions.get(i).fold(0)(_.size)
+    }
     RacerWithStats(racer,
       standingsPosition.position,
       standingsPosition.points,
       editions.count(_.winner == racer.name),
       races.count(_.winner == racer.name),
       avg(editionPositions),
+      positionCounts,
       videos.count(_.racer == racer.name))
   }
 
