@@ -21,6 +21,7 @@
   var racerId = <%= attributes("racerId") %>
 </script>
 
-<script src="/js/racerStats.js">
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script src="/js/racerStats.js"></script>
 
 <% render("analytics.ssp") %>

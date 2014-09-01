@@ -341,3 +341,33 @@ td.racer a:hover {
     font-weight: 400 !important;
     font-size: 16px;
 }
+
+/* Histogram */
+.bar {
+  fill: steelblue;
+}
+
+.bar:hover {
+  fill: brown;
+}
+
+.axis {
+  font: 12px sans-serif;
+  stroke: #999;
+  fill: none;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #ddd;
+  shape-rendering: crispEdges;
+}
+
+.x.axis path {
+  display: none;
+}
+
+svg text {
+    color: #fff;
+}
