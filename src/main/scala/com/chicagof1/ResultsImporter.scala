@@ -17,7 +17,7 @@ object ResultsImporter {
   def readRacerResult(contents: String): List[RacerResult] = {
     val reader = CSVReader.open(new StringReader(contents))
     reader.allWithHeaders().zipWithIndex.map {
-      case (rowMap, rowNum) => {
+      case (rowMap, rowNum) =>
         val time = extractTime(rowMap)
         val position = rowMap.get("Position") match {
           case Some(pos) => pos.toInt
@@ -25,13 +25,8 @@ object ResultsImporter {
         }
         val racer = rowMap.get("Racer").get
         val penalty = extractPenalty(rowMap, racer)
-        RacerResult(
-          racer,
-          position,
-          rowMap.get("Kart #").get.toInt,
-          time,
-          penalty)
-      }
+        val kart = rowMap.get("Kart #").get.toInt
+        RacerResult(racer, position, kart, time, penalty)
     }
   }
 
