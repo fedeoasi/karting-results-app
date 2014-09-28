@@ -1,17 +1,21 @@
 package com.chicagof1.app
 
 import org.json4s.jackson.JsonMethods._
+import org.json4s.jackson.Serialization.write
 import org.json4s.JsonDSL._
-import com.chicagof1.data.{DataManager, InMemoryDataManager}
+import com.chicagof1.data.DataManager
 import com.chicagof1.parsing.{RacerWithStatsSerializer, VideoSerializer}
-import org.scalatra.{NotFound, Ok, AsyncResult, FutureSupport}
+import org.scalatra.{NotFound, AsyncResult, FutureSupport}
 import scala.concurrent.{Future, ExecutionContext}
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.collection.JavaConverters._
+import com.chicagof1.facebook.FacebookInteractor
 
 class KartingResultsServlet(dataManager: DataManager) extends KartingResultsAppStack with FutureSupport {
+  implicit val formats = org.json4s.DefaultFormats
   val vs = new VideoSerializer
   val rwss = new RacerWithStatsSerializer
+  val fb = new FacebookInteractor
 
   override protected implicit def executor: ExecutionContext = global
 
@@ -151,4 +155,25 @@ class KartingResultsServlet(dataManager: DataManager) extends KartingResultsAppS
   post("/data/reload") {
     dataManager.reload()
   }
+
+  import com.chicagof1.Formatters._
+
+  get("/api/events") {
+    new AsyncResult() {
+      override val is = Future {
+        contentType = "application/json"
+        val events = fb.chicagoF1Events().map { e =>
+          val date = e.startTime.toString(prettyDateFormatter)
+          val start = e.startTime.toString(timeFormatter)
+          val end = e.endTime.toString(timeFormatter)
+          val link = s"<a href=https://www.facebook.com/events/${e.id}/>${e.name}</a>"
+          FacebookSerializedEvent(e.name, e.location, date, start, end, link)
+        }
+        write(EventsResponse(events))
+      }
+    }
+  }
 }
+
+case class FacebookSerializedEvent(name: String, location: String, date: String, startTime: String, endTime: String, link: String)
+case class EventsResponse(events: Seq[FacebookSerializedEvent])
