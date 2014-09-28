@@ -17,8 +17,10 @@ class ChicagoF1Data(val racers: List[Racer], val races: List[Race], val editions
 object DataProvider extends Logging {
   lazy val vd = new VideoDeserializer
   lazy val rd = new RacerDeserializer
+  val oneMillion = 1000000
 
-  def dataManager(): DataManager = {
+  def loadData(): ChicagoF1Data = {
+    val start = System.nanoTime()
     val asyncDataManager = async {
       val videosFuture = Future { loadVideos() }
       val racerDaosFuture = Future { loadRacers() }
@@ -28,11 +30,13 @@ object DataProvider extends Logging {
       val editionsFuture = async { extractEditions(await(racerMapFuture), await(editionNamesFuture)) }
       val racesFuture = async { extractRaces(await(raceNamesFuture), await(racerMapFuture)) }
       val racersFuture = async { await(racerDaosFuture).map { r => Racer(r.id, r.name, r.flag) } }
-      val data = new ChicagoF1Data(await(racersFuture), await(racesFuture), await(editionsFuture), await(videosFuture))
-      new InMemoryDataManager(data)
+      new ChicagoF1Data(await(racersFuture), await(racesFuture), await(editionsFuture), await(videosFuture))
     }
     logger.info("Waiting...")
-    Await.result(asyncDataManager, 60 seconds)
+    val data = Await.result(asyncDataManager, 60 seconds)
+    val stop = System.nanoTime()
+    info(s"Loaded data manager in ${(stop - start) / oneMillion} millis")
+    data
   }
 
   def extractEditions(racers: Map[String, String], editions: Seq[String]): List[Edition] = {

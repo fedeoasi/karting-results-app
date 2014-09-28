@@ -147,4 +147,8 @@ class KartingResultsServlet(dataManager: DataManager) extends KartingResultsAppS
       }
     }
   }
+
+  post("/data/reload") {
+    dataManager.reload()
+  }
 }

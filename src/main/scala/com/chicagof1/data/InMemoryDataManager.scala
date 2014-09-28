@@ -18,9 +18,13 @@ trait DataManager {
   def racerLink(name: String): String
   def videos: List[Video]
   def editionsWithRaces: List[EditionWithRaces]
+  def reload(): Unit
 }
 
-case class InMemoryDataManager(data: ChicagoF1Data) extends DataManager {
+case class InMemoryDataManager(optionalData: Option[ChicagoF1Data] = None) extends DataManager {
+  private var data: ChicagoF1Data = {
+    optionalData.getOrElse(DataProvider.loadData())
+  }
   private val sc = new StatsCalculator
   private val racersById: Map[Int, Racer] = data.racers.map(r => r.id -> r).toMap
   private val racersByName: Map[String, Racer] = data.racers.map(r => r.name -> r).toMap
@@ -79,4 +83,8 @@ case class InMemoryDataManager(data: ChicagoF1Data) extends DataManager {
   }
 
   def videos: List[Video] = data.videos
+
+  def reload(): Unit = {
+    data = DataProvider.loadData()
+  }
 }
