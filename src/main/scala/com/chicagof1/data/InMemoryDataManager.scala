@@ -51,8 +51,7 @@ case class InMemoryDataManager(optionalData: Option[ChicagoF1Data] = None) exten
     val months = DateUtils.monthsBetween(start.toDateTimeAtStartOfDay, stop.toDateTimeAtStartOfDay)
     val champEditions = months.zipWithIndex.map {
       case (m, i) =>
-        val edOpt = data.editions
-          .find(e => m.contains(e.date.toDateTimeAtStartOfDay))
+        val edOpt = data.editions.find(e => m.contains(e.date.toDateTimeAtStartOfDay))
         val name = m.getStart.toString("MMM")
         edOpt match {
           case Some(ed) => ReportedEditionInChampionship(i + 1, name, ed)
