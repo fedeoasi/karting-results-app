@@ -4,6 +4,7 @@ import org.joda.time.LocalDate
 import com.chicagof1.model._
 import com.chicagof1.utils.DateUtils
 import scala.language.postfixOps
+import com.chicagof1.links.LinkBuilder
 
 trait DataManager {
   def getRacerById(id: Int): Option[Racer]
@@ -74,12 +75,7 @@ case class InMemoryDataManager(optionalData: Option[ChicagoF1Data] = None) exten
     }
   }
 
-  def racerLink(name: String): String = {
-    racersByName.get(name) match {
-      case Some(r) => s"<a href='/racers/${r.id}' class='racerLink'>$name</a>"
-      case None => s"<span class='racerNoLink'>$name</span>"
-    }
-  }
+  def racerLink(name: String): String = LinkBuilder.racerLink(name, racersByName.get(name))
 
   def videos: List[Video] = data.videos
 
