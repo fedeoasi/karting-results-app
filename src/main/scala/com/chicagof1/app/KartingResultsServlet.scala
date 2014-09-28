@@ -2,7 +2,7 @@ package com.chicagof1.app
 
 import org.json4s.jackson.JsonMethods._
 import org.json4s.JsonDSL._
-import com.chicagof1.data.DataManager
+import com.chicagof1.data.{DataManager, InMemoryDataManager}
 import com.chicagof1.parsing.{RacerWithStatsSerializer, VideoSerializer}
 import org.scalatra.{NotFound, Ok, AsyncResult, FutureSupport}
 import scala.concurrent.{Future, ExecutionContext}
