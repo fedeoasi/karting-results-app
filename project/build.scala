@@ -64,8 +64,9 @@ object KartingApplicationBuild extends Build {
         "com.github.tototoshi" %% "scala-csv" % "1.0.0",
         "org.eclipse.jetty" % "jetty-webapp" % "9.1.5.v20140505" % "container",
         "org.eclipse.jetty.orbit" % "javax.servlet" % "3.0.0.v201112011016" % "container;provided;test" artifacts (Artifact("javax.servlet", "jar", "jar")),
-        "org.scala-lang.modules" %% "scala-async" % "0.9.1"
-      ),
+        "org.scala-lang.modules" %% "scala-async" % "0.9.1",
+        "org.facebook4j" % "facebook4j-core" % "2.1.0"
+        ),
       scalateTemplateConfig in Compile <<= (sourceDirectory in Compile){ base =>
         Seq(
           TemplateConfig(

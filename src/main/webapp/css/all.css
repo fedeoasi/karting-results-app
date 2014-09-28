@@ -33,6 +33,27 @@ h1.pageTitle {
     min-height: 1000px;
 }
 
+.panel-default > .panel-heading a {
+    color: #fff
+}
+
+#historyHeading {
+    background: #B51411;
+}
+
+#eventsHeading {
+    background: rgba(50, 50, 50, 0.8);
+}
+
+#socialHeading {
+    background: rgba(10, 10, 10, 0.8);
+}
+
+
+.panel-body {
+    background: rgba(200, 200, 200, 0.6);
+}
+
 .standardTable {
     width: 100%;
     background-color: white;
@@ -239,7 +260,7 @@ span.racerStatsValue {
     font-weight: 400 !important;
 }
 
-td.racer a:hover {
+td.racer a:hover, #events a:hover  {
     background: #B51411 !important;
     color: #eee !important;
 }

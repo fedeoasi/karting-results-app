@@ -1,26 +1,50 @@
 <% attributes("title") = "Welcome to the Chicago F1 Group Page" %>
 
-<h1 class="pageTitle">Welcome to the Chicago F1 Group Page</h1>
-<p>Chicago F1 is a group of passionate F1 fans living and working in the Chicago land area.</p>
-<p>On race Sundays, we watch Formula One together at the
-    <a href="http://www.templebarchicago.com/" onclick="javascript:void window.open('http://www.templebarchicago.com/','1389460256321','width=700,height=500,toolbar=0,menubar=0,location=0,status=1,scrollbars=1,resizable=1,left=0,top=0');return false;">Temple Bar</a>.
-</p>
-<p>We also organize a monthly karting event where we compete against each other. We keep track of every month's winner
-    <a href="editions">here</a>.
-</p>
-<div class="fb-like-box" style="float:left; margin-right:10px;" data-width="550" data-height=800 data-href="http://www.facebook.com/ChicagoF1" data-colorscheme="dark"
-     data-show-faces="false" data-header="true" data-stream="true" data-show-border="true"></div>
-<div id="twitter-f1">
-<a class="twitter-timeline"  href="https://twitter.com/ChicagoFormula1"  data-widget-id="422049565269716992">Tweets by @ChicagoFormula1</a>
-    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
-</div>
+<h1 class="pageTitle">Chicago F1 Group</h1>
 
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) return;
-  js = d.createElement(s); js.id = id;
-  js.src = "//connect.facebook.net/en_US/all.js#xfbml=1&appId=730413776978159";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
+<div class="panel-group" id="accordion">
+  <div class="panel panel-default">
+    <div id="historyHeading" class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
+          History
+        </a>
+      </h4>
+    </div>
+    <div id="collapseOne" class="panel-collapse collapse in">
+      <div class="panel-body">
+        <% render("history.ssp") %>
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+      <div id="eventsHeading" class="panel-heading">
+        <h4 class="panel-title">
+          <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
+            Events
+          </a>
+        </h4>
+      </div>
+      <div id="collapseTwo" class="panel-collapse collapse">
+        <div class="panel-body">
+          <% render("events.jade") %>
+        </div>
+      </div>
+    </div>
+  <div class="panel panel-default">
+    <div id="socialHeading" class="panel-heading">
+      <h4 class="panel-title">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
+          Social Feeds
+        </a>
+      </h4>
+    </div>
+    <div id="collapseThree" class="panel-collapse collapse">
+      <div class="panel-body">
+        <% render("social.ssp") %>
+      </div>
+    </div>
+  </div>
+</div>
 
 <% render("analytics.ssp") %>
