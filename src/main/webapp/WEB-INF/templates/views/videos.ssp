@@ -7,8 +7,32 @@
 
 <div>
     <h1 class="pageTitle">Videos</h1>
-    <div id="facets"></div>
-    <div id="videos"></div>
+    <div class="panel-group">
+      <div class="panel-default">
+        <div id="filterHeading" class="panel-heading">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" href="#collapseOne">
+              Filters
+            </a>
+          </h4>
+        </div>
+        <div id="collapseOne" class="panel-collapse collapse in">
+          <div id="facets"></div>
+        </div>
+      </div>
+      <div class="panel-default">
+        <div id="videosHeading" class="panel-heading">
+          <h4 class="panel-title">
+            <a data-toggle="collapse" href="#collapseTwo">
+              Videos
+            </a>
+          </h4>
+        </div>
+        <div id="collapseTwo" class="panel-collapse collapse in">
+          <div id="videos"></div>
+        </div>
+      </div>
+    </div>
 </div>
 
 
@@ -23,7 +47,7 @@ var item_template =
        '<div class="video col-md-9">' +
            '<iframe src="http://www.youtube.com/embed/<\%= obj.id \%>"></iframe>' +
        '</div>' +
-       '<div class="col-md-3">' +
+       '<div class="col-md-3 videoDetail">' +
             '<dl>' +
                 '<h4 class="videoDetailKey">Driver</h4>' +
                 '<p class="videoDetailValue"><\%= obj.racer \%></p>' +

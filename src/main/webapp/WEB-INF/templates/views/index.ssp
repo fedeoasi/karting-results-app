@@ -2,7 +2,7 @@
 
 <h1 class="pageTitle">Chicago F1 Group</h1>
 
-<div class="panel-group" id="accordion">
+<div class="panel-group" id="indexPanel">
   <div class="panel panel-default">
     <div id="historyHeading" class="panel-heading">
       <h4 class="panel-title">
