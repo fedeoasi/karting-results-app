@@ -9,10 +9,10 @@ $(document).ready(function() {
     "sAjaxDataProp": 'events',
     "aoColumns": [
         { "mData": "link", "sTitle": "Name", "sClass": "movieTitle", "sType": "html" },
-        { "mData": "date", "sTitle": "Date"},
-        { "mData": "startTime", "sTitle": "Start Time"},
-        { "mData": "endTime", "sTitle": "End Time"},
-        { "mData": "location", "sTitle": "Location"}
+        { "mData": "date", "sTitle": "Date" },
+        { "mData": "startTime", "sTitle": "Start Time", "sWidth": "150px", "sClass": "eventTime" },
+        { "mData": "endTime", "sTitle": "End Time", "sWidth": "150px", "sClass": "eventTime" },
+        { "mData": "location", "sTitle": "Location" }
     ]
   });
 });

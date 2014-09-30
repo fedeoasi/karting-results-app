@@ -206,11 +206,19 @@ li .race a {
     min-width: 200px;
 }
 
-#standingsTable th, #racerResultsTable th {
+#standingsTable th, #racerResultsTable th, #events th {
     background-color: #B51411;
     color: white;
     font-weight: 400 !important;
     font-size: 14px;
+    text-align: center;
+}
+
+#events th {
+    text-transform: uppercase;
+}
+
+#events .eventTime {
     text-align: center;
 }
 

@@ -82,6 +82,15 @@ class KartingResultsServlet(dataManager: DataManager) extends KartingResultsAppS
     }
   }
 
+  get("/events") {
+    new AsyncResult() {
+      override val is = Future {
+        contentType = "text/html"
+        jade("events")
+      }
+    }
+  }
+
   get("/data/editions/:id") {
     new AsyncResult() {
       override val is = Future {
