@@ -296,7 +296,7 @@ td.racer a:hover, #events a:hover  {
 .videoDiv.row {
     background-color: rgba(10, 10, 10, 0.8);
     padding: 0px !important;
-    margin: 0 0px 5px 0px;
+    margin: 3px 0px;
     color: white;
 }
 
@@ -306,12 +306,20 @@ td.racer a:hover, #events a:hover  {
     margin: 0px;
 }
 
-#facets {
-    background: rgba(10, 10, 10, 0.8);
+#facets, .videoDiv.row {
+    background: rgba(255, 255, 255, 0.4);
     padding: 0px 10px;
-    color: #fff;
-    margin-bottom: 5px;
+    color: #333;
     font-weight: 100 !important;
+}
+
+#filterHeading {
+    background: #B51411;
+}
+
+#videosHeading {
+    margin-top: 5px;
+    background: rgba(10, 10, 10, 0.8);
 }
 
 .facetsearch {
@@ -358,6 +366,10 @@ td.racer a:hover, #events a:hover  {
     display: inline-block;
 }
 
+.videoDetail {
+    padding-top: 15px;
+}
+
 .videoDetailKey {
     margin-top: 0px;
     margin-bottom: 0px;
@@ -399,4 +411,12 @@ td.racer a:hover, #events a:hover  {
 
 svg text {
     color: #fff;
+}
+
+.navbar {
+    margin-bottom: 0px !important;
+}
+
+#events_wrapper input, #events_length, #events_filter {
+    font-weight: 400;
 }
