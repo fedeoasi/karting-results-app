@@ -173,8 +173,8 @@ class KartingResultsServlet(dataManager: DataManager) extends KartingResultsAppS
         contentType = "application/json"
         val events = fb.chicagoF1Events().map { e =>
           val date = e.startTime.toString(prettyDateFormatter)
-          val start = e.startTime.toString(timeFormatter)
-          val end = e.endTime.toString(timeFormatter)
+          val start = e.startTime.toString(cstTimeFormatter)
+          val end = e.endTime.toString(cstTimeFormatter)
           val link = s"<a href=https://www.facebook.com/events/${e.id}/>${e.name}</a>"
           FacebookSerializedEvent(e.name, e.location, date, start, end, link)
         }
