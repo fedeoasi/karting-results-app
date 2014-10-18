@@ -37,21 +37,22 @@ h1.pageTitle {
     color: #fff
 }
 
-#historyHeading {
+#historyHeading, #currentChampionshipHeading {
     background: #B51411;
 }
 
-#eventsHeading {
+#eventsHeading, #overallStatsHeading {
     background: rgba(50, 50, 50, 0.8);
 }
 
-#socialHeading {
+#socialHeading, #otherStatsHeading {
     background: rgba(10, 10, 10, 0.8);
 }
 
 
 .panel-body {
     background: rgba(200, 200, 200, 0.6);
+    padding: 10px !important;
 }
 
 .standardTable {
@@ -232,20 +233,6 @@ li .race a {
 
 #racerStandingsStatsDiv, #racerEditionsStatsDiv, #racerOtherStatsDiv {
     color: #ddd;
-    padding: 10px;
-    margin-bottom: 5px;
-}
-
-#racerStandingsStatsDiv {
-    background: #B51411;
-}
-
-#racerEditionsStatsDiv {
-    background: rgba(50, 50, 50, 0.8);
-}
-
-#racerOtherStatsDiv {
-    background: rgba(10, 10, 10, 0.8);
 }
 
 #racerDiv span {
@@ -257,14 +244,10 @@ li .race a {
 }
 
 span.racerStatsKey {
-    margin-top: 0px !important;
-    margin-bottom: 0px !important;
-    font-weight: 100 !important;
+    font-weight: 200 !important;
 }
 
 span.racerStatsValue {
-    margin-top: 0px !important;
-    margin-bottom: 0px !important;
     font-weight: 400 !important;
 }
 
@@ -294,7 +277,7 @@ td.racer a:hover, #events a:hover  {
 }
 
 .videoDiv.row {
-    background-color: rgba(10, 10, 10, 0.8);
+    background-color: rgba(200, 200, 200, 0.6);
     padding: 0px !important;
     margin: 3px 0px;
     color: white;
@@ -306,9 +289,7 @@ td.racer a:hover, #events a:hover  {
     margin: 0px;
 }
 
-#facets, .videoDiv.row {
-    background: rgba(255, 255, 255, 0.4);
-    padding: 0px 10px;
+#facets, .videoDiv.row, #racerOtherStatsDiv, #racerEditionsStatsDiv, #racerStandingsStatsDiv {
     color: #333;
     font-weight: 100 !important;
 }
@@ -318,7 +299,6 @@ td.racer a:hover, #events a:hover  {
 }
 
 #videosHeading {
-    margin-top: 5px;
     background: rgba(10, 10, 10, 0.8);
 }
 
@@ -334,7 +314,7 @@ td.racer a:hover, #events a:hover  {
 }
 
 .facetitem:hover {
-    color: #ff2020;
+    color: #94100E;
 }
 
 .bottomline .facettotalcount {
@@ -394,14 +374,13 @@ td.racer a:hover, #events a:hover  {
 
 .axis {
   font: 12px sans-serif;
-  stroke: #999;
+  stroke: #777;
   fill: none;
 }
 
 .axis path,
 .axis line {
   fill: none;
-  stroke: #ddd;
   shape-rendering: crispEdges;
 }
 

@@ -153,7 +153,7 @@ class KartingResultsServlet(dataManager: DataManager) extends KartingResultsAppS
         val racerId = racerIdString.toInt
         dataManager.getRacerById(racerId) match {
           case Some(racer) =>
-            ssp("racer", "racerId" -> racerId, "name" -> racer.name)
+            jade("racer", "racerId" -> racerId, "name" -> racer.name)
           case None =>
             NotFound()
         }

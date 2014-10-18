@@ -8,7 +8,7 @@
 <div>
     <h1 class="pageTitle">Videos</h1>
     <div class="panel-group">
-      <div class="panel-default">
+      <div class="panel panel-default">
         <div id="filterHeading" class="panel-heading">
           <h4 class="panel-title">
             <a data-toggle="collapse" href="#collapseOne">
@@ -16,11 +16,11 @@
             </a>
           </h4>
         </div>
-        <div id="collapseOne" class="panel-collapse collapse in">
+        <div id="collapseOne" class="panel-collapse collapse in panel-body">
           <div id="facets"></div>
         </div>
       </div>
-      <div class="panel-default">
+      <div class="panel panel-default">
         <div id="videosHeading" class="panel-heading">
           <h4 class="panel-title">
             <a data-toggle="collapse" href="#collapseTwo">
@@ -28,7 +28,7 @@
             </a>
           </h4>
         </div>
-        <div id="collapseTwo" class="panel-collapse collapse in">
+        <div id="collapseTwo" class="panel-collapse collapse in panel-body">
           <div id="videos"></div>
         </div>
       </div>

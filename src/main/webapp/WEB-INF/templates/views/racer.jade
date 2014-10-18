@@ -1,0 +1,34 @@
+- val name = attributes("name")
+- attributes("title") = s"$name - Racer Statistics"
+- val id = attributes("racerId")
+
+h1.pageTitle #{name} - Racer Statistics
+
+#racerDiv
+  #indexPanel.panel-group
+    .panel.panel-default
+      #currentChampionshipHeading.panel-heading
+        h4.panel-title
+          a(data-toggle="collapse" href="#collapseOne") Current Championship
+      #collapseOne.panel-collapse.collapse.in.panel-body
+        #racerStandingsStatsDiv
+    .panel.panel-default
+      #overallStatsHeading.panel-heading
+        h4.panel-title
+          a(data-toggle="collapse" href="#collapseTwo") Overall stats
+      #collapseTwo.panel-collapse.collapse.in.panel-body
+        #racerEditionsStatsDiv
+    .panel.panel-default
+      #otherStatsHeading.panel-heading
+        h4.panel-title
+          a(data-toggle="collapse" href="#collapseThree") Other stats
+      #collapseThree.panel-collapse.collapse.in.panel-body
+        #racerOtherStatsDiv
+
+:!javascript
+    var racerId = #{id}
+
+script(src="http://d3js.org/d3.v3.min.js")
+script(src="/js/racerStats.js")
+
+- render("analytics.ssp")

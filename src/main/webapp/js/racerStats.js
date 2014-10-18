@@ -13,11 +13,11 @@ function renderRacerStats(data) {
    var standingsDiv = $('#racerStandingsStatsDiv');
    var editionsDiv = $('#racerEditionsStatsDiv');
    var othersDiv = $('#racerOtherStatsDiv');
-   addSpan(standingsDiv, "Current Position in Standings", data['currentStandingsPosition']);
-   addSpan(standingsDiv, "Current Points in Standings", data['currentPoints']);
-   addSpan(editionsDiv, "Number of Edition Wins", data['editionWinCount']);
-   addSpan(editionsDiv, "Number of Single Race wins", data['raceWinCount']);
-   addSpan(othersDiv, "Number of Videos Posted", data.videosCount);
+   addSpan(standingsDiv, "Position", data['currentStandingsPosition']);
+   addSpan(standingsDiv, "Points", data['currentPoints']);
+   addSpan(editionsDiv, "Edition Wins", data['editionWinCount']);
+   addSpan(editionsDiv, "Single Race wins", data['raceWinCount']);
+   addSpan(othersDiv, "Videos Posted", data.videosCount);
    addGraph("racerEditionsStatsDiv", data.editionPosHistogram);
 }
 
@@ -85,8 +85,6 @@ function addGraph(divName, histogram) {
         .attr("width", x.rangeBand())
         .attr("y", function(d) { return y(d); })
         .attr("height", function(d) { return height - y(d); });
-
-    div.append(svg);
 }
 
 $(window).load(function() {
