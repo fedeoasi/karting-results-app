@@ -7,6 +7,7 @@ import scala.language.postfixOps
 import com.chicagof1.links.LinkBuilder
 
 trait DataManager {
+  def racers: List[Racer]
   def getRacerById(id: Int): Option[Racer]
   def getRacerByName(id: String): Option[Racer]
   def getRaceById(id: String): Option[Race]
@@ -35,20 +36,20 @@ case class InMemoryDataManager(optionalData: Option[ChicagoF1Data] = None) exten
   lazy val editionWithRacesMap: Map[String, EditionWithRaces] =
     editionsWithRaces.map(er => er.edition.date.toString -> er).toMap
 
-  def getRacerById(id: Int): Option[Racer] = racersById.get(id)
-  def getRacerByName(id: String): Option[Racer] = racersByName.get(id)
-  def getRaceById(id: String): Option[Race] = racesMap.get(id)
-  def getEditionById(id: String): Option[Edition] = editionsMap.get(id)
-  def getEditionWithRacesById(id: String): Option[EditionWithRaces] = editionWithRacesMap.get(id)
+  override def getRacerById(id: Int): Option[Racer] = racersById.get(id)
+  override def getRacerByName(id: String): Option[Racer] = racersByName.get(id)
+  override def getRaceById(id: String): Option[Race] = racesMap.get(id)
+  override def getEditionById(id: String): Option[Edition] = editionsMap.get(id)
+  override def getEditionWithRacesById(id: String): Option[EditionWithRaces] = editionWithRacesMap.get(id)
 
-  def currentChampionship: Championship = {
+  override def currentChampionship: Championship = {
     buildMonthlyChampionship(
       "Chicago F1 2014",
       LocalDate.parse("2014-01-01"),
       LocalDate.parse("2014-12-31"))
   }
 
-  def buildMonthlyChampionship(name: String, start: LocalDate, stop: LocalDate): Championship = {
+  override def buildMonthlyChampionship(name: String, start: LocalDate, stop: LocalDate): Championship = {
     val months = DateUtils.monthsBetween(start.toDateTimeAtStartOfDay, stop.toDateTimeAtStartOfDay)
     val champEditions = months.zipWithIndex.map {
       case (m, i) =>
@@ -62,12 +63,12 @@ case class InMemoryDataManager(optionalData: Option[ChicagoF1Data] = None) exten
     Championship(name, champEditions, new ChicagoF1PointsSystem(months.size))
   }
 
-  def buildEditionsWithRaces(): List[EditionWithRaces] = {
+  override def buildEditionsWithRaces(): List[EditionWithRaces] = {
     val racesByDate = data.races.groupBy(_.date)
     data.editions.map(e => EditionWithRaces(e, racesByDate.getOrElse(e.date, List())))
   }
 
-  def racerStatsFor(name: String): RacerWithStats = {
+  override def racerStatsFor(name: String): RacerWithStats = {
     getRacerByName(name) match {
       case Some(r) =>
         sc.racerStatsFor(r, data.races, data.editions, data.videos, currentChampionship.standings)
@@ -75,11 +76,13 @@ case class InMemoryDataManager(optionalData: Option[ChicagoF1Data] = None) exten
     }
   }
 
-  def racerLink(name: String): String = LinkBuilder.racerLink(name, racersByName.get(name))
+  override def racerLink(name: String): String = LinkBuilder.racerLink(name, racersByName.get(name))
 
-  def videos: List[Video] = data.videos
+  override def videos: List[Video] = data.videos
 
-  def reload(): Unit = {
+  override def reload(): Unit = {
     data = DataProvider.loadData()
   }
+
+  override def racers: List[Racer] = data.racers
 }
