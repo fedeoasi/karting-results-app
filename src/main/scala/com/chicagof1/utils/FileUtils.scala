@@ -7,26 +7,27 @@ import grizzled.slf4j.Logging
 object FileUtils extends Logging {
   def loadFileIntoString(path: String): String = {
     debug("Opening resource at path: " + path)
-    val racesStream = Thread.currentThread().getContextClassLoader.getResourceAsStream(path)
-    if(racesStream == null) {
+    val classLoader = Thread.currentThread().getContextClassLoader
+    val optionalStream = Option(classLoader.getResourceAsStream(path))
+    if(optionalStream.isEmpty) {
       error("Unable to stream resource at path: " + path)
     }
-    val writer = new StringWriter()
-    try {
-      IOUtils.copy(racesStream, writer, "UTF-8")
-      writer.toString
-    } catch {
-      case t: Throwable => {
-        error("Error while processing resource: " + path.toString)
-        println(t.printStackTrace())
+    optionalStream.flatMap { racesStream =>
+      val writer = new StringWriter()
+      try {
+        IOUtils.copy(racesStream, writer, "UTF-8")
+        Some(writer.toString)
+      } catch {
+        case t: Throwable =>
+          error("Error while processing resource: " + path.toString, t)
+          None
       }
-        ""
-    }
+    }.getOrElse("")
   }
 
   def loadStringsFromFiles(filenames: String*): Seq[String] = {
-    filenames.flatMap {
-      case f => loadFileIntoString(f).split("\\n").filterNot(_.isEmpty)
+    filenames.flatMap { f =>
+      loadFileIntoString(f).split("\\n").filterNot(_.isEmpty)
     }
   }
 }

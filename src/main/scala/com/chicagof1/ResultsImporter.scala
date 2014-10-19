@@ -48,7 +48,9 @@ object ResultsImporter {
     rowMap.get("Penalty").flatMap { p =>
       if (p == "true") {
         Some(halfPointsPenalty)
-      } else None
+      } else {
+        None
+      }
     }
   }
 

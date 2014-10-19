@@ -7,9 +7,9 @@ import java.io.FileInputStream
 
 class EmailParser {
   def parseEmail(path: String): MimeMessage = {
-    val session = Session.getDefaultInstance(new Properties());
-    val input = new FileInputStream(path);
-    new MimeMessage(session, input);
+    val session = Session.getDefaultInstance(new Properties())
+    val input = new FileInputStream(path)
+    new MimeMessage(session, input)
   }
 
   def getFirstBodyPartContentAsString(message: MimeMessage): String = {

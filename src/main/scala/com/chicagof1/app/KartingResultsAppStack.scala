@@ -2,7 +2,7 @@ package com.chicagof1.app
 
 import org.scalatra._
 import scalate.ScalateSupport
-import org.fusesource.scalate.{ TemplateEngine, Binding }
+import org.fusesource.scalate.TemplateEngine
 import org.fusesource.scalate.layout.DefaultLayoutStrategy
 import javax.servlet.http.HttpServletRequest
 import collection.mutable
@@ -19,11 +19,11 @@ trait KartingResultsAppStack extends ScalatraServlet with ScalateSupport {
     engine
   }
   /* end wiring up the precompiled templates */
-  
+
   override protected def templateAttributes(implicit request: HttpServletRequest): mutable.Map[String, Any] = {
     super.templateAttributes ++ mutable.Map.empty // Add extra attributes here, they need bindings in the build file
   }
-  
+
 
   notFound {
     // remove content type in case it was set through an action

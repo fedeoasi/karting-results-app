@@ -8,31 +8,37 @@ import org.jsoup.Jsoup
 import org.joda.time.{LocalTime, LocalDate, Period}
 
 class RacerResultsScraper extends Scraper[Seq[RacerResult]] {
+  val defaultKartNumber = 0
+  val kartIndexOldStyle = 2
+  val nameIndexOldStyle = 3
+  val timeIndexOldStyle = 4
+  val nameIndex = 1
+  val timeIndex = 2
+  val second = 1
+  val first = 0
+
   def extract(html: String, url: String): Seq[RacerResult] = {
     val doc = Jsoup.parse(html, url)
     extractItemsUsingSelector[RacerResult](doc, "table[width=95%] tr",
       el => el.children.get(0).text != "Pos") {
-      el => {
+      el =>
         val ch = el.children
-
-        var name = ""
-        var time = ""
-        var kart = 0
-        if(ch.get(1).text.isEmpty) {
+        val (name, time, kart) = if (ch.get(second).text.isEmpty) {
           //Old style html has an empty column
-          name = ch.get(3).text
-          time = ch.get(4).text
-          kart = ch.get(2).text.toInt
+          val name = ch.get(nameIndexOldStyle).text
+          val time = ch.get(timeIndexOldStyle).text
+          val kart = ch.get(kartIndexOldStyle).text.toInt
+          (name, time, kart)
         } else {
-          name = ch.get(1).text
-          time = ch.get(2).text
+          val name = ch.get(nameIndex).text
+          val time = ch.get(timeIndex).text
+          (name, time, defaultKartNumber)
         }
 
-        val position = ch.get(0).text.toInt
+        val position = ch.get(first).text.toInt
         val timeSplit = time.split("\\.")
         val lapTime = Period.seconds(timeSplit(0).toInt).plusMillis(timeSplit(1).toInt).toStandardDuration
         RacerResult(name, position, kart, lapTime)
-      }
     }
   }
 }
@@ -48,8 +54,7 @@ class RaceScraper extends Scraper[Race] {
       el => {
         val processed = el.text.replaceAll("\\(.*\\)", "").replaceAll("Laptimes", "").replace("\u00a0","").trim
         val split = processed.split("\\s")
-        println(processed)
-        ((LocalDate.parse(split(0), dateFormatter), LocalTime.parse(split(1), timeFormatter)))
+        (LocalDate.parse(split(0), dateFormatter), LocalTime.parse(split(1), timeFormatter))
       }
     }
     Race(dateAndTime(0)._1, dateAndTime(0)._2, racerResultsScraper.extract(html, url))
