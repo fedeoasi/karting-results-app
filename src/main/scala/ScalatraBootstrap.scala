@@ -8,6 +8,8 @@ import org.scalatra._
 import javax.servlet.ServletContext
 
 class ScalatraBootstrap extends LifeCycle with Logging {
+  val dataManagerBeanName = new ObjectName("com.chicagof1:type=DataManager")
+
   override def init(context: ServletContext) {
     context.setInitParameter(org.scalatra.EnvironmentKey, "production")
     val dataManager = new InMemoryDataManager
@@ -18,7 +20,12 @@ class ScalatraBootstrap extends LifeCycle with Logging {
   private def registerBeans(dataManager: DataManager): Unit = {
     val dataMBean = new Data(dataManager)
     val mbs = ManagementFactory.getPlatformMBeanServer
-    val name = new ObjectName("com.chicagof1:type=DataManager")
-    mbs.registerMBean(dataMBean, name)
+    mbs.registerMBean(dataMBean, dataManagerBeanName)
+  }
+
+  override def destroy(context: ServletContext): Unit = {
+    val mbs = ManagementFactory.getPlatformMBeanServer
+    mbs.unregisterMBean(dataManagerBeanName)
+    super.destroy(context)
   }
 }
