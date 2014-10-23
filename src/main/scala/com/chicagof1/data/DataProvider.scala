@@ -85,8 +85,7 @@ object DataProvider extends Logging {
   private def extractRacerAliasMap(racerDaos: Seq[RacerDao]): Map[String, String] = {
     logger.info("Starting to load racer alias map")
     var racerMap = Map.empty[String, String]
-    racerDaos.foreach {
-      r =>
+    racerDaos.foreach { r =>
         val primaryName = r.name
         (primaryName :: r.aliases).foreach {
           n => racerMap = racerMap.updated(n, primaryName)
@@ -116,10 +115,9 @@ object DataProvider extends Logging {
       val json = loadFileIntoString("videos.json")
       vd.deserializeVideos(json).toList
     } catch {
-      case t: Throwable => {
+      case t: Throwable =>
         logger.error("Could not load videos", t)
         List.empty[Video]
-      }
     } finally {
       logger.info("Finished loading videos")
     }
