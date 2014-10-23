@@ -27,7 +27,7 @@ h1.pageTitle {
 
 .clear { clear:both; }
 
-.container.jumbo {
+.container.jumbo, .container-fluid.jumbo {
     padding: 0px 5px 10px 5px;
     background: rgba(200, 200, 200, 0.8);
     min-height: 1000px;
@@ -399,3 +399,16 @@ svg text {
 #events_wrapper input, #events_length, #events_filter {
     font-weight: 400;
 }
+
+@media (min-width: 992px) {
+  .container-fluid {
+    width: 970px !important;
+  }
+}
+@media (min-width: 1200px) {
+  .container-fluid {
+    width: 1170px !important;
+  }
+}
+
+
