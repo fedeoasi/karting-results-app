@@ -32,8 +32,8 @@ case class InMemoryDataManager(optionalData: Option[ChicagoF1Data] = None) exten
   private val racersByName: Map[String, Racer] = data.racers.map(r => r.name -> r).toMap
   private val racesMap: Map[String, Race] = data.races.map(r => r.raceId -> r).toMap
   private val editionsMap: Map[String, Edition] = data.editions.map(e => e.date.toString -> e).toMap
-  lazy val editionsWithRaces: List[EditionWithRaces] = buildEditionsWithRaces()
-  lazy val editionWithRacesMap: Map[String, EditionWithRaces] =
+  val editionsWithRaces: List[EditionWithRaces] = buildEditionsWithRaces()
+  val editionWithRacesMap: Map[String, EditionWithRaces] =
     editionsWithRaces.map(er => er.edition.date.toString -> er).toMap
 
   override def getRacerById(id: Int): Option[Racer] = racersById.get(id)
@@ -42,7 +42,7 @@ case class InMemoryDataManager(optionalData: Option[ChicagoF1Data] = None) exten
   override def getEditionById(id: String): Option[Edition] = editionsMap.get(id)
   override def getEditionWithRacesById(id: String): Option[EditionWithRaces] = editionWithRacesMap.get(id)
 
-  override def currentChampionship: Championship = {
+  lazy val currentChampionship: Championship = {
     buildMonthlyChampionship(
       "Chicago F1 2014",
       LocalDate.parse("2014-01-01"),

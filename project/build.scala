@@ -45,6 +45,7 @@ object KartingApplicationBuild extends Build {
       resolvers += Classpaths.typesafeReleases,
       resolvers += "Sonatype snapshots" at "http://oss.sonatype.org/content/repositories/snapshots/",
       unmanagedResourceDirectories in Runtime += file("output"),
+      unmanagedClasspath in Runtime += file("output"),
       fullClasspath in containerConf += file("output"),
         libraryDependencies ++= Seq(
         "org.scalatra" %% "scalatra" % ScalatraVersion,
