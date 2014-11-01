@@ -27,7 +27,7 @@ class ScalatraBootstrap extends LifeCycle with Logging {
       .convertRatesTo(TimeUnit.SECONDS)
       .convertDurationsTo(TimeUnit.MILLISECONDS)
       .build()
-    reporter.start(30, TimeUnit.SECONDS)
+    reporter.start(30, TimeUnit.MINUTES)
     val jmxReporter = JmxReporter.forRegistry(MetricsHolder.metrics).build()
     jmxReporter.start()
   }
