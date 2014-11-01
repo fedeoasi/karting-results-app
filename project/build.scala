@@ -56,6 +56,8 @@ object KartingApplicationBuild extends Build {
         "ch.qos.logback" % "logback-classic"     % "1.1.2",
         "org.jsoup" % "jsoup" % "1.7.3",
         "joda-time" % "joda-time" % "2.3",
+        "io.dropwizard.metrics" % "metrics-core" % "3.1.0",
+        "io.dropwizard.metrics" % "metrics-servlets" % "3.1.0",
         "com.github.nscala-time" %% "nscala-time" % "1.0.0",
         "org.joda"       % "joda-convert"        % "1.6",
         "org.clapper"    %% "grizzled-slf4j" % "1.0.2",

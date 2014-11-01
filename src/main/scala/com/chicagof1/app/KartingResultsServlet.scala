@@ -10,6 +10,9 @@ import scala.concurrent.{Future, ExecutionContext}
 import scala.concurrent.ExecutionContext.Implicits.global
 import scala.collection.JavaConverters._
 import com.chicagof1.facebook.FacebookInteractor
+import javax.servlet.{ServletResponse, ServletRequest}
+import com.chicagof1.metrics.MetricsHolder
+import com.codahale.metrics.MetricRegistry
 
 class KartingResultsServlet(dataManager: DataManager) extends KartingResultsAppStack with FutureSupport {
   implicit val formats = org.json4s.DefaultFormats
@@ -180,6 +183,21 @@ class KartingResultsServlet(dataManager: DataManager) extends KartingResultsAppS
         }
         write(EventsResponse(events))
       }
+    }
+  }
+
+  import MetricsHolder._
+
+  val requestsMeter = metrics.meter("requests")
+  val responses = metrics.timer(MetricRegistry.name(getClass, "responses"))
+
+  override def service(req: ServletRequest, res: ServletResponse): Unit = {
+    requestsMeter.mark()
+    val context = responses.time()
+    try {
+      super.service(req, res)
+    } finally {
+      context.stop()
     }
   }
 }

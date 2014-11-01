@@ -12,4 +12,15 @@
   <listener>
     <listener-class>org.scalatra.servlet.ScalatraListener</listener-class>
   </listener>
+  <listener>
+    <listener-class>com.chicagof1.metrics.MetricsServletContextListener</listener-class>
+  </listener>
+  <servlet>
+    <servlet-name>AdminServlet</servlet-name>
+    <servlet-class>com.codahale.metrics.servlets.AdminServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AdminServlet</servlet-name>
+    <url-pattern>/admin/*</url-pattern>
+  </servlet-mapping>
 </web-app>
