@@ -23,10 +23,10 @@ object ResultsImporter {
           case Some(pos) => pos.toInt
           case None => rowNum + 1
         }
-        val racer = rowMap.get("Racer").get
+        val racer = rowMap.get("Racer").getOrElse(rowMap.get("Team").get)
         val penalty = extractPenalty(rowMap, racer)
         val kart = rowMap.get("Kart #").get.toInt
-        RacerResult(racer, position, kart, time, penalty)
+        RacerResult(RacerName(racer), position, kart, time, penalty)
     }
   }
 

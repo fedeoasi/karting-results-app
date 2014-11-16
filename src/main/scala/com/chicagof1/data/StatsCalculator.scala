@@ -2,11 +2,11 @@ package com.chicagof1.data
 
 import com.chicagof1.model._
 import com.chicagof1.model.Edition
-import com.chicagof1.model.Racer
+import com.chicagof1.model.SingleRacer
 import com.chicagof1.model.Video
 import com.chicagof1.model.Race
 
-case class RacerWithStats(racer: Racer,
+case class RacerWithStats(racer: SingleRacer,
                           currentStandingsPosition: Int,
                           currentPoints: Int,
                           editionWinCount: Int,
@@ -16,11 +16,11 @@ case class RacerWithStats(racer: Racer,
                           videosCount: Int)
 
 class StatsCalculator {
-  def racerStatsFor(racer: Racer, races: List[Race], editions: List[Edition], videos: List[Video], currentStandings: Standings): RacerWithStats = {
+  def racerStatsFor(racer: SingleRacer, races: List[Race], editions: List[Edition], videos: List[Video], currentStandings: Standings): RacerWithStats = {
     val standingsPosition = currentStandings.racerTotalPoints(racer.name)
     val editionPositions = editions.flatMap {
       _.results
-        .find(_.name == racer.name)
+        .find(_.racer.name == racer.name)
         .map(_.position)
     }
     val groupedPositions: Map[Int, List[Int]] = editionPositions.groupBy(_.toInt)

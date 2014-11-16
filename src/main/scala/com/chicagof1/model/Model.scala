@@ -2,7 +2,7 @@ package com.chicagof1.model
 
 import org.joda.time.{LocalTime, LocalDate, Duration}
 
-case class RacerResult(name: String, position: Int, kart: Int, time: Duration, penalty: Option[Penalty] = None) {
+case class RacerResult(racer: Racer, position: Int, kart: Int, time: Duration, penalty: Option[Penalty] = None) {
   def formattedTime: String = {
     if(time.getMillis == 0) {
       "-"
@@ -34,7 +34,7 @@ case class Edition(date: LocalDate, results: Seq[RacerResult]) extends HasRacerR
 }
 
 trait HasRacerResults {
-  def winner: String = results(0).name
+  def winner: String = results(0).racer.name
   def results: Seq[RacerResult]
 }
 
@@ -42,5 +42,12 @@ case class Video(id: String, racer: String, date: String, location: String)
 
 case class EditionWithRaces(edition: Edition, races: Seq[Race])
 
-case class RacerDao(id: Int, name: String, aliases: List[String], flag: String)
-case class Racer(id: Int, name: String, flag: String)
+case class SingleRacerDao(id: Int, name: String, aliases: List[String], flag: String)
+case class SingleRacer(id: Int, name: String, flag: String)
+
+trait Racer {
+  def name: String
+}
+
+case class Team(name: String, racers: RacerName) extends Racer
+case class RacerName(name: String) extends Racer

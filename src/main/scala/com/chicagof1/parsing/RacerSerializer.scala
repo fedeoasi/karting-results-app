@@ -1,31 +1,31 @@
 package com.chicagof1.parsing
 
-import com.chicagof1.model.RacerDao
+import com.chicagof1.model.SingleRacerDao
 import org.json4s.jackson.JsonMethods._
 import org.json4s.jackson.Serialization._
 
 class RacerDeserializer {
   import ModelSerialization._
 
-  def deserializeRacerDao(json: String): RacerDao = {
+  def deserializeRacerDao(json: String): SingleRacerDao = {
     val ast = parse(json)
-    ast.extract[RacerDao]
+    ast.extract[SingleRacerDao]
   }
 
-  def deserializeRacerDaos(json: String): Seq[RacerDao] = {
+  def deserializeRacerDaos(json: String): Seq[SingleRacerDao] = {
     val ast = parse(json)
-    (ast \ "racers").extract[Seq[RacerDao]]
+    (ast \ "racers").extract[Seq[SingleRacerDao]]
   }
 }
 
 class RacerSerializer {
   import ModelSerialization._
 
-  def serializeRacerDao(racer: RacerDao): String = {
+  def serializeRacerDao(racer: SingleRacerDao): String = {
     write(racer)
   }
 
-  def serializeRacerDaos(racers: Seq[RacerDao]): String = {
+  def serializeRacerDaos(racers: Seq[SingleRacerDao]): String = {
     "{\"racers\":" + write(racers) + "}"
   }
 }

@@ -81,7 +81,7 @@ object ImapRaceExtractor extends Logging {
       case (date, _) =>
         val bestResultByName: Seq[RacerResult] = races
           .flatMap(_.results)
-          .groupBy(_.name)
+          .groupBy(_.racer.name)
           .map {
           case (name, results) => results.minBy(_.time)
         }.toSeq

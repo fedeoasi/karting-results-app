@@ -12,7 +12,7 @@ import scala.concurrent.duration._
 import scala.language.postfixOps
 import scala.async.Async.{async, await}
 
-class ChicagoF1Data(val racers: List[Racer], val races: List[Race], val editions: List[Edition], val videos: List[Video])
+class ChicagoF1Data(val racers: List[SingleRacer], val races: List[Race], val editions: List[Edition], val videos: List[Video])
 
 object DataProvider extends Logging {
   lazy val vd = new VideoDeserializer
@@ -29,7 +29,7 @@ object DataProvider extends Logging {
       val racerMapFuture = async { extractRacerAliasMap(await(racerDaosFuture)) }
       val editionsFuture = async { extractEditions(await(racerMapFuture), await(editionNamesFuture)) }
       val racesFuture = async { extractRaces(await(raceNamesFuture), await(racerMapFuture)) }
-      val racersFuture = async { await(racerDaosFuture).map { r => Racer(r.id, r.name, r.flag) } }
+      val racersFuture = async { await(racerDaosFuture).map { r => SingleRacer(r.id, r.name, r.flag) } }
       new ChicagoF1Data(await(racersFuture), await(racesFuture), await(editionsFuture), await(videosFuture))
     }
     logger.info("Waiting...")
@@ -56,11 +56,10 @@ object DataProvider extends Logging {
 
   private def extractRacerResults(e: Edition, racers: Map[String, String]): Seq[RacerResult] = {
     e.results.filter { r =>
-      racers.contains(r.name)
+      racers.contains(r.racer.name)
     }.zipWithIndex
-      .map {
-      case (rr, index) =>
-        RacerResult(racers(rr.name), index + 1, rr.kart, rr.time, rr.penalty)
+      .map { case (rr, index) =>
+        RacerResult(RacerName(racers(rr.racer.name)), index + 1, rr.kart, rr.time, rr.penalty)
     }
   }
 
@@ -71,18 +70,18 @@ object DataProvider extends Logging {
         .map(name => ResultsImporter.readRace(name, loadFileIntoString(name + ".csv")))
         .map(r => Race(r.date, r.time, r.results.map {
         rr =>
-          val racer = racerAliases.get(rr.name) match {
+          val racer = racerAliases.get(rr.racer.name) match {
             case Some(racerName) => racerName
-            case None => rr.name
+            case None => rr.racer.name
           }
-          RacerResult(racer, rr.position, rr.kart, rr.time)
+          RacerResult(RacerName(racer), rr.position, rr.kart, rr.time)
       })).toList
         .sortBy(r => r.raceId).reverse.toList
     logger.info("Finished extracting races")
     racerResults
   }
 
-  private def extractRacerAliasMap(racerDaos: Seq[RacerDao]): Map[String, String] = {
+  private def extractRacerAliasMap(racerDaos: Seq[SingleRacerDao]): Map[String, String] = {
     logger.info("Starting to load racer alias map")
     var racerMap = Map.empty[String, String]
     racerDaos.foreach { r =>
@@ -123,7 +122,7 @@ object DataProvider extends Logging {
     }
   }
 
-  private def loadRacers(): List[RacerDao] = {
+  private def loadRacers(): List[SingleRacerDao] = {
     logger.info("Starting to load racers")
     try {
       val json = loadFileIntoString("racers.json")
@@ -131,7 +130,7 @@ object DataProvider extends Logging {
     } catch {
       case t: Throwable =>
         logger.error("Could not load racers", t)
-        List.empty[RacerDao]
+        List.empty[SingleRacerDao]
     } finally {
       logger.info("Finished loading racers")
     }

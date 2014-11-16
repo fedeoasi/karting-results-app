@@ -1,6 +1,6 @@
 package com.chicagof1.scraping
 
-import com.chicagof1.model.{Race, RacerResult}
+import com.chicagof1.model.{RacerName, Race, RacerResult}
 import com.chicagof1.Formatters.dateFormatter
 import com.chicagof1.Formatters.timeFormatter
 import com.chicagof1.scraping.ScraperHelper._
@@ -38,7 +38,7 @@ class RacerResultsScraper extends Scraper[Seq[RacerResult]] {
         val position = ch.get(first).text.toInt
         val timeSplit = time.split("\\.")
         val lapTime = Period.seconds(timeSplit(0).toInt).plusMillis(timeSplit(1).toInt).toStandardDuration
-        RacerResult(name, position, kart, lapTime)
+        RacerResult(RacerName(name), position, kart, lapTime)
     }
   }
 }

@@ -2,7 +2,7 @@ package com.chicagof1.scraping
 
 import org.scalatest.{Matchers, FunSpec}
 import com.chicagof1.utils.SpecUtils._
-import com.chicagof1.model.RacerResult
+import com.chicagof1.model.{RacerName, RacerResult}
 import com.chicagof1.ResultsExporter
 import com.github.nscala_time.time.Imports._
 
@@ -21,36 +21,36 @@ class ScrapingSpec extends FunSpec with Matchers {
     it("should extract results from a regular email") {
       val results: Seq[RacerResult] = resultsScraper.extract(regularHtml, url)
       results.size should be(12)
-      results(0) should be(RacerResult("Justin", 1, 21, 32.seconds + 889.millis))
-      results(11) should be(RacerResult("JakeTracy", 12, 6, 37.seconds + 378.millis))
+      results(0) should be(RacerResult(RacerName("Justin"), 1, 21, 32.seconds + 889.millis))
+      results(11) should be(RacerResult(RacerName("JakeTracy"), 12, 6, 37.seconds + 378.millis))
     }
 
     it("should extract results from a forwarded email") {
       val results: Seq[RacerResult] = resultsScraper.extract(forwardedHtml, url)
       results.size should be(12)
-      results(0) should be(RacerResult("Justin", 1, 21, 32.seconds + 605.millis))
-      results(11) should be(RacerResult("SuperMario", 12, 13, 37.seconds + 957.millis))
+      results(0) should be(RacerResult(RacerName("Justin"), 1, 21, 32.seconds + 605.millis))
+      results(11) should be(RacerResult(RacerName("SuperMario"), 12, 13, 37.seconds + 957.millis))
     }
 
     it("should extract results from a double forwarded email") {
       val results: Seq[RacerResult] = resultsScraper.extract(doubleForwardedHtml, url)
       results.size should be(8)
-      results(0) should be(RacerResult("JCLARK18TEAMAR...", 1, 10, 29.seconds + 466.millis))
-      results(7) should be(RacerResult("Number 1", 8, 17, 39.seconds + 246.millis))
+      results(0) should be(RacerResult(RacerName("JCLARK18TEAMAR..."), 1, 10, 29.seconds + 466.millis))
+      results(7) should be(RacerResult(RacerName("Number 1"), 8, 17, 39.seconds + 246.millis))
     }
 
     it("should extract results from a yahoo forwarded email") {
       val results: Seq[RacerResult] = resultsScraper.extract(yahooForwardedHtml, url)
       results.size should be(7)
-      results(0) should be(RacerResult("Justin", 1, 14, 30.seconds + 373.millis))
-      results(6) should be(RacerResult("jDaWg", 7, 12, 38.seconds + 241.millis))
+      results(0) should be(RacerResult(RacerName("Justin"), 1, 14, 30.seconds + 373.millis))
+      results(6) should be(RacerResult(RacerName("jDaWg"), 7, 12, 38.seconds + 241.millis))
     }
 
     it("should extract results from a gmail forwarded email as of Feb 2014") {
       val results: Seq[RacerResult] = resultsScraper.extract(gmailFeb2014Html, url)
       results.size should be(6)
-      results(0) should be(RacerResult("Michael Wu", 1, 0, 21.seconds + 101.millis))
-      results(5) should be(RacerResult("Federico", 6, 0, 22.seconds + 842.millis))
+      results(0) should be(RacerResult(RacerName("Michael Wu"), 1, 0, 21.seconds + 101.millis))
+      results(5) should be(RacerResult(RacerName("Federico"), 6, 0, 22.seconds + 842.millis))
     }
   }
 

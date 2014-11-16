@@ -1,9 +1,9 @@
 package com.chicagof1.links
 
-import com.chicagof1.model.Racer
+import com.chicagof1.model.SingleRacer
 
 object LinkBuilder {
-  def racerLink(name: String, racer: Option[Racer]): String = {
+  def racerLink(name: String, racer: Option[SingleRacer]): String = {
     racer match {
       case Some(r) =>
         val flag = flagImg(r.flag)

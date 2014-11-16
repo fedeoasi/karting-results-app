@@ -7,9 +7,9 @@ import scala.language.postfixOps
 import com.chicagof1.links.LinkBuilder
 
 trait DataManager {
-  def racers: List[Racer]
-  def getRacerById(id: Int): Option[Racer]
-  def getRacerByName(id: String): Option[Racer]
+  def racers: List[SingleRacer]
+  def getRacerById(id: Int): Option[SingleRacer]
+  def getRacerByName(id: String): Option[SingleRacer]
   def getRaceById(id: String): Option[Race]
   def getEditionById(id: String): Option[Edition]
   def getEditionWithRacesById(id: String): Option[EditionWithRaces]
@@ -28,16 +28,16 @@ case class InMemoryDataManager(optionalData: Option[ChicagoF1Data] = None) exten
     optionalData.getOrElse(DataProvider.loadData())
   }
   private val sc = new StatsCalculator
-  private val racersById: Map[Int, Racer] = data.racers.map(r => r.id -> r).toMap
-  private val racersByName: Map[String, Racer] = data.racers.map(r => r.name -> r).toMap
+  private val racersById: Map[Int, SingleRacer] = data.racers.map(r => r.id -> r).toMap
+  private val racersByName: Map[String, SingleRacer] = data.racers.map(r => r.name -> r).toMap
   private val racesMap: Map[String, Race] = data.races.map(r => r.raceId -> r).toMap
   private val editionsMap: Map[String, Edition] = data.editions.map(e => e.date.toString -> e).toMap
   val editionsWithRaces: List[EditionWithRaces] = buildEditionsWithRaces()
   val editionWithRacesMap: Map[String, EditionWithRaces] =
     editionsWithRaces.map(er => er.edition.date.toString -> er).toMap
 
-  override def getRacerById(id: Int): Option[Racer] = racersById.get(id)
-  override def getRacerByName(id: String): Option[Racer] = racersByName.get(id)
+  override def getRacerById(id: Int): Option[SingleRacer] = racersById.get(id)
+  override def getRacerByName(id: String): Option[SingleRacer] = racersByName.get(id)
   override def getRaceById(id: String): Option[Race] = racesMap.get(id)
   override def getEditionById(id: String): Option[Edition] = editionsMap.get(id)
   override def getEditionWithRacesById(id: String): Option[EditionWithRaces] = editionWithRacesMap.get(id)
@@ -84,5 +84,5 @@ case class InMemoryDataManager(optionalData: Option[ChicagoF1Data] = None) exten
     data = DataProvider.loadData()
   }
 
-  override def racers: List[Racer] = data.racers
+  override def racers: List[SingleRacer] = data.racers
 }

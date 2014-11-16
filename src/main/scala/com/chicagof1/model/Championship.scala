@@ -48,7 +48,7 @@ class Standings(editions: Seq[EditionInChampionship], pointsSystem: PointsSystem
         val pointsPerPosition = pointsSystem.pointsForEdition(r.number)
         val results = r.edition.results
         results.zip(pointsPerPosition.padTo(results.size, 0)).map {
-          case (res, points) => res.name -> Standing(res.name, r.number, res.position, res.applyPenalty(points))
+          case (res, points) => res.racer.name -> Standing(res.racer.name, r.number, res.position, res.applyPenalty(points))
         }.toMap
       case nr: NonReportedEditionInChampionship =>
         Map.empty[String, Standing]

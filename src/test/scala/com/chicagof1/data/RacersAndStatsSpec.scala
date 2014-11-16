@@ -5,20 +5,20 @@ import com.chicagof1.model._
 import com.chicagof1.parsing.{RacerSerializer, RacerDeserializer}
 import org.joda.time.{LocalTime, LocalDate}
 import com.github.nscala_time.time.Imports._
-import com.chicagof1.model.Racer
-import com.chicagof1.model.RacerDao
+import com.chicagof1.model.SingleRacer
+import com.chicagof1.model.SingleRacerDao
 import com.chicagof1.model.RacerResult
 import com.chicagof1.model.Race
 
 class RacersAndStatsSpec extends FunSpec with Matchers {
   val rd = new RacerDeserializer
-  val meesa = RacerDao(1, "Meesa Maeng", List("meesa"), "USA")
+  val meesa = SingleRacerDao(1, "Meesa Maeng", List("meesa"), "USA")
   val meesaJson = """{"id":1,"name":"Meesa Maeng","aliases":["meesa"],"flag":"USA"}"""
 
   val racerSeq = Seq(
-    RacerDao(1, "Meesa Maeng", List("meesa"), "USA"),
-    RacerDao(2, "Justin Royster", List("Justin"), "USA"),
-    RacerDao(3, "David Quednau", List(), "USA")
+    SingleRacerDao(1, "Meesa Maeng", List("meesa"), "USA"),
+    SingleRacerDao(2, "Justin Royster", List("Justin"), "USA"),
+    SingleRacerDao(3, "David Quednau", List(), "USA")
   )
   val racersJson =
     """
@@ -50,7 +50,7 @@ class RacersAndStatsSpec extends FunSpec with Matchers {
   }
 
   describe("Racer with statistics") {
-    val racers = List(Racer(1, "A", "USA"), Racer(2, "B", "USA"), Racer(3, "C", "USA"))
+    val racers = List(SingleRacer(1, "A", "USA"), SingleRacer(2, "B", "USA"), SingleRacer(3, "C", "USA"))
     val videos = List(
       Video("a", "B", "2014-02-01", "Melrose")
     )
@@ -58,21 +58,21 @@ class RacersAndStatsSpec extends FunSpec with Matchers {
       racers,
       List(Race(LocalDate.parse("2014-01-01"), LocalTime.parse("20:00"),
         Seq(
-          RacerResult("A", 1, 10, 29.seconds + 0.millis),
-          RacerResult("B", 2, 2, 29.seconds + 500.millis),
-          RacerResult("C", 3, 4, 30.seconds + 0.millis)
+          RacerResult(RacerName("A"), 1, 10, 29.seconds + 0.millis),
+          RacerResult(RacerName("B"), 2, 2, 29.seconds + 500.millis),
+          RacerResult(RacerName("C"), 3, 4, 30.seconds + 0.millis)
         ))),
       List(Edition(LocalDate.parse("2014-02-01"),
         Seq(
-          RacerResult("A", 1, 10, 29.seconds + 200.millis),
-          RacerResult("C", 2, 2, 29.seconds + 600.millis),
-          RacerResult("B", 3, 4, 30.seconds + 0.millis)
+          RacerResult(RacerName("A"), 1, 10, 29.seconds + 200.millis),
+          RacerResult(RacerName("C"), 2, 2, 29.seconds + 600.millis),
+          RacerResult(RacerName("B"), 3, 4, 30.seconds + 0.millis)
       )),
         Edition(LocalDate.parse("2014-03-01"),
           Seq(
-            RacerResult("A", 1, 10, 29.seconds + 200.millis),
-            RacerResult("B", 2, 2, 29.seconds + 600.millis),
-            RacerResult("C", 3, 4, 30.seconds + 0.millis)
+            RacerResult(RacerName("A"), 1, 10, 29.seconds + 200.millis),
+            RacerResult(RacerName("B"), 2, 2, 29.seconds + 600.millis),
+            RacerResult(RacerName("C"), 3, 4, 30.seconds + 0.millis)
           ))),
       videos
     )))

@@ -56,7 +56,7 @@ class KartingResultsServlet(dataManager: DataManager) extends KartingResultsAppS
         val raceId = params("id")
         val race = dataManager.getRaceById(raceId)
         val data = race.get.results.map {
-          r => List[String](dataManager.racerLink(r.name), r.position.toString, r.kart.toString, r.formattedTime)
+          r => List[String](dataManager.racerLink(r.racer.name), r.position.toString, r.kart.toString, r.formattedTime)
         }
         val json = "aaData" -> data
         compact(render(json))
@@ -101,7 +101,7 @@ class KartingResultsServlet(dataManager: DataManager) extends KartingResultsAppS
         val editionId = params("id")
         val edition = dataManager.getEditionWithRacesById(editionId)
         val data = edition.get.edition.results.map {
-          r => List[String](dataManager.racerLink(r.name), r.position.toString, r.kart.toString, r.formattedTime)
+          r => List[String](dataManager.racerLink(r.racer.name), r.position.toString, r.kart.toString, r.formattedTime)
         }
         val json = "aaData" -> data
         compact(render(json))

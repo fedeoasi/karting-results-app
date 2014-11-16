@@ -7,15 +7,15 @@ import com.github.nscala_time.time.Imports._
 
 class ChampionshipSpec extends FunSpec with Matchers {
   val janRes = Seq[RacerResult](
-    RacerResult("A", 1, 5, 1.minute + 1.second),
-    RacerResult("C", 2, 8, 1.minute + 2.second),
-    RacerResult("B", 3, 17, 1.minute + 5.second))
+    RacerResult(RacerName("A"), 1, 5, 1.minute + 1.second),
+    RacerResult(RacerName("C"), 2, 8, 1.minute + 2.second),
+    RacerResult(RacerName("B"), 3, 17, 1.minute + 5.second))
 
   val febRes = Seq[RacerResult](
-    RacerResult("C", 1, 5, 1.minute + 1.second, Some(new HalfPointsPenalty())),
-    RacerResult("A", 2, 8, 1.minute + 2.second),
-    RacerResult("D", 3, 17, 1.minute + 3.second),
-    RacerResult("B", 4, 18, 1.minute + 4.second))
+    RacerResult(RacerName("C"), 1, 5, 1.minute + 1.second, Some(new HalfPointsPenalty())),
+    RacerResult(RacerName("A"), 2, 8, 1.minute + 2.second),
+    RacerResult(RacerName("D"), 3, 17, 1.minute + 3.second),
+    RacerResult(RacerName("B"), 4, 18, 1.minute + 4.second))
 
   val championship = Championship(
     "2014",
