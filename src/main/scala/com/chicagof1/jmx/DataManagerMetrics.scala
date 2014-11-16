@@ -11,6 +11,7 @@ class DataManagerMetrics(dataManager: DataManager) {
     registerSize(dataManager.racers, "racers")
     registerSize(dataManager.videos, "videos")
     registerSize(dataManager.editionsWithRaces, "editions")
+    registerSize(dataManager.teams, "teams")
   }
 
   private def registerSize[T](list: List[T], name: String): Unit = {

@@ -18,6 +18,7 @@ class DataManagerSpec extends FunSpec with Matchers {
 
   val baseDataManager = InMemoryDataManager(Some(new ChicagoF1Data(
     List.empty[SingleRacer],
+    List.empty[Team],
     List[Race](
       race11,
       race12,

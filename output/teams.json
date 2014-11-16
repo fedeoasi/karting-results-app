@@ -1,0 +1,12 @@
+{"teams": [
+    {"name": "Fast and Furious", "racers": ["Federico Caimi", "Michael Wu"]},
+    {"name": "Royster Electric", "racers": ["Meesa Maeng", "Justin Royster"]},
+    {"name": "Pink Bulls", "racers": ["Andrius Petraitis", "Victor Birza"]},
+    {"name": "Rob & Jon Will", "racers": ["Rob Will", "Jon Will"]},
+    {"name": "Team RedBull", "racers": ["Theodore Birks", "Ezra Oh"]},
+    {"name": "Vladimir Putin Down Some Rubber", "racers": ["Matt Thomas", "Michael Summers"]},
+    {"name": "Team Sauber", "racers": ["Paul JP", "Tyler Breivogel"]},
+    {"name": "Northwestern Formula Racing", "racers": ["Alec Sampson", "Marie Ankenman"]},
+    {"name": "Global Formula Racing", "racers": ["Eddie Pang", "Tiernan Murrell"]},
+    {"name": "FMGP", "racers": ["David Quednau", "Mark Golitko"]}
+]}

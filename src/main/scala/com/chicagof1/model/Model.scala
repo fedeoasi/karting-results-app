@@ -47,7 +47,10 @@ case class SingleRacer(id: Int, name: String, flag: String)
 
 trait Racer {
   def name: String
+  def racers: List[String]
 }
 
-case class Team(name: String, racers: RacerName) extends Racer
-case class RacerName(name: String) extends Racer
+case class Team(name: String, racers: List[String]) extends Racer
+case class RacerName(name: String) extends Racer {
+  lazy val racers: List[String] = List(name)
+}

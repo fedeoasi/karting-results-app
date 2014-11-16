@@ -8,6 +8,7 @@ import com.chicagof1.links.LinkBuilder
 
 trait DataManager {
   def racers: List[SingleRacer]
+  def teams: List[Team]
   def getRacerById(id: Int): Option[SingleRacer]
   def getRacerByName(id: String): Option[SingleRacer]
   def getRaceById(id: String): Option[Race]
@@ -85,4 +86,6 @@ case class InMemoryDataManager(optionalData: Option[ChicagoF1Data] = None) exten
   }
 
   override def racers: List[SingleRacer] = data.racers
+
+  override def teams: List[Team] = data.teams
 }
