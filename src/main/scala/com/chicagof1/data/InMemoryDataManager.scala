@@ -46,7 +46,7 @@ case class InMemoryDataManager(optionalData: Option[ChicagoF1Data] = None) exten
     buildMonthlyChampionship(
       "Chicago F1 2014",
       LocalDate.parse("2014-01-01"),
-      LocalDate.parse("2014-12-31"))
+      LocalDate.parse("2014-11-30"))
   }
 
   override def buildMonthlyChampionship(name: String, start: LocalDate, stop: LocalDate): Championship = {
