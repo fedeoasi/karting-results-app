@@ -62,7 +62,9 @@ object DataProvider extends Logging {
       racers.contains(r.racer.name) || teams.contains(r.racer.name)
     }.zipWithIndex
       .map { case (rr, index) =>
-        RacerResult(RacerName(racers.getOrElse(rr.racer.name, rr.racer.name)), index + 1, rr.kart, rr.time, rr.penalty)
+        val racer = racers.get(rr.racer.name).map(RacerName)
+          .getOrElse(teams.get(rr.racer.name).get)
+      RacerResult(racer, index + 1, rr.kart, rr.time, rr.penalty)
     }
   }
 

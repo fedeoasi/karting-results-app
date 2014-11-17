@@ -25,9 +25,7 @@ trait DataManager {
 }
 
 case class InMemoryDataManager(optionalData: Option[ChicagoF1Data] = None) extends DataManager {
-  private var data: ChicagoF1Data = {
-    optionalData.getOrElse(DataProvider.loadData())
-  }
+  private var data: ChicagoF1Data = optionalData.getOrElse(DataProvider.loadData())
   private val sc = new StatsCalculator
   private val racersById: Map[Int, SingleRacer] = data.racers.map(r => r.id -> r).toMap
   private val racersByName: Map[String, SingleRacer] = data.racers.map(r => r.name -> r).toMap
@@ -61,7 +59,7 @@ case class InMemoryDataManager(optionalData: Option[ChicagoF1Data] = None) exten
           case None => NonReportedEditionInChampionship(i + 1, name)
         }
     }
-    Championship(name, champEditions, new ChicagoF1PointsSystem(months.size))
+    Championship(name, champEditions, new ChicagoF1PointsSystem(months.size), teams)
   }
 
   override def buildEditionsWithRaces(): List[EditionWithRaces] = {

@@ -10,7 +10,7 @@ import javax.servlet.ServletContext
 
 class ScalatraBootstrap extends LifeCycle with Logging {
   override def init(context: ServletContext) {
-    context.setInitParameter(org.scalatra.EnvironmentKey, "production")
+    //context.setInitParameter(org.scalatra.EnvironmentKey, "production")
     val dataManager = new InMemoryDataManager
     initializeMetricsReporters(dataManager)
     context.mount(new KartingResultsServlet(dataManager), "/*")

@@ -5,8 +5,8 @@ import org.json4s.jackson.JsonMethods._
 import org.json4s.JValue
 import scala.language.implicitConversions
 
-case class Championship(name: String, editions: Seq[EditionInChampionship], pointsSystem: PointsSystem) {
-  lazy val standings: Standings = new Standings(editions, pointsSystem)
+case class Championship(name: String, editions: Seq[EditionInChampionship], pointsSystem: PointsSystem, teams: List[Team]) {
+  lazy val standings: Standings = new Standings(editions, pointsSystem, teams)
 }
 
 trait EditionInChampionship {
@@ -27,7 +27,7 @@ class ChicagoF1PointsSystem(n: Int) extends PointsSystem {
   val basePoints = 20.to(1, -1).toSeq
 
   def pointsForEdition(number: Int): Seq[Int] = {
-    if(number == 1) {
+    if(number == 1 || number == 11) {
       basePoints.map(_ * 2)
     } else if(number > 1 && number <= n) {
       basePoints
@@ -41,14 +41,17 @@ class EmptyPointsSystem extends PointsSystem {
   def pointsForEdition(number: Int): Seq[Int] = Seq.empty[Int]
 }
 
-class Standings(editions: Seq[EditionInChampionship], pointsSystem: PointsSystem) {
+class Standings(editions: Seq[EditionInChampionship], pointsSystem: PointsSystem, teams: List[Team]) {
   val standingsByRace: Seq[Map[String, Standing]] = {
     editions.map {
       case r: ReportedEditionInChampionship =>
         val pointsPerPosition = pointsSystem.pointsForEdition(r.number)
         val results = r.edition.results
-        results.zip(pointsPerPosition.padTo(results.size, 0)).map {
-          case (res, points) => res.racer.name -> Standing(res.racer.name, r.number, res.position, res.applyPenalty(points))
+        results.zip(pointsPerPosition.padTo(results.size, 0)).flatMap {
+          case (res, points) =>
+            res.racer.racers.map { case name =>
+              name -> Standing(name, r.number, res.position, res.applyPenalty(points))
+            }
         }.toMap
       case nr: NonReportedEditionInChampionship =>
         Map.empty[String, Standing]
