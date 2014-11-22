@@ -13,8 +13,10 @@ import com.chicagof1.facebook.FacebookInteractor
 import javax.servlet.{ServletResponse, ServletRequest}
 import com.chicagof1.metrics.MetricsHolder
 import com.codahale.metrics.MetricRegistry
+import grizzled.slf4j.Logging
+import javax.servlet.http.{HttpServletResponse, HttpServletRequest}
 
-class KartingResultsServlet(dataManager: DataManager) extends KartingResultsAppStack with FutureSupport {
+class KartingResultsServlet(dataManager: DataManager) extends KartingResultsAppStack with FutureSupport with Logging {
   implicit val formats = org.json4s.DefaultFormats
   val vs = new VideoSerializer
   val rwss = new RacerWithStatsSerializer
@@ -188,14 +190,26 @@ class KartingResultsServlet(dataManager: DataManager) extends KartingResultsAppS
 
   import MetricsHolder._
 
-  val requestsMeter = metrics.meter("requests")
   val responses = metrics.timer(MetricRegistry.name(getClass, "responses"))
+  val apiResponses = metrics.timer(MetricRegistry.name(getClass, "api-responses"))
 
-  override def service(req: ServletRequest, res: ServletResponse): Unit = {
-    requestsMeter.mark()
-    val context = responses.time()
+  val skip = List("/js", "/css", "/images")
+
+  override def service(request: HttpServletRequest, response: HttpServletResponse): Unit = {
+    info(request.getPathInfo)
+    if(!skip.exists(request.getPathInfo.startsWith)) {
+      serviceAndTimeRequest(request, response)
+    } else {
+      super.service(request, response)
+    }
+  }
+
+  private def serviceAndTimeRequest(request: HttpServletRequest, response: HttpServletResponse): Unit = {
+    info("timing request")
+    val isApiRequest = request.getPathInfo.startsWith("/data")
+    val context = if(isApiRequest) apiResponses.time() else responses.time()
     try {
-      super.service(req, res)
+      super.service(request, response)
     } finally {
       context.stop()
     }
