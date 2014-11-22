@@ -205,7 +205,6 @@ class KartingResultsServlet(dataManager: DataManager) extends KartingResultsAppS
   }
 
   private def serviceAndTimeRequest(request: HttpServletRequest, response: HttpServletResponse): Unit = {
-    info("timing request")
     val isApiRequest = request.getPathInfo.startsWith("/data")
     val context = if(isApiRequest) apiResponses.time() else responses.time()
     try {
