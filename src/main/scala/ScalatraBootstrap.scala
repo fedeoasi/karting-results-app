@@ -9,6 +9,9 @@ import org.scalatra._
 import javax.servlet.ServletContext
 
 class ScalatraBootstrap extends LifeCycle with Logging {
+  var jmxReporter: JmxReporter = _
+  var reporter: ConsoleReporter = _
+
   override def init(context: ServletContext) {
     context.setInitParameter(org.scalatra.EnvironmentKey, "production")
     val dataManager = new InMemoryDataManager
@@ -17,18 +20,20 @@ class ScalatraBootstrap extends LifeCycle with Logging {
   }
 
   override def destroy(context: ServletContext): Unit = {
+    jmxReporter.stop()
+    reporter.stop()
     super.destroy(context)
   }
 
   private def initializeMetricsReporters(dataManager: DataManager): Unit = {
     val dmm = new DataManagerMetrics(dataManager)
     dmm.init()
-    val reporter = ConsoleReporter.forRegistry(MetricsHolder.metrics)
+    reporter = ConsoleReporter.forRegistry(MetricsHolder.metrics)
       .convertRatesTo(TimeUnit.SECONDS)
       .convertDurationsTo(TimeUnit.MILLISECONDS)
       .build()
     reporter.start(30, TimeUnit.MINUTES)
-    val jmxReporter = JmxReporter.forRegistry(MetricsHolder.metrics).build()
+    jmxReporter = JmxReporter.forRegistry(MetricsHolder.metrics).build()
     jmxReporter.start()
   }
 }
