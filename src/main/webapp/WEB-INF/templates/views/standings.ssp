@@ -1,8 +1,21 @@
 <% attributes("title") = "Chicago F1 - 2014 Standings" %>
 
-<h1 class="pageTitle">Chicago F1 <span class='number'><i>2014</i></span> Standings</h1>
+<div id="standingsPageTitle">
+    <h1 class="pageTitle">Chicago F1 <span class='number'><i>2014</i></span> Standings</h1>
+</div>
 
+<div id="standingControls">
+    <button id="showPoints" class="btn btn-selected">Points</button>
+    <button id="showPosition" class="btn btn-unselected">Position</button>
+    <button id="showKart" class="btn btn-unselected">Kart #</button>
+</div>
+
+<div class="clear"></div>
 <div id="standings"></div>
+
+<script>
+    var displayedProperty = "points";
+</script>
 
 <script src="/js/standingsTable.js"></script>
 

@@ -21,7 +21,7 @@ trait PointsSystem {
   def pointsForEdition(number: Int): Seq[Int]
 }
 
-case class PositionAndPoints(position: Int, points: Int)
+case class StandingResult(position: Int, points: Int, kart: Int)
 
 class ChicagoF1PointsSystem(n: Int) extends PointsSystem {
   val basePoints = 20.to(1, -1).toSeq
@@ -50,7 +50,7 @@ class Standings(editions: Seq[EditionInChampionship], pointsSystem: PointsSystem
         results.zip(pointsPerPosition.padTo(results.size, 0)).flatMap {
           case (res, points) =>
             res.racer.racers.map { case name =>
-              name -> Standing(name, r.number, res.position, res.applyPenalty(points))
+              name -> Standing(name, r.number, res.position, res.kart, res.applyPenalty(points))
             }
         }.toMap
       case nr: NonReportedEditionInChampionship =>
@@ -68,27 +68,39 @@ class Standings(editions: Seq[EditionInChampionship], pointsSystem: PointsSystem
     .sortBy(_._2)
     .reverse
 
-  def racerTotalPoints(racer: String): PositionAndPoints = {
+  val kartAssignments: Map[String, Seq[Int]] = {
+    val resultsByRacer = editions.flatMap {
+      case re: ReportedEditionInChampionship =>
+        re.edition.results
+      case _ => Seq()
+    }.groupBy(_.racer.name)
+    resultsByRacer.mapValues {
+      case rrList => rrList.map(_.kart)
+    }
+  }
+
+  def racerTotalPoints(racer: String): StandingResult = {
     orderedRacers.zipWithIndex.find {
       case ((r, _), _) => r == racer
     }.map {
-      case ((_, points), pos) => PositionAndPoints(pos + 1, points)
+      case ((_, points), pos) => StandingResult(pos + 1, points, 0)
     }.get
   }
 
-  def racerPoints(racer: String): Seq[PositionAndPoints] = {
+  def racerPoints(racer: String): Seq[StandingResult] = {
     standingsByRace.map {
       case map =>
        map.get(racer) match {
-         case Some(p) => PositionAndPoints(p.position, p.points)
-         case None => PositionAndPoints(0, 0)
+         case Some(p) => StandingResult(p.position, p.points, p.kart)
+         case None => StandingResult(0, 0, 0)
        }
     }
   }
 
-  implicit def toJValue(pp: PositionAndPoints): JValue = {
+  implicit def toJValue(pp: StandingResult): JValue = {
     ("position" -> pp.position) ~
-    ("points" -> pp.points)
+    ("points" -> pp.points) ~
+    ("kart" -> pp.kart)
   }
 
   def serialize(orderedRacerLinks: Seq[String]): String = {
@@ -96,10 +108,10 @@ class Standings(editions: Seq[EditionInChampionship], pointsSystem: PointsSystem
       ("racers" -> orderedRacerLinks) ~
       ("editions" -> editions.map(_.name)) ~
       ("data" -> orderedRacers.zipWithIndex.map {
-        case ((r, p), pos) => racerPoints(r) :+ PositionAndPoints(pos + 1, p)
+        case ((r, p), pos) => racerPoints(r) :+ StandingResult(pos + 1, p, 0)
       })
     compact(render(json))
   }
 }
 
-case class Standing(racer: String, editionNumber: Int, position: Int, points: Int)
+case class Standing(racer: String, editionNumber: Int, position: Int, kart: Int, points: Int)

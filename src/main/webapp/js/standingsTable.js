@@ -1,8 +1,16 @@
+var standingsData;
+var ReadingType = {
+    "POINTS": "points",
+    "POSITION": "position",
+    "KART": "kart"
+}
+
 function loadStandings() {
     $.ajax({
         url: '/data/standings',
         context: document.body,
         success: function(data) {
+            standingsData = data;
             renderStandingsTable(data);
         }
     });
@@ -14,7 +22,7 @@ function renderStandingsTable(standings) {
     var body = buildBody(standings.racers, standings.editions, standings.data);
     table.append(header);
     table.append(body);
-    $('#standings').append(table)
+    $('#standings').html(table)
 }
 
 function buildHeader(editions) {
@@ -50,13 +58,16 @@ function buildBody(racers, editions, data) {
         row.append($('<td class="racer">' + racer + '</td>'));
         $.each(data[i], function(j, positionAndPoints) {
             var position = positionAndPoints.position;
-            var points = positionAndPoints.points;
-            var tdClass = colorClass(position)
-            var pointsToDisplay = (position > 0 ? points : "")
             var pointsTotalClass = '';
-            if(data[i].length && j == data[i].length - 1) {
+            var reading;
+            if(j == data[i].length - 1) {
                 pointsTotalClass = "pointsTotal";
+                reading = positionAndPoints["points"];
+            } else {
+                reading = positionAndPoints[displayedProperty];
             }
+            var tdClass = colorClass(position)
+            var pointsToDisplay = renderReading(reading, position, displayedProperty);
             row.append($('<td class="points ' + tdClass + ' ' + pointsTotalClass + '">' + pointsToDisplay + "</td>"));
         });
         body.append(row);
@@ -64,6 +75,43 @@ function buildBody(racers, editions, data) {
     return body;
 }
 
+function renderReading(reading, position, displayedProperty) {
+    switch(displayedProperty) {
+        case ReadingType.POINTS:
+            return (position > 0 ? reading : "");
+        case ReadingType.POSITION:
+        case ReadingType.KART:
+            return reading > 0 ? reading : "";
+    }
+}
+
 $(window).load(function() {
     loadStandings();
+
+    $('#showPoints').click(function() {
+        displayedProperty = ReadingType.POINTS;
+        setSelectedButton('showPoints');
+        renderStandingsTable(standingsData);
+    });
+
+    $('#showPosition').click(function() {
+        displayedProperty = ReadingType.POSITION;
+        setSelectedButton('showPosition');
+        renderStandingsTable(standingsData);
+    });
+
+    $('#showKart').click(function() {
+        displayedProperty = ReadingType.KART;
+        setSelectedButton('showKart');
+        renderStandingsTable(standingsData);
+    });
 });
+
+var buttonIds = ["showPoints", "showPosition", "showKart"];
+
+function setSelectedButton(id) {
+    $.each(buttonIds, function(i, elem) {
+        $('#' + elem).removeClass('btn-selected').addClass('btn-unselected');
+    });
+    $('#' + id).removeClass('btn-unselected').addClass('btn-selected');
+}

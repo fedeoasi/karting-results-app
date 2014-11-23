@@ -422,3 +422,33 @@ iframe[id^='twitter-box']{ width:100% !important;}
 #fbBoxDiv {
     margin: 0px 5px 5px 0px;
 }
+
+#standingControls {
+    margin-top: 25px;
+    margin-bottom: 5px;
+    float: right;
+}
+
+#standingsPageTitle {
+    float: left;
+}
+
+.btn-selected {
+    background-color: #b51411;
+    color: #fff;
+}
+
+.btn-selected:hover, .btn-selected:focus, .btn-selected.focus, .btn-selected:active, .btn-selected.active {
+    background-color: #b51411 !important;
+    color: #fff !important;
+}
+
+.btn-unselected {
+    background-color: #777;
+    color: #fff !important;
+}
+
+.btn-unselected:hover, .btn-unselected:focus, .btn-unselected.focus, .btn-unselected:active, .btn-unselected.active {
+    background-color: #555 !important;
+    color: #fff !important;
+}
