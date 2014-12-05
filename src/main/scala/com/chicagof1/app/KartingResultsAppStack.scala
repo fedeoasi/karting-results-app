@@ -32,6 +32,12 @@ trait KartingResultsAppStack extends ScalatraServlet with ScalateSupport {
     findTemplate(requestPath) map { path =>
       contentType = "text/html"
       layoutTemplate(path)
-    } orElse serveStaticResource() getOrElse resourceNotFound()
+    } orElse serveStaticResource() getOrElse {
+      if (!isDevelopmentMode) {
+        redirect("/")
+      } else {
+        resourceNotFound()
+      }
+    }
   }
 }
