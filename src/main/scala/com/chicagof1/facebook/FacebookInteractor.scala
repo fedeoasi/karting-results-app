@@ -26,7 +26,7 @@ class FacebookInteractor {
   }
 
   def chicagoF1Events(): Seq[FacebookEvent] = {
-    val options = new Reading().since(LocalDate.now.minusMonths(12).toDate)
+    val options = new Reading().since(LocalDate.now.minusMonths(4).toDate)
     val events = facebook.events().getEvents(chicagoF1PageId, options)
     events.iterator().asScala.toList.map { e =>
       FacebookEvent(e.getId, e.getName, dateTime(e.getStartTime), dateTime(e.getEndTime), e.getLocation)
