@@ -13,8 +13,9 @@ function renderRacerStats(data) {
    var standingsDiv = $('#racerStandingsStatsDiv');
    var editionsDiv = $('#racerEditionsStatsDiv');
    var othersDiv = $('#racerOtherStatsDiv');
-   addSpan(standingsDiv, "Position", data['currentStandingsPosition']);
-   addSpan(standingsDiv, "Points", data['currentPoints']);
+   var currentStandingsPosition = data['currentStandingsPosition'];
+   addSpan(standingsDiv, "Position", currentStandingsPosition != 0 ? currentStandingsPosition : "-");
+   addSpan(standingsDiv, "Points", currentStandingsPosition != 0 ? data['currentPoints'] : "-");
    addSpan(editionsDiv, "Edition Wins", data['editionWinCount']);
    addSpan(editionsDiv, "Single Race wins", data['raceWinCount']);
    addSpan(othersDiv, "Videos Posted", data.videosCount);

@@ -84,7 +84,7 @@ class Standings(editions: Seq[EditionInChampionship], pointsSystem: PointsSystem
       case ((r, _), _) => r == racer
     }.map {
       case ((_, points), pos) => StandingResult(pos + 1, points, 0)
-    }.get
+    }.getOrElse(StandingResult(0, 0, 0))
   }
 
   def racerPoints(racer: String): Seq[StandingResult] = {
