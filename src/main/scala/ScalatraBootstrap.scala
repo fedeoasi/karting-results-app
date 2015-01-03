@@ -20,8 +20,15 @@ class ScalatraBootstrap extends LifeCycle with Logging {
   }
 
   override def destroy(context: ServletContext): Unit = {
-    jmxReporter.stop()
-    reporter.stop()
+    info("Shutting down")
+    if(jmxReporter != null) {
+      info("Stopping JMX reporter")
+      jmxReporter.stop()
+    }
+    if(reporter != null) {
+      info("Stopping console reporter")
+      reporter.stop()
+    }
     super.destroy(context)
   }
 
