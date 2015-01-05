@@ -17,6 +17,7 @@ import org.pac4j.j2e.util.UserUtils
 import org.pac4j.j2e.configuration.ClientsConfiguration
 import org.pac4j.oauth.client.FacebookClient
 import org.pac4j.core.context.J2EContext
+import com.chicagof1.auth.AuthUtils
 
 class KartingResultsServlet(dataManager: DataManager) extends KartingResultsAppStack with FutureSupport {
   implicit val formats = org.json4s.DefaultFormats
@@ -147,14 +148,11 @@ class KartingResultsServlet(dataManager: DataManager) extends KartingResultsAppS
   get("/user/profile") {
     val userProfile = UserUtils.getProfile(session)
     if(userProfile == null) {
-      val facebookClient = ClientsConfiguration.getClients.findClient("FacebookClient").asInstanceOf[FacebookClient]
-      val webContext = new J2EContext(request, response)
-      redirect(facebookClient.getRedirectAction(webContext, false, false).getLocation)
+      redirect(AuthUtils.redirectForAuthentication(request, response))
     } else {
-      val name = userProfile.getAttribute("name")
-      dataManager.racers.find(_.name == name) match {
+      dataManager.racers.find(_.name == AuthUtils.fullName(userProfile)) match {
         case Some(r) => redirect(s"/racers/${r.id}")
-        case None => Ok("No racer matches your name")
+        case None => Ok("No racer matches your name.")
       }
     }
   }
