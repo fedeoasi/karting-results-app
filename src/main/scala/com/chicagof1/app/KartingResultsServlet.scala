@@ -13,6 +13,10 @@ import com.chicagof1.facebook.FacebookInteractor
 import com.chicagof1.metrics.MetricsHolder
 import com.codahale.metrics.MetricRegistry
 import javax.servlet.http.{HttpServletResponse, HttpServletRequest}
+import org.pac4j.j2e.util.UserUtils
+import org.pac4j.j2e.configuration.ClientsConfiguration
+import org.pac4j.oauth.client.FacebookClient
+import org.pac4j.core.context.J2EContext
 
 class KartingResultsServlet(dataManager: DataManager) extends KartingResultsAppStack with FutureSupport {
   implicit val formats = org.json4s.DefaultFormats
@@ -140,6 +144,21 @@ class KartingResultsServlet(dataManager: DataManager) extends KartingResultsAppS
     }
   }
 
+  get("/user/profile") {
+    val userProfile = UserUtils.getProfile(session)
+    if(userProfile == null) {
+      val facebookClient = ClientsConfiguration.getClients.findClient("FacebookClient").asInstanceOf[FacebookClient]
+      val webContext = new J2EContext(request, response)
+      redirect(facebookClient.getRedirectAction(webContext, false, false).getLocation)
+    } else {
+      val name = userProfile.getAttribute("name")
+      dataManager.racers.find(_.name == name) match {
+        case Some(r) => redirect(s"/racers/${r.id}")
+        case None => Ok("No racer matches your name")
+      }
+    }
+  }
+
   post("/data/reload") {
     dataManager.reload()
   }
@@ -160,6 +179,11 @@ class KartingResultsServlet(dataManager: DataManager) extends KartingResultsAppS
         write(EventsResponse(events))
       }
     }
+  }
+
+  get("/logout") {
+    UserUtils.logout(session)
+    redirect("/")
   }
 
   error {

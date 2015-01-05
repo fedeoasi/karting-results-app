@@ -1,6 +1,13 @@
 -@ val title: String
 -@ val body: String
-
+- import org.pac4j.j2e.configuration.ClientsConfiguration
+- import org.pac4j.j2e.util.UserUtils
+- import org.pac4j.oauth.client.FacebookClient
+- import org.pac4j.core.context._
+- session.setAttribute(HttpConstants.REQUESTED_URL, null)
+- val facebookClient = ClientsConfiguration.getClients.findClient("FacebookClient").asInstanceOf[FacebookClient]
+- val user = UserUtils.getProfile(session)
+- val webContext = new J2EContext(request, response)
 !!!
 html
   head
@@ -33,5 +40,18 @@ html
             li
               a(href="/videos") Videos
           /.clear
+          ul(id="menu" class="nav navbar-nav navbar-right")
+            - if (user == null) {
+              li
+                a(href="#{facebookClient.getRedirectAction(webContext, false, false).getLocation()}") Login
+            - } else {
+              li
+                a(href="/logout") Logout
+            - }
     .container-fluid.jumbo
       != body
+      - if (user != null) {
+        .welcomeDiv
+          p Logged in as #{user.getAttribute("name")}
+        .clear
+      - }
