@@ -36,6 +36,10 @@ html
               a(href="/editions") Editions
             li
               a(href="/videos") Videos
+            - if (user != null) {
+              li
+                a(href="/user/profile") My Profile
+            - }
           /.clear
           ul(id="menu" class="nav navbar-nav navbar-right")
             - if (user == null) {
