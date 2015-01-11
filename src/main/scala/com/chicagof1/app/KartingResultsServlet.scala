@@ -14,9 +14,6 @@ import com.chicagof1.metrics.MetricsHolder
 import com.codahale.metrics.MetricRegistry
 import javax.servlet.http.{HttpServletResponse, HttpServletRequest}
 import org.pac4j.j2e.util.UserUtils
-import org.pac4j.j2e.configuration.ClientsConfiguration
-import org.pac4j.oauth.client.FacebookClient
-import org.pac4j.core.context.J2EContext
 import com.chicagof1.auth.AuthUtils
 
 class KartingResultsServlet(dataManager: DataManager) extends KartingResultsAppStack with FutureSupport {
@@ -152,7 +149,9 @@ class KartingResultsServlet(dataManager: DataManager) extends KartingResultsAppS
     } else {
       dataManager.racers.find(_.name == AuthUtils.fullName(userProfile)) match {
         case Some(r) => redirect(s"/racers/${r.id}")
-        case None => Ok("No racer matches your name.")
+        case None =>
+          contentType = "text/html"
+          jade("no-profile")
       }
     }
   }
