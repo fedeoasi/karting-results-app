@@ -13,7 +13,9 @@ class ScalatraBootstrap extends LifeCycle with Logging {
   var reporter: ConsoleReporter = _
 
   override def init(context: ServletContext) {
-    context.setInitParameter(org.scalatra.EnvironmentKey, "production")
+    if (AppLocation.isProduction) {
+      context.setInitParameter(org.scalatra.EnvironmentKey, "production")
+    }
     val dataManager = new InMemoryDataManager
     initializeMetricsReporters(dataManager)
     context.mount(new KartingResultsServlet(dataManager), "/*")

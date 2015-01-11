@@ -13,6 +13,8 @@ import com.chicagof1.facebook.FacebookInteractor
 import com.chicagof1.metrics.MetricsHolder
 import com.codahale.metrics.MetricRegistry
 import javax.servlet.http.{HttpServletResponse, HttpServletRequest}
+import org.pac4j.j2e.util.UserUtils
+import com.chicagof1.auth.AuthUtils
 
 class KartingResultsServlet(dataManager: DataManager) extends KartingResultsAppStack with FutureSupport {
   implicit val formats = org.json4s.DefaultFormats
@@ -150,6 +152,20 @@ class KartingResultsServlet(dataManager: DataManager) extends KartingResultsAppS
     }
   }
 
+  get("/user/profile") {
+    val userProfile = UserUtils.getProfile(session)
+    if(userProfile == null) {
+      redirect(AuthUtils.redirectForAuthentication(request, response))
+    } else {
+      dataManager.racers.find(_.name == AuthUtils.fullName(userProfile)) match {
+        case Some(r) => redirect(s"/racers/${r.id}")
+        case None =>
+          contentType = "text/html"
+          jade("no-profile")
+      }
+    }
+  }
+
   post("/data/reload") {
     dataManager.reload()
   }
@@ -170,6 +186,18 @@ class KartingResultsServlet(dataManager: DataManager) extends KartingResultsAppS
         write(EventsResponse(events))
       }
     }
+  }
+
+  get("/login") {
+    Option(UserUtils.getProfile(session)) match {
+      case Some(profile) => Ok("Already in")
+      case None => redirect(AuthUtils.redirectForAuthentication(request, response))
+    }
+  }
+
+  get("/logout") {
+    UserUtils.logout(session)
+    redirect("/")
   }
 
   error {

@@ -5,17 +5,20 @@ import facebook4j._
 import facebook4j.auth.AccessToken
 import scala.collection.JavaConverters._
 import java.util.Date
+import com.chicagof1.app.AppLocation
 
 case class FacebookEvent(id: String, name: String, startTime: DateTime, endTime: DateTime, location: String)
 
+case class FacebookAppCredentials(appId: String, secret: String) {
+  def accessKey = s"$appId|$secret"
+}
+
 class FacebookInteractor {
   private val facebook = {
-    val appId = System.getenv("CHI_F1_APP_ID")
-    val appSecret = System.getenv("CHI_F1_APP_SECRET")
-    val accessKey = s"$appId|$appSecret"
+    val credentials = FacebookInteractor.facebookCredentials
     val fb = new FacebookFactory().getInstance()
-    fb.setOAuthAppId(appId, appSecret)
-    fb.setOAuthAccessToken(new AccessToken(accessKey, null))
+    fb.setOAuthAppId(credentials.appId, credentials.secret)
+    fb.setOAuthAccessToken(new AccessToken(credentials.accessKey, null))
     fb
   }
 
@@ -34,4 +37,18 @@ class FacebookInteractor {
   }
 
   private def dateTime(date: Date): DateTime = new DateTime(date)
+}
+
+object FacebookInteractor {
+  lazy val facebookCredentials: FacebookAppCredentials = {
+    if(AppLocation.isProduction) {
+      val appId = System.getenv("CHI_F1_APP_ID")
+      val appSecret = System.getenv("CHI_F1_APP_SECRET")
+      FacebookAppCredentials(appId, appSecret)
+    } else {
+      val devAppId = System.getenv("CHI_F1_DEV_APP_ID")
+      val devAppSecret = System.getenv("CHI_F1_DEV_APP_SECRET")
+      FacebookAppCredentials(devAppId, devAppSecret)
+    }
+  }
 }

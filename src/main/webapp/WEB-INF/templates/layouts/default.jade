@@ -2,7 +2,11 @@
     #mainContent.container-fluid.jumbo
 -@ val title: String
 -@ val body: String
-
+- import org.pac4j.j2e.util.UserUtils
+- import org.pac4j.core.context._
+- import com.chicagof1.auth.AuthUtils
+- session.setAttribute(HttpConstants.REQUESTED_URL, null)
+- val user = UserUtils.getProfile(session)
 !!!
 html
   head
@@ -34,6 +38,23 @@ html
               a(href="/editions") Editions
             li
               a(href="/videos") Videos
+            - if (user != null) {
+              li
+                a(href="/user/profile") My Profile
+            - }
           /.clear
+          ul(id="menu" class="nav navbar-nav navbar-right")
+            - if (user == null) {
+              li
+                a(href="/login") Login
+            - } else {
+              li
+                a(href="/logout") Logout
+            - }
     .container-fluid.jumbo
       != body
+      - if (user != null) {
+        .welcomeDiv
+          p Logged in as #{AuthUtils.fullName(user)}
+        .clear
+      - }
