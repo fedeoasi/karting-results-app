@@ -7,11 +7,17 @@ var ReadingType = {
 
 function loadStandings() {
     $.ajax({
-        url: '/data/standings',
+        url: '/data/standings/' + championshipId,
         context: document.body,
         success: function(data) {
             standingsData = data;
+            $('#status').html("");
+            $('#standingsPageTitle').html('<h1 class="pageTitle">Chicago F1 <span class="number"><i>' + championshipId +
+            '</i></span> Standings</h1>');
             renderStandingsTable(data);
+        },
+        error: function(data) {
+            $('#mainContent').html('<h1 class="pageTitle">Error</h1><p>Error loading standings</p>');
         }
     });
 }

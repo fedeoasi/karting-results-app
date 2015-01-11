@@ -98,6 +98,16 @@ class KartingResultsServlet(dataManager: DataManager) extends KartingResultsAppS
     }
   }
 
+  get("/standings") {
+    redirect("/standings/2014")
+  }
+
+  get("/standings/:championshipId") {
+    contentType = "text/html"
+    val championshipId = params("championshipId")
+    ssp("standings", "championshipId" -> championshipId)
+  }
+
   get("/data/standings") {
     new AsyncResult() {
       override val is = Future {

@@ -1,8 +1,11 @@
-<% attributes("title") = "Chicago F1 - 2014 Standings" %>
+<%@ val championshipId: String %>
+<% attributes("title") = s"Chicago F1 Standings" %>
 
-<div id="standingsPageTitle">
-    <h1 class="pageTitle">Chicago F1 <span class='number'><i>2014</i></span> Standings</h1>
+<div id="status">
+    <span><img height="30px" src="/images/ajaxSpinner.gif"/>Loading standings...</span>
 </div>
+
+<div id="standingsPageTitle"></div>
 
 <div id="standingControls">
     <button id="showPoints" class="btn btn-selected">Points</button>
@@ -14,6 +17,7 @@
 <div id="standings"></div>
 
 <script>
+    var championshipId = '<%= championshipId %>';
     var displayedProperty = "points";
 </script>
 
