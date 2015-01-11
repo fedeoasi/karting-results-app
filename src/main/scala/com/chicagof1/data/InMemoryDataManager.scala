@@ -15,6 +15,7 @@ trait DataManager {
   def getEditionById(id: String): Option[Edition]
   def getEditionWithRacesById(id: String): Option[EditionWithRaces]
   def currentChampionship: Championship
+  def championship(id: String): Option[Championship]
   def buildMonthlyChampionship(name: String, start: LocalDate, stop: LocalDate): Championship
   def buildEditionsWithRaces(): List[EditionWithRaces]
   def racerStatsFor(name: String): RacerWithStats
@@ -41,11 +42,22 @@ case class InMemoryDataManager(optionalData: Option[ChicagoF1Data] = None) exten
   override def getEditionById(id: String): Option[Edition] = editionsMap.get(id)
   override def getEditionWithRacesById(id: String): Option[EditionWithRaces] = editionWithRacesMap.get(id)
 
-  lazy val currentChampionship: Championship = {
-    buildMonthlyChampionship(
+  lazy val championships: Map[String, Championship] = {
+    val championship2014 = buildMonthlyChampionship(
       "Chicago F1 2014",
       LocalDate.parse("2014-01-01"),
       LocalDate.parse("2014-11-30"))
+    val championship2015 = buildMonthlyChampionship(
+      "Chicago F1 2015",
+      LocalDate.parse("2015-01-01"),
+      LocalDate.parse("2015-11-30"))
+    Map("2014" -> championship2014, "2015" -> championship2015)
+  }
+
+  override def championship(id: String): Option[Championship] = championships.get(id)
+
+  lazy val currentChampionship: Championship = {
+    championships("2014")
   }
 
   override def buildMonthlyChampionship(name: String, start: LocalDate, stop: LocalDate): Championship = {

@@ -15,6 +15,7 @@ import com.codahale.metrics.MetricRegistry
 import javax.servlet.http.{HttpServletResponse, HttpServletRequest}
 import org.pac4j.j2e.util.UserUtils
 import com.chicagof1.auth.AuthUtils
+import com.chicagof1.model.Championship
 
 class KartingResultsServlet(dataManager: DataManager) extends KartingResultsAppStack with FutureSupport {
   implicit val formats = org.json4s.DefaultFormats
@@ -114,13 +115,30 @@ class KartingResultsServlet(dataManager: DataManager) extends KartingResultsAppS
     new AsyncResult() {
       override val is = Future {
         contentType = "application/json"
-        val standings = dataManager.currentChampionship.standings
-        val racerLinks = standings.orderedRacers.map {
-          r => dataManager.racerLink(r._1)
-        }
-        standings.serialize(racerLinks)
+        serializedStandings(dataManager.currentChampionship)
       }
     }
+  }
+
+  get("/data/standings/:championshipId") {
+    new AsyncResult() {
+      override val is = Future {
+        contentType = "application/json"
+        val championshipId = params("championshipId")
+        dataManager.championship(championshipId) match {
+          case Some(c) => serializedStandings(c)
+          case None => NotFound(s"No championship with id $championshipId")
+        }
+      }
+    }
+  }
+
+  private def serializedStandings(championship: Championship): String = {
+    val standings = championship.standings
+    val racerLinks = standings.orderedRacers.map {
+      r => dataManager.racerLink(r._1)
+    }
+    standings.serialize(racerLinks)
   }
 
   get("/data/racers/:id") {
