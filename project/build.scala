@@ -11,6 +11,7 @@ object KartingApplicationBuild extends Build {
   val Version = "0.1.0-SNAPSHOT"
   val ScalaVersion = "2.10.4"
   val ScalatraVersion = "2.2.2"
+  val Pac4JVersion = "1.6.0"
 
   def containerConf = config("container")
 
@@ -49,7 +50,9 @@ object KartingApplicationBuild extends Build {
         "org.eclipse.jetty" % "jetty-webapp" % "9.1.5.v20140505" % "container",
         "org.eclipse.jetty.orbit" % "javax.servlet" % "3.0.0.v201112011016" % "container;provided;test" artifacts (Artifact("javax.servlet", "jar", "jar")),
         "org.scala-lang.modules" %% "scala-async" % "0.9.1",
-        "org.facebook4j" % "facebook4j-core" % "2.1.0"
+        "org.facebook4j" % "facebook4j-core" % "2.1.0",
+        "org.pac4j" % "j2e-pac4j" % "1.0.4",
+        "org.pac4j" % "pac4j-oauth" % Pac4JVersion
         ),
       scalateTemplateConfig in Compile <<= (sourceDirectory in Compile){ base =>
         Seq(
