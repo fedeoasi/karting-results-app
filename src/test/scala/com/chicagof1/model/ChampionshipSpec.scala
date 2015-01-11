@@ -37,7 +37,6 @@ class ChampionshipSpec extends FunSpec with Matchers {
       val standings = championship.standings
       val racers = standings.orderedRacers
       racers.size should be(4)
-      println(racers)
       racers(0) should be(("A", 79))
       racers(1) should be(("B", 73))
       racers(2) should be(("C", 67))
