@@ -179,6 +179,13 @@ class KartingResultsServlet(dataManager: DataManager) extends KartingResultsAppS
     }
   }
 
+  get("/login") {
+    Option(UserUtils.getProfile(session)) match {
+      case Some(profile) => Ok("Already in")
+      case None => redirect(AuthUtils.redirectForAuthentication(request, response))
+    }
+  }
+
   get("/logout") {
     UserUtils.logout(session)
     redirect("/")

@@ -44,7 +44,7 @@ html
           ul(id="menu" class="nav navbar-nav navbar-right")
             - if (user == null) {
               li
-                a(href="#{AuthUtils.redirectForAuthentication(request, response)}") Login
+                a(href="/login") Login
             - } else {
               li
                 a(href="/logout") Logout
