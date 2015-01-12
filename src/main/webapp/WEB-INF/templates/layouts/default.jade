@@ -1,5 +1,3 @@
-            - }
-    #mainContent.container-fluid.jumbo
 -@ val title: String
 -@ val body: String
 - import org.pac4j.j2e.util.UserUtils
@@ -51,7 +49,7 @@ html
               li
                 a(href="/logout") Logout
             - }
-    .container-fluid.jumbo
+    #mainContent.container-fluid.jumbo
       != body
       - if (user != null) {
         .welcomeDiv
