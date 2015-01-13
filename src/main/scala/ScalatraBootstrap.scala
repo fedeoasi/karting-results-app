@@ -2,6 +2,7 @@ import com.chicagof1.app._
 import com.chicagof1.data.{DataManager, InMemoryDataManager}
 import com.chicagof1.jmx.DataManagerMetrics
 import com.chicagof1.metrics.MetricsHolder
+import com.chicagof1.persistence.{PersistenceManager, ProdPersistenceManager}
 import com.codahale.metrics.{JmxReporter, ConsoleReporter}
 import grizzled.slf4j.Logging
 import java.util.concurrent.TimeUnit
@@ -11,10 +12,14 @@ import javax.servlet.ServletContext
 class ScalatraBootstrap extends LifeCycle with Logging {
   var jmxReporter: JmxReporter = _
   var reporter: ConsoleReporter = _
+  var persistenceManager: PersistenceManager = _
 
   override def init(context: ServletContext) {
     if (AppLocation.isProduction) {
       context.setInitParameter(org.scalatra.EnvironmentKey, "production")
+      persistenceManager = new ProdPersistenceManager("chicagof1")
+    } else {
+      persistenceManager = new ProdPersistenceManager("chicagof1-dev")
     }
     val dataManager = new InMemoryDataManager
     initializeMetricsReporters(dataManager)

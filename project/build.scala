@@ -52,7 +52,11 @@ object KartingApplicationBuild extends Build {
         "org.scala-lang.modules" %% "scala-async" % "0.9.1",
         "org.facebook4j" % "facebook4j-core" % "2.1.0",
         "org.pac4j" % "j2e-pac4j" % "1.0.4",
-        "org.pac4j" % "pac4j-oauth" % Pac4JVersion
+        "org.pac4j" % "pac4j-oauth" % Pac4JVersion,
+        "com.typesafe.slick" %% "slick" % "2.1.0",
+        "org.xerial" % "sqlite-jdbc" % "3.8.7",
+        "com.github.tototoshi" %% "slick-joda-mapper" % "1.2.0",
+        "com.h2database" % "h2" % "1.4.181"
         ),
       scalateTemplateConfig in Compile <<= (sourceDirectory in Compile){ base =>
         Seq(
