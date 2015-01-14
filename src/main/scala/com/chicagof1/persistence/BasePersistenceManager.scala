@@ -3,9 +3,10 @@ package com.chicagof1.persistence
 import grizzled.slf4j.Logging
 import scala.slick.driver.SQLiteDriver.simple._
 import scala.slick.driver.H2Driver
-import com.chicagof1.model.User
+import com.chicagof1.model.{UserInfo, User}
 import scala.slick.jdbc.meta.MTable
 import java.util.UUID
+import org.joda.time.DateTime
 
 abstract class BasePersistenceManager extends PersistenceManager with Logging {
   val database: Database
@@ -14,9 +15,11 @@ abstract class BasePersistenceManager extends PersistenceManager with Logging {
   import dal._
   import driver.simple._
 
-  override def saveUser(user: User): Unit = {
+  override def saveUser(user: UserInfo): Unit = {
     database withSession { implicit s =>
-        users.insert(user)
+      val now = DateTime.now
+      val userToPersist = User(user.email, user.fullName, now, now, None)
+      users.insert(userToPersist)
     }
   }
 
@@ -30,6 +33,10 @@ abstract class BasePersistenceManager extends PersistenceManager with Logging {
     database withSession { implicit s =>
       users.list.toSeq
     }
+  }
+
+  override def loggedIn(user: UserInfo): Unit = {
+    saveUser(user)
   }
 
   def initializeDatabase() {

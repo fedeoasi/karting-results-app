@@ -1,4 +1,6 @@
 package com.chicagof1.model
 
-case class User(email: String, fullName: String, id: Option[Int])
+import org.joda.time.DateTime
+
+case class User(email: String, fullName: String, firstLogin: DateTime, lastLogin: DateTime, id: Option[Int])
 case class UserInfo(email: String, fullName: String)

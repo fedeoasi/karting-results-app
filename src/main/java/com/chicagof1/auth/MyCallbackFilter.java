@@ -77,7 +77,7 @@ public class MyCallbackFilter extends ClientsConfigFilter {
             String email = profile.getEmail();
             String fullName = AuthUtils.fullName(profile);
             UserInfo ui = new UserInfo(email, fullName);
-            //persistenceManager.loggedIn(ui);
+            persistenceManager.loggedIn(ui);
         }
 
         final String requestedUrl = (String) session.getAttribute(RequiresAuthenticationFilter.ORIGINAL_REQUESTED_URL);

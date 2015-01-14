@@ -1,12 +1,12 @@
 package com.chicagof1.persistence
 
 import org.scalatest.{ShouldMatchers, FunSpec}
-import com.chicagof1.model.User
+import com.chicagof1.model.{UserInfo, User}
 
 class PersistenceManagerSpec extends FunSpec with ShouldMatchers {
   val pm = new TestPersistenceManager
-  val firstUser = User("first@gmail.com", "Hello World", Some(1))
-  val secondUser = User("second@gmail.com", "Foo Bar", Some(2))
+  val firstUserInfo = UserInfo("first@gmail.com", "Hello World")
+  val secondUserInfo = UserInfo("second@gmail.com", "Foo Bar")
 
   describe("Persistence Manager") {
     describe("Users") {
@@ -15,14 +15,39 @@ class PersistenceManagerSpec extends FunSpec with ShouldMatchers {
       }
 
       it("should store and find a user") {
-        pm.saveUser(firstUser)
-        pm.findUser(firstUser.email) should be(Some(firstUser))
+        pm.saveUser(firstUserInfo)
+        val actualUserOption = pm.findUser(firstUserInfo.email)
+        assertUserInfo(firstUserInfo, actualUserOption)
       }
 
       it("should list users") {
-        pm.saveUser(secondUser)
-        pm.listUsers() should be(Seq(firstUser, secondUser))
+        pm.saveUser(secondUserInfo)
+        pm.listUsers().size should be(2)
+      }
+
+      describe("Logged In") {
+        val thirdUserInfo = UserInfo("third@gmail.com", "Third User")
+
+        it("creates a non existent user") {
+          pm.loggedIn(thirdUserInfo)
+          val optionalUser = pm.findUser(thirdUserInfo.email)
+          assertUserInfo(thirdUserInfo, optionalUser)
+        }
+
+        it("marks the last login on an existing user") {
+          val optionalOldUser = pm.findUser(thirdUserInfo.email)
+          pm.loggedIn(thirdUserInfo)
+          val optionalUser = pm.findUser(thirdUserInfo.email)
+          assertUserInfo(thirdUserInfo, optionalUser)
+          optionalUser.get.lastLogin.compareTo(optionalOldUser.get.lastLogin) >= 0 should be(right = true)
+        }
       }
     }
+  }
+
+  private def assertUserInfo(expected: UserInfo, actual: Option[User]): Unit = {
+    actual.isDefined should be(right = true)
+    actual.get.email should be(expected.email)
+    actual.get.fullName should be(expected.fullName)
   }
 }
