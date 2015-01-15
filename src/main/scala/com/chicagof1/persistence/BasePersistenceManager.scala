@@ -17,9 +17,7 @@ abstract class BasePersistenceManager extends PersistenceManager with Logging {
 
   override def saveUser(user: UserInfo): Unit = {
     database withSession { implicit s =>
-      val now = DateTime.now
-      val userToPersist = User(user.email, user.fullName, now, now, None)
-      users.insert(userToPersist)
+      persistUser(user)
     }
   }
 
@@ -36,7 +34,21 @@ abstract class BasePersistenceManager extends PersistenceManager with Logging {
   }
 
   override def loggedIn(user: UserInfo): Unit = {
-    saveUser(user)
+    database withSession { implicit s =>
+      val userQuery = users.filter(_.email === user.email)
+      userQuery.list.headOption match {
+        case Some(existingUser) =>
+          val updatedUser = existingUser.copy(lastLogin = DateTime.now)
+          userQuery.update(updatedUser)
+        case None => persistUser(user)
+      }
+    }
+  }
+
+  private def persistUser(user: UserInfo)(implicit s: Session): Unit = {
+    val now = DateTime.now
+    val userToPersist = User(user.email, user.fullName, now, now, None)
+    users.insert(userToPersist)
   }
 
   def initializeDatabase() {

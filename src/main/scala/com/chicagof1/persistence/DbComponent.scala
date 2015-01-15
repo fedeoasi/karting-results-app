@@ -31,6 +31,8 @@ trait ChicagoF1DbComponent extends DBComponent {
     def firstLogin = column[DateTime]("FIRST_LOGIN")
     def lastLogin = column[DateTime]("LAST_LOGIN")
     def * = (email, fullName, firstLogin, lastLogin, id.?) <> (User.tupled, User.unapply)
+
+    def emailIdx = index("EMAIL_IDX", email, unique = true)
   }
 
   object users extends TableQuery(new Users(_))
