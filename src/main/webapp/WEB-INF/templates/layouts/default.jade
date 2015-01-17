@@ -36,10 +36,6 @@ html
               a(href="/editions") Editions
             li
               a(href="/videos") Videos
-            - if (user != null) {
-              li
-                a(href="/user/profile") My Profile
-            - }
           /.clear
           ul(id="menu" class="nav navbar-nav navbar-right")
             - if (user == null) {
@@ -47,12 +43,12 @@ html
                 a(href="/login") Login
             - } else {
               li
-                a(href="/logout") Logout
+                a#dLabel(data-toggle="dropdown")= AuthUtils.fullName(user)
+                ul.dropdown-menu
+                  li
+                    a(href="/user/profile") My Profile
+                  li
+                    a(href="/logout") Logout
             - }
     #mainContent.container-fluid.jumbo
       != body
-      - if (user != null) {
-        .welcomeDiv
-          p Logged in as #{AuthUtils.fullName(user)}
-        .clear
-      - }

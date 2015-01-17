@@ -456,3 +456,17 @@ iframe[id^='twitter-box']{ width:100% !important;}
 .welcomeDiv {
     float: right;
 }
+
+.dropdown-menu {
+    background-color: #222 !important;
+}
+
+.dropdown-menu > li > a {
+    color: #aaa !important;
+}
+
+.dropdown-menu > li > a:hover, .dropdown-menu > li > a:focus {
+    background-color: #444 !important;
+    color: #ddd !important;
+    text-decoration: none;
+}
