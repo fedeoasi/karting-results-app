@@ -44,7 +44,7 @@ class KartingResultsServlet(dataManager: DataManager) extends KartingResultsAppS
     jade("race", "race" -> race.get)
   }
 
-  get("/data/races/:id") {
+  get("/api/races/:id") {
     new AsyncResult() {
       override val is = Future {
         contentType = "application/json"
@@ -77,7 +77,7 @@ class KartingResultsServlet(dataManager: DataManager) extends KartingResultsAppS
     jade("events")
   }
 
-  get("/data/editions/:id") {
+  get("/api/editions/:id") {
     new AsyncResult() {
       override val is = Future {
         contentType = "application/json"
@@ -92,7 +92,7 @@ class KartingResultsServlet(dataManager: DataManager) extends KartingResultsAppS
     }
   }
 
-  get("/data/videos") {
+  get("/api/videos") {
     new AsyncResult() {
       override val is = Future {
         contentType = "application/json"
@@ -111,7 +111,7 @@ class KartingResultsServlet(dataManager: DataManager) extends KartingResultsAppS
     ssp("standings", "championshipId" -> championshipId)
   }
 
-  get("/data/standings") {
+  get("/api/standings") {
     new AsyncResult() {
       override val is = Future {
         contentType = "application/json"
@@ -120,7 +120,7 @@ class KartingResultsServlet(dataManager: DataManager) extends KartingResultsAppS
     }
   }
 
-  get("/data/standings/:championshipId") {
+  get("/api/standings/:championshipId") {
     new AsyncResult() {
       override val is = Future {
         contentType = "application/json"
@@ -141,7 +141,7 @@ class KartingResultsServlet(dataManager: DataManager) extends KartingResultsAppS
     standings.serialize(racerLinks)
   }
 
-  get("/data/racers/:id") {
+  get("/api/racers/:id") {
     val racerIdString = params("id")
     new AsyncResult() {
       override val is = Future {
@@ -184,7 +184,7 @@ class KartingResultsServlet(dataManager: DataManager) extends KartingResultsAppS
     }
   }
 
-  post("/data/reload") {
+  post("/api/reload") {
     dataManager.reload()
   }
 
@@ -235,7 +235,7 @@ class KartingResultsServlet(dataManager: DataManager) extends KartingResultsAppS
   val apiResponses = metrics.timer(MetricRegistry.name(getClass, "api-responses"))
 
   val skip = List("/js", "/css", "/images")
-  val apiPrefixes = List("/data", "/api")
+  val apiPrefixes = List("/api")
 
   override def service(request: HttpServletRequest, response: HttpServletResponse): Unit = {
     if(!skip.exists(request.getPathInfo.startsWith)) {

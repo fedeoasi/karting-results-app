@@ -7,7 +7,7 @@ var ReadingType = {
 
 function loadStandings() {
     $.ajax({
-        url: '/data/standings/' + championshipId,
+        url: '/api/standings/' + championshipId,
         context: document.body,
         success: function(data) {
             standingsData = data;

@@ -2,7 +2,7 @@
 - val edition = editionWithRaces.edition
 - attributes("title") = s"Edition ${edition.printId}"
 - attributes("titleName") = s"Edition ${edition.printId}"
-- attributes("source") = "/data/editions/" + edition.date
+- attributes("source") = "/api/editions/" + edition.date
 
 h1(class='pageTitle')= s"Edition ${edition.printId}"
 #content

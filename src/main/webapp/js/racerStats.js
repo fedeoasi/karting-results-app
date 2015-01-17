@@ -1,6 +1,6 @@
 function loadData() {
     $.ajax({
-        url: '/data/racers/' + racerId,
+        url: '/api/racers/' + racerId,
         context: document.body,
         success: function(data) {
             renderRacerStats(data);

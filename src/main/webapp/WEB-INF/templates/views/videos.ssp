@@ -81,7 +81,7 @@ $(facetSettings.resultSelector).bind("facetedsearchresultupdate", function(){
 
 function loadVideos() {
     $.ajax({
-        url: '/data/videos',
+        url: '/api/videos',
         context: document.body,
         success: function(data) {
             videos = data;
