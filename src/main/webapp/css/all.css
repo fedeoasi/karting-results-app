@@ -122,7 +122,7 @@ ul.editions li {
     margin: 2px;
 }
 
-.editionDiv a:hover {
+.editionDiv a:hover, .championshipDiv a:hover {
     background: #94100E;
     color: #eee !important;
 }
@@ -207,7 +207,7 @@ li .race a {
     min-width: 200px;
 }
 
-#standingsTable th, #racerResultsTable th, #events th {
+#standingsTable th, #racerResultsTable th, #events th, #championshipsTable th {
     background-color: #B51411;
     color: white;
     font-weight: 400 !important;
@@ -424,7 +424,7 @@ iframe[id^='twitter-box']{ width:100% !important;}
 }
 
 #standingControls {
-    margin-top: 25px;
+    margin-top: 5px;
     margin-bottom: 5px;
     float: right;
 }
@@ -469,4 +469,53 @@ iframe[id^='twitter-box']{ width:100% !important;}
     background-color: #444 !important;
     color: #ddd !important;
     text-decoration: none;
+}
+
+#links {
+    padding-top: 5px;
+}
+
+#links a {
+    color: #333;
+}
+
+#links a:hover {
+    color: #ddd;
+    background-color: #94100E;
+}
+
+.championshipLogo {
+    max-height: 150px;
+    float: right;
+}
+
+.championshipDiv {
+    color: #ddd;
+    background-color: #555;
+    padding: 10px;
+    margin-bottom: 5px;
+}
+
+.championshipDiv:hover {
+    background-color: #444;
+}
+
+h3.championshipTitle {
+    color: #ddd;
+    margin: 0px !important;
+    padding: 0px 0px 5px 0px !important;
+    font-weight: 500 !important;
+    font-style: italic;
+}
+
+.championshipDiv a {
+    color: #ddd;
+}
+
+.championshipKey {
+    font-weight: 100;
+}
+
+.championshipValue {
+    font-weight: 400;
 }

@@ -15,7 +15,7 @@ import com.codahale.metrics.MetricRegistry
 import javax.servlet.http.{HttpServletResponse, HttpServletRequest}
 import org.pac4j.j2e.util.UserUtils
 import com.chicagof1.auth.AuthUtils
-import com.chicagof1.model.Championship
+import com.chicagof1.model.{ChampionshipSummary, Championship}
 
 class KartingResultsServlet(dataManager: DataManager) extends KartingResultsAppStack with FutureSupport {
   implicit val formats = org.json4s.DefaultFormats
@@ -102,22 +102,28 @@ class KartingResultsServlet(dataManager: DataManager) extends KartingResultsAppS
   }
 
   get("/standings") {
-    redirect("/standings/2014")
+    redirect("/standings/2015")
+  }
+
+  get("/championships") {
+    contentType = "text/html"
+    jade("championships")
+  }
+
+  get("/api/championships") {
+    new AsyncResult() {
+      override val is = Future {
+        contentType = "application/json"
+        val summaries = dataManager.championships.reverse.map(_.summary)
+        write(StandingList(summaries))
+      }
+    }
   }
 
   get("/standings/:championshipId") {
     contentType = "text/html"
     val championshipId = params("championshipId")
     ssp("standings", "championshipId" -> championshipId)
-  }
-
-  get("/api/standings") {
-    new AsyncResult() {
-      override val is = Future {
-        contentType = "application/json"
-        serializedStandings(dataManager.currentChampionship)
-      }
-    }
   }
 
   get("/api/standings/:championshipId") {
@@ -261,3 +267,5 @@ class KartingResultsServlet(dataManager: DataManager) extends KartingResultsAppS
 case class FacebookSerializedEvent(name: String, location: String, date: String, startTime: String, endTime: String, link: String)
 case class EventsResponse(events: Seq[FacebookSerializedEvent])
 case class MessageAndTrace(message: String, trace: List[String])
+
+case class StandingList(standings: Seq[ChampionshipSummary])

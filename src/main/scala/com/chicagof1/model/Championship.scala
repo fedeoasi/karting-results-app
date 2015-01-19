@@ -5,17 +5,30 @@ import org.json4s.jackson.JsonMethods._
 import org.json4s.JValue
 import scala.language.implicitConversions
 
-case class Championship(name: String, editions: Seq[EditionInChampionship], pointsSystem: PointsSystem, teams: List[Team]) {
+case class Championship(id: String, editions: Seq[EditionInChampionship], pointsSystem: PointsSystem, teams: List[Team]) {
   lazy val standings: Standings = new Standings(editions, pointsSystem, teams)
+  def name: String = s"Chicago F1 $id"
+  def summary: ChampionshipSummary = {
+    val leader = standings.orderedRacers.headOption.map(_._1).getOrElse("")
+    val size = editions.size
+    val completedSize = editions.count(_.happened)
+    val racerCount = standings.orderedRacers.size
+    ChampionshipSummary(id, name, leader, completedSize, size, racerCount, s"/standings/$id")
+  }
 }
 
 trait EditionInChampionship {
   def number: Int
   def name: String
+  def happened: Boolean
 }
 
-case class ReportedEditionInChampionship(number: Int, name: String, edition: Edition) extends EditionInChampionship
-case class NonReportedEditionInChampionship(number: Int, name: String) extends EditionInChampionship
+case class ReportedEditionInChampionship(number: Int, name: String, edition: Edition) extends EditionInChampionship {
+  override def happened: Boolean = true
+}
+case class NonReportedEditionInChampionship(number: Int, name: String) extends EditionInChampionship {
+  override def happened: Boolean = false
+}
 
 trait PointsSystem {
   def pointsForEdition(number: Int): Seq[Int]
@@ -115,3 +128,5 @@ class Standings(editions: Seq[EditionInChampionship], pointsSystem: PointsSystem
 }
 
 case class Standing(racer: String, editionNumber: Int, position: Int, kart: Int, points: Int)
+
+case class ChampionshipSummary(id: String, name: String, leader: String, completedSize: Int, size: Int, racerCount: Int, link: String)

@@ -4,13 +4,17 @@
 <div id="status">
     <span><img height="30px" src="/images/ajaxSpinner.gif"/>Loading standings...</span>
 </div>
-
 <div id="standingsPageTitle"></div>
 
 <div id="standingControls">
-    <button id="showPoints" class="btn btn-selected">Points</button>
-    <button id="showPosition" class="btn btn-unselected">Position</button>
-    <button id="showKart" class="btn btn-unselected">Kart #</button>
+    <div id="links">
+        <a href="/championships">Championship History</a>
+    </div>
+    <div id="links">
+        <button id="showPoints" class="btn btn-selected">Points</button>
+        <button id="showPosition" class="btn btn-unselected">Position</button>
+        <button id="showKart" class="btn btn-unselected">Kart #</button>
+    </div>
 </div>
 
 <div class="clear"></div>
