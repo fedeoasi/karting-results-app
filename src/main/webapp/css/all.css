@@ -519,3 +519,11 @@ h3.championshipTitle {
 .championshipValue {
     font-weight: 400;
 }
+
+#homeLogoDiv {
+    text-align: center;
+}
+
+.homeLogo {
+    max-width: 100%;
+}

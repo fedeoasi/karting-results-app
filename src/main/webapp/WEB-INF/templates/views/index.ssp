@@ -1,7 +1,7 @@
 <% attributes("title") = "Welcome to the Chicago F1 Group Page" %>
-
-<h1 class="pageTitle">Chicago F1 Group</h1>
-
+<div id="homeLogoDiv">
+    <img src="/images/logo-2015.png" class="homeLogo"></img>
+</div>
 <div class="panel-group" id="indexPanel">
   <div class="panel panel-default">
     <div id="historyHeading" class="panel-heading">
