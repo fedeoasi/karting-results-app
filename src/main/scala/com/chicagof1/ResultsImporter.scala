@@ -63,7 +63,7 @@ object ResultsImporter {
       case None =>
         rowMap.get("Gap") match {
           case Some(gap) => parseGap(gap)
-          case None => throw new IllegalStateException("Both Time and Gap are not defined")
+          case None => throw new IllegalStateException(s"Both Time and Gap are not defined ${rowMap}")
         }
     }
   }
