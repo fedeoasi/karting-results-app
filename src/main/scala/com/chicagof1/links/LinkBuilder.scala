@@ -34,6 +34,7 @@ object LinkBuilder {
     "KOR" -> "kr",
     "RUS" -> "ru",
     "POL" -> "pl",
-    "ROM" -> "ro"
+    "ROM" -> "ro",
+    "IND" -> "in"
   )
 }
