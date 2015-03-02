@@ -37,6 +37,11 @@ class KartingResultsServlet(dataManager: DataManager) extends KartingResultsAppS
     ssp("index")
   }
 
+  get("/photos") {
+    contentType = "text/html"
+    ssp("photos")
+  }
+
   get("/races/:id") {
     contentType = "text/html"
     val raceId = params("id")

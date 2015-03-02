@@ -1,0 +1,120 @@
+#instafeed {
+    text-align: center;
+}
+#instafeed .instagram_container {
+    margin: 1em auto 2em;
+}
+#instafeed .instagram_container .instagram_image {
+    width: 100%;
+}
+#instafeed .instagram_image_meta {
+    font-family: "Interstate Bold",sans-serif;
+}
+#instafeed .instagram_image_meta a {
+    text-decoration: none;
+}
+#instafeed .instagram_image_meta .instagram_image_meta_item {
+    background-color: #cccccc;
+    border-radius: 0 0 5px 5px;
+    display: inline-block;
+    height: 30px;
+    width: 49%;
+}
+#instafeed .instagram_image_meta .instagram_image_meta_item p {
+    margin: 0;
+}
+#instafeed .instagram_image_meta .instagram_image_meta_item a {
+    color: #7a7a7a;
+    display: block;
+    font-size: 0.8em;
+    height: 30px;
+    margin-top: 8px;
+    width: 100%;
+}
+#instafeed .instagram_image_meta .instagram_image_meta_item a:hover {
+    color: #353535;
+}
+#instafeed .instagram_image_meta .instagram_image_meta_item.caption {
+    background-color: transparent;
+    display: block;
+    font-family: Interstate Light,sans-serif;
+    font-size: 0.9em;
+    margin: 0.5em;
+    text-align: left;
+    width: 100%;
+}
+@media (min-width: 59em) {
+#instafeed .instagram_image_meta .instagram_image_meta_item.caption {
+    display: inline;
+}
+}
+#instafeed .instagram_image_meta .instagram_image_meta_item.owner {
+    background-color: transparent;
+    display: inline-block;
+    float: right;
+    font-size: 0.8em;
+    margin-top: 0.6em;
+    text-align: right;
+}
+#instafeed .instagram_image_meta .instagram_image_meta_item.owner a {
+    display: inline;
+    font-size: 0.9em;
+}
+#instafeed .instagram_image_meta .instagram_image_meta_item.owner .owner_profile_picture {
+    margin-top: -1px;
+    width: 20px;
+}
+@media (min-width: 59em) {
+#instafeed .instagram_image_meta .instagram_image_meta_item.owner {
+    margin-top: 10px;
+}
+#instafeed .instagram_image_meta .instagram_image_meta_item.owner a {
+    color: #7a7a7a;
+}
+}
+@media (min-width: 59em) {
+#instafeed .instagram_image_meta .instagram_image_meta_item {
+    background-color: transparent;
+    margin-right: 10px;
+    width: auto;
+}
+#instafeed .instagram_image_meta .instagram_image_meta_item a {
+    color: black;
+}
+#instafeed .instagram_image_meta .instagram_image_meta_item a::before {
+    color: #ff4e33;
+}
+}
+@media (min-width: 59em) {
+#instafeed .instagram_image_meta {
+    text-align: left;
+}
+}
+@media (min-width: 59em) {
+#instafeed {
+    margin: 0 auto;
+    max-width: 70%;
+    text-align: left;
+}
+}
+
+.icon-like img {
+    max-height: 15px;
+    max-width: 15px;
+}
+
+.icon-comment img {
+    max-height: 15px;
+    max-width: 15px;
+}
+
+#instacredits {
+    text-align: center;
+}
+
+.ig-b- { display: inline-block; }
+.ig-b- img { visibility: hidden; }
+.ig-b-:hover { background-position: 0 -60px; } .ig-b-:active { background-position: 0 -120px; }
+.ig-b-48 { width: 48px; height: 48px; background: url(//badges.instagram.com/static/images/ig-badge-sprite-48.png) no-repeat 0 0; }
+@media only screen and (-webkit-min-device-pixel-ratio: 2), only screen and (min--moz-device-pixel-ratio: 2), only screen and (-o-min-device-pixel-ratio: 2 / 1), only screen and (min-device-pixel-ratio: 2), only screen and (min-resolution: 192dpi), only screen and (min-resolution: 2dppx) {
+.ig-b-48 { background-image: url(//badges.instagram.com/static/images/ig-badge-sprite-48@2x.png); background-size: 60px 178px; } }</style>

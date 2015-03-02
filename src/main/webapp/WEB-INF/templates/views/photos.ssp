@@ -1,0 +1,47 @@
+<% attributes("title") = "Photos" %>
+<% attributes("headline") = "Photos" %>
+
+<script type="text/javascript" src="js/instafeed.min.js"></script>
+
+<h1 class="pageTitle">Photos</h1>
+
+<div id="instafeed"></div>
+
+<div id="instacredits">
+    <p>Our photo feed is powered by Instagram <a href="http://instagram.com/chicagof1?ref=badge" class="ig-b- ig-b-48"><img src="//badges.instagram.com/static/images/ig-badge-48.png" alt="Instagram" /></a></p>
+</div>
+
+<script type="text/javascript">
+var template = "<div id='{{id}}' class='instagram_container'>"
++ "<div id='{{id}}'>"
++ "<a href='{{link}}' target='_blank' title='{{caption}} by @{{model.user.username}}' >"
++ "<img src='{{image}}' alt='{{caption}} by @{{model.user.username}}' class='instagram_image' />"
++ "</a>"
++ "</div>"
++ "<div class='instagram_image_meta'>"
++ "<div class='likes instagram_image_meta_item'>"
++ "    <p><a class='icon-like' href='{{link}}' target='_blank' title='{{caption}}' >"
++ "    <img src='images/like.png'><span> {{likes}}</span></a></p>"
++ "</div>"
++ "<div class='comments instagram_image_meta_item'>"
++ "    <p><a class='icon-comment' href='{{link}}' target='_blank' title='{{caption}}' >"
++ "    <img src='images/comment.png'><span> {{comments}}</span></a></p>"
++ "</div>"
++ "<div class='owner instagram_image_meta_item'>"
++ "    <p><a href='http://instagram.com/{{model.user.username}}' target='_blank' title='{{model.user.full_name}}' >"
++ "        <img src='{{model.user.profile_picture}}' class='owner_profile_picture' />{{model.user.full_name}}</a></p>"
++ "    </div>"
++ "    <div class='caption instagram_image_meta_item'>"
++ "        <p>{{caption}}</p>"
++ "    </div>"
++ "</div>";
+
+var feed = new Instafeed({
+    get: 'tagged',
+    tagName: 'chicagof1',
+    resolution: 'standard_resolution',
+    clientId: '52c33b441f16421bbf020d5a2841165e',
+    template: template
+});
+feed.run();
+</script>
