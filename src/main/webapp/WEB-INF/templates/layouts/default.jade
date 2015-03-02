@@ -34,11 +34,14 @@ html
             li
               a(href="/photos") Photos
             li
-              a(href="/standings") Standings
-            li
-              a(href="/editions") Editions
-            li
-              a(href="/videos") Videos
+              a#dLabel(data-toggle="dropdown") Karting
+              ul.dropdown-menu
+                li
+                  a(href="/standings") Standings
+                li
+                  a(href="/editions") Editions
+                li
+                  a(href="/videos") Videos
           /.clear
           ul(id="menu" class="nav navbar-nav navbar-right")
             - if (user == null) {
