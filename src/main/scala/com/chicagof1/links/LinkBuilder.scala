@@ -1,6 +1,6 @@
 package com.chicagof1.links
 
-import com.chicagof1.model.SingleRacer
+import com.chicagof1.model._
 
 object LinkBuilder {
   def racerLink(name: String, racer: Option[SingleRacer]): String = {
@@ -11,6 +11,13 @@ object LinkBuilder {
       case None =>
         val flag = flagImg("USA")
         s"$flag$space<span class='racerNoLink'>$name</span>"
+    }
+  }
+
+  def editionLink(e: EditionInChampionship): String = {
+    e match {
+      case r: ReportedEditionInChampionship => s"<a class='standingEditionLink' href='/editions/${r.edition.date}'>${e.name}</a>"
+      case nr: NonReportedEditionInChampionship => s"<span>${e.name}</span>"
     }
   }
 

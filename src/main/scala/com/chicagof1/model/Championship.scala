@@ -1,5 +1,6 @@
 package com.chicagof1.model
 
+import com.chicagof1.links.LinkBuilder
 import org.json4s.JsonDSL._
 import org.json4s.jackson.JsonMethods._
 import org.json4s.JValue
@@ -119,7 +120,7 @@ class Standings(editions: Seq[EditionInChampionship], pointsSystem: PointsSystem
   def serialize(orderedRacerLinks: Seq[String]): String = {
     val json =
       ("racers" -> orderedRacerLinks) ~
-      ("editions" -> editions.map(_.name)) ~
+      ("editions" -> editions.map(e => LinkBuilder.editionLink(e))) ~
       ("data" -> orderedRacers.zipWithIndex.map {
         case ((r, p), pos) => racerPoints(r) :+ StandingResult(pos + 1, p, 0)
       })

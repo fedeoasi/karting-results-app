@@ -527,3 +527,11 @@ h3.championshipTitle {
 .homeLogo {
     max-width: 100%;
 }
+
+a.standingEditionLink {
+    color: #fff;
+}
+
+a.standingEditionLink:hover {
+    color: #ddd;
+}
