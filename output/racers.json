@@ -98,5 +98,8 @@
     {"id":97,"name":"Scott Jordan","aliases":[],"flag":"USA"},
     {"id":98,"name":"Xiaohe","aliases":[],"flag":"CHI"},
     {"id":99,"name":"Jialin","aliases":[],"flag":"CHI"},
-    {"id":100,"name":"Edward Hattersley","aliases":[],"flag":"USA"}
+    {"id":100,"name":"Edward Hattersley","aliases":[],"flag":"USA"},
+    {"id":101,"name":"Alex Godofsky","aliases":[],"flag":"USA"},
+    {"id":102,"name":"Brad Gambit","aliases":[],"flag":"USA"},
+    {"id":103,"name":"Kyler Juresic","aliases":[],"flag":"USA"}
 ]}
