@@ -53,24 +53,24 @@ class RacersAndStatsSpec extends FunSpec with Matchers {
     val racers = List(SingleRacer(1, "A", "USA"), SingleRacer(2, "B", "USA"), SingleRacer(3, "C", "USA"))
     val teams = List()
     val videos = List(
-      Video("a", "B", "2014-02-01", "Melrose")
+      Video("a", "B", "2015-02-01", "Melrose")
     )
     val dm = new InMemoryDataManager(Some(new ChicagoF1Data(
       racers,
       teams,
-      List(Race(LocalDate.parse("2014-01-01"), LocalTime.parse("20:00"),
+      List(Race(LocalDate.parse("2015-01-01"), LocalTime.parse("20:00"),
         Seq(
           RacerResult(RacerName("A"), 1, 10, 29.seconds + 0.millis),
           RacerResult(RacerName("B"), 2, 2, 29.seconds + 500.millis),
           RacerResult(RacerName("C"), 3, 4, 30.seconds + 0.millis)
         ))),
-      List(Edition(LocalDate.parse("2014-02-01"),
+      List(Edition(LocalDate.parse("2015-02-01"),
         Seq(
           RacerResult(RacerName("A"), 1, 10, 29.seconds + 200.millis),
           RacerResult(RacerName("C"), 2, 2, 29.seconds + 600.millis),
           RacerResult(RacerName("B"), 3, 4, 30.seconds + 0.millis)
       )),
-        Edition(LocalDate.parse("2014-03-01"),
+        Edition(LocalDate.parse("2015-03-01"),
           Seq(
             RacerResult(RacerName("A"), 1, 10, 29.seconds + 200.millis),
             RacerResult(RacerName("B"), 2, 2, 29.seconds + 600.millis),
