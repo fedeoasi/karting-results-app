@@ -46,7 +46,8 @@ class DataManagerSpec extends FunSpec with Matchers {
       val champ = baseDataManager.buildMonthlyChampionship(
         "Chicago F1 2012",
         LocalDate.parse("2012-01-01"),
-        LocalDate.parse("2012-12-01"))
+        LocalDate.parse("2012-12-01"),
+        new ChicagoF12014PointsSystem)
       champ.editions.size should be(12)
       champ.editions.foreach(_.isInstanceOf[NonReportedEditionInChampionship] should be(true))
     }
@@ -55,7 +56,8 @@ class DataManagerSpec extends FunSpec with Matchers {
       val champ = baseDataManager.buildMonthlyChampionship(
         "Chicago F1 2013",
         LocalDate.parse("2013-01-01"),
-        LocalDate.parse("2013-12-01"))
+        LocalDate.parse("2013-12-01"),
+        new ChicagoF12014PointsSystem)
       champ.editions.size should be(12)
       champ.editions(0) should be(ReportedEditionInChampionship(1, "Jan", edition1))
       champ.editions(1) should be(ReportedEditionInChampionship(2, "Feb", edition2))
@@ -67,7 +69,8 @@ class DataManagerSpec extends FunSpec with Matchers {
       val champ = baseDataManager.buildMonthlyChampionship(
         "Chicago F1 2013",
         LocalDate.parse("2013-01-01"),
-        LocalDate.parse("2013-12-01"))
+        LocalDate.parse("2013-12-01"),
+        new ChicagoF12014PointsSystem)
       champ.editions.size should be(12)
       val pointsFirstEdition = champ.pointsSystem.pointsForEdition(1)
       pointsFirstEdition.size should be(20)
@@ -81,8 +84,6 @@ class DataManagerSpec extends FunSpec with Matchers {
       pointsLastEdition.size should be(20)
       pointsLastEdition(0) should be(20)
       pointsLastEdition(19) should be(1)
-      val pointsAfterLastEdition = champ.pointsSystem.pointsForEdition(13)
-      pointsAfterLastEdition.size should be(0)
     }
 
     it("should build the race - edition relationship") {

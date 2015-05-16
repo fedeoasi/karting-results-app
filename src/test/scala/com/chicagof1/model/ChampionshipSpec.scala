@@ -28,7 +28,7 @@ class ChampionshipSpec extends FunSpec with Matchers {
       ReportedEditionInChampionship(2, "Feb", Edition(LocalDate.parse("2014-02-11"), febRes)),
       ReportedEditionInChampionship(3, "Mar", Edition(LocalDate.parse("2014-02-11"), marRes)),
       NonReportedEditionInChampionship(4, "Apr")),
-    new ChicagoF1PointsSystem(3),
+    new ChicagoF12014PointsSystem,
     List()
   )
 

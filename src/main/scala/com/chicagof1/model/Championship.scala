@@ -37,19 +37,29 @@ trait PointsSystem {
 
 case class StandingResult(position: Int, points: Int, kart: Int)
 
-class ChicagoF1PointsSystem(n: Int) extends PointsSystem {
+class ChicagoF12014PointsSystem() extends PointsSystem {
   val basePoints = 20.to(1, -1).toSeq
 
   def pointsForEdition(number: Int): Seq[Int] = {
     if(number == 1 || number == 11) {
       basePoints.map(_ * 2)
-    } else if(number > 1 && number <= n) {
+    } else if(number > 1) {
       basePoints
     } else {
       Seq.empty[Int]
     }
   }
 }
+
+class ChicagoF12015PointsSystem() extends PointsSystem {
+  val basePoints = 20.to(1, -1).toSeq
+
+  def pointsForEdition(number: Int): Seq[Int] = {
+    require(number > 0)
+    basePoints
+  }
+}
+
 
 class EmptyPointsSystem extends PointsSystem {
   def pointsForEdition(number: Int): Seq[Int] = Seq.empty[Int]

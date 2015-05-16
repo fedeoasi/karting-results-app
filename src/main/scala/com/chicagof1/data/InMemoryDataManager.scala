@@ -18,7 +18,7 @@ trait DataManager {
   def currentChampionship: Championship
   def championship(id: String): Option[Championship]
   def championships: Seq[Championship]
-  def buildMonthlyChampionship(name: String, start: LocalDate, stop: LocalDate): Championship
+  def buildMonthlyChampionship(name: String, start: LocalDate, stop: LocalDate, pointsSystem: PointsSystem): Championship
   def buildEditionsWithRaces(): List[EditionWithRaces]
   def racerStatsFor(name: String): RacerWithStats
   def racerLink(name: String): String
@@ -48,11 +48,13 @@ case class InMemoryDataManager(optionalData: Option[ChicagoF1Data] = None) exten
     val championship2014 = buildMonthlyChampionship(
       "2014",
       LocalDate.parse("2014-01-01"),
-      LocalDate.parse("2014-11-30"))
+      LocalDate.parse("2014-11-30"),
+      new ChicagoF12014PointsSystem)
     val championship2015 = buildMonthlyChampionship(
       "2015",
       LocalDate.parse("2015-01-01"),
-      LocalDate.parse("2015-11-30"))
+      LocalDate.parse("2015-11-30"),
+    new ChicagoF12015PointsSystem)
     val tuples = Seq(championship2014, championship2015).map { c => c.id -> c}
     SortedMap(tuples: _*)
   }
@@ -65,7 +67,7 @@ case class InMemoryDataManager(optionalData: Option[ChicagoF1Data] = None) exten
     championshipMap("2015")
   }
 
-  override def buildMonthlyChampionship(id: String, start: LocalDate, stop: LocalDate): Championship = {
+  override def buildMonthlyChampionship(id: String, start: LocalDate, stop: LocalDate, pointsSystem: PointsSystem): Championship = {
     val months = DateUtils.monthsBetween(start.toDateTimeAtStartOfDay, stop.toDateTimeAtStartOfDay)
     val champEditions = months.zipWithIndex.map {
       case (m, i) =>
@@ -76,7 +78,7 @@ case class InMemoryDataManager(optionalData: Option[ChicagoF1Data] = None) exten
           case None => NonReportedEditionInChampionship(i + 1, name)
         }
     }
-    Championship(id, champEditions, new ChicagoF1PointsSystem(months.size), teams)
+    Championship(id, champEditions, pointsSystem, teams)
   }
 
   override def buildEditionsWithRaces(): List[EditionWithRaces] = {
