@@ -42,6 +42,8 @@ object LinkBuilder {
     "RUS" -> "ru",
     "POL" -> "pl",
     "ROM" -> "ro",
-    "IND" -> "in"
+    "IND" -> "in",
+    "AZE" -> "az",
+    "GRE" -> "gr"
   )
 }
