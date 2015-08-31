@@ -109,5 +109,10 @@
     {"id":108,"name":"Geng Niu","aliases":[],"flag":"CHI"},
     {"id":109,"name":"Alay Mansurov","aliases":[],"flag":"AZE"},
     {"id":110,"name":"Ian Shen","aliases":[],"flag":"GRE"},
-    {"id":111,"name":"Konstantin Andreev","aliases":[],"flag":"RUS"}
+    {"id":111,"name":"Konstantin Andreev","aliases":[],"flag":"RUS"},
+    {"id":112,"name":"Chuck Raymond","aliases":[],"flag":"USA"},
+    {"id":113,"name":"Trevor Raymond","aliases":[],"flag":"USA"},
+    {"id":114,"name":"Yuxiang","aliases":[],"flag":"CHI"},
+    {"id":115,"name":"Gae","aliases":[],"flag":"CHI"},
+    {"id":116,"name":"Arende Dare","aliases":[],"flag":"NIG"}
 ]}
