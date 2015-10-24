@@ -45,6 +45,7 @@ object LinkBuilder {
     "IND" -> "in",
     "AZE" -> "az",
     "GRE" -> "gr",
-    "NIG" -> "ng"
+    "NIG" -> "ng",
+    "SWE" -> "se"
   )
 }

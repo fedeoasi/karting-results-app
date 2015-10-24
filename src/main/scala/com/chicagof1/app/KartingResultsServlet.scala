@@ -1,5 +1,6 @@
 package com.chicagof1.app
 
+import com.chicagof1.utils.FileUtils
 import org.json4s.jackson.JsonMethods._
 import org.json4s.jackson.Serialization.write
 import org.json4s.JsonDSL._
@@ -136,12 +137,22 @@ class KartingResultsServlet(dataManager: DataManager) extends KartingResultsAppS
       override val is = Future {
         contentType = "application/json"
         val championshipId = params("championshipId")
-        dataManager.championship(championshipId) match {
-          case Some(c) => serializedStandings(c)
-          case None => NotFound(s"No championship with id $championshipId")
+        val cachedStandings = findSerializedStandings(championshipId)
+        cachedStandings.orElse(computeStandings(championshipId)).map { s =>
+          Ok(s)
+        }.getOrElse {
+          NotFound(s"No championship with id $championshipId")
         }
       }
     }
+  }
+
+  def findSerializedStandings(championshipId: String): Option[String] = {
+    FileUtils.loadFileIntoStringOption(s"serializedStandings/$championshipId-standings.json")
+  }
+
+  def computeStandings(championshipId: String): Option[String] = {
+    dataManager.championship(championshipId).map(serializedStandings)
   }
 
   private def serializedStandings(championship: Championship): String = {

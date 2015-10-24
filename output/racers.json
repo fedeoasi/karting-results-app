@@ -114,5 +114,8 @@
     {"id":113,"name":"Trevor Raymond","aliases":[],"flag":"USA"},
     {"id":114,"name":"Yuxiang","aliases":[],"flag":"CHI"},
     {"id":115,"name":"Gae","aliases":[],"flag":"CHI"},
-    {"id":116,"name":"Arende Dare","aliases":[],"flag":"NIG"}
+    {"id":116,"name":"Arende Dare","aliases":[],"flag":"NIG"},
+    {"id":117,"name":"Abhay Saxena","aliases":[],"flag":"IND"},
+    {"id":118,"name":"John Alexanderson","aliases":[],"flag":"SWE"},
+    {"id":119,"name":"Chris Husinga","aliases":[],"flag":"USA"}
 ]}

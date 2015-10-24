@@ -74,6 +74,9 @@ function buildBody(racers, editions, data) {
             }
             var tdClass = colorClass(position)
             var pointsToDisplay = renderReading(reading, position, displayedProperty);
+            if (positionAndPoints.removed) {
+                pointsToDisplay = '<strike>' + pointsToDisplay + '</strike>';
+            }
             row.append($('<td class="points ' + tdClass + ' ' + pointsTotalClass + '">' + pointsToDisplay + "</td>"));
         });
         body.append(row);

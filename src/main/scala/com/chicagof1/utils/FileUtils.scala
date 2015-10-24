@@ -6,6 +6,10 @@ import grizzled.slf4j.Logging
 
 object FileUtils extends Logging {
   def loadFileIntoString(path: String): String = {
+    loadFileIntoStringOption(path).getOrElse("")
+  }
+
+  def loadFileIntoStringOption(path: String): Option[String] = {
     debug("Opening resource at path: " + path)
     val classLoader = Thread.currentThread().getContextClassLoader
     val optionalStream = Option(classLoader.getResourceAsStream(path))
@@ -22,7 +26,7 @@ object FileUtils extends Logging {
           error("Error while processing resource: " + path.toString, t)
           None
       }
-    }.getOrElse("")
+    }
   }
 
   def loadStringsFromFiles(filenames: String*): Seq[String] = {
