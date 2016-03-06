@@ -117,5 +117,11 @@
     {"id":116,"name":"Arende Dare","aliases":[],"flag":"NIG"},
     {"id":117,"name":"Abhay Saxena","aliases":[],"flag":"IND"},
     {"id":118,"name":"John Alexanderson","aliases":[],"flag":"SWE"},
-    {"id":119,"name":"Chris Husinga","aliases":[],"flag":"USA"}
+    {"id":119,"name":"Chris Husinga","aliases":[],"flag":"USA"},
+    {"id":120,"name":"Brad Bauer","aliases":[],"flag":"USA"},
+    {"id":121,"name":"Jordan Farber","aliases":[],"flag":"USA"},
+    {"id":122,"name":"Matas Rasikas","aliases":[],"flag":"LIT"},
+    {"id":123,"name":"John D Said","aliases":[],"flag":"USA"},
+    {"id":124,"name":"Allen Twillie","aliases":[],"flag":"USA"},
+    {"id":125,"name":"Kyler","aliases":[],"flag":"USA"}
 ]}
