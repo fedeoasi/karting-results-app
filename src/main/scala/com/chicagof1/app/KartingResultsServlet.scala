@@ -108,7 +108,7 @@ class KartingResultsServlet(dataManager: DataManager) extends KartingResultsAppS
   }
 
   get("/standings") {
-    redirect("/standings/2015")
+    redirect("/standings/2016")
   }
 
   get("/championships") {

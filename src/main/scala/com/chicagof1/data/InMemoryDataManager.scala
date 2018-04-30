@@ -55,7 +55,12 @@ case class InMemoryDataManager(optionalData: Option[ChicagoF1Data] = None) exten
       LocalDate.parse("2015-01-01"),
       LocalDate.parse("2015-11-30"),
     new ChicagoF12015PointsSystem)
-    val tuples = Seq(championship2014, championship2015).map { c => c.id -> c}
+    val championship2016 = buildMonthlyChampionship(
+      "2016",
+      LocalDate.parse("2016-03-01"),
+      LocalDate.parse("2016-11-30"),
+    new ChicagoF12015PointsSystem)
+    val tuples = Seq(championship2014, championship2015, championship2016).map { c => c.id -> c}
     SortedMap(tuples: _*)
   }
 

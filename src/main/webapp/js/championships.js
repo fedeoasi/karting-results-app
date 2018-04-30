@@ -25,8 +25,6 @@ function renderChampionship(data) {
     });
     championshipDiv.append($('<img class="championshipLogo" src="images/chicagof1-logo-' + data.id + '.png"></img>'));
     championshipDiv.append($('<h3 class="championshipTitle">' + data.name + '</h3>'));
-    championshipDiv.append($('<span class="championshipKey">Leader</span>'));
-    championshipDiv.append($('<p class="championshipValue">' + data.leader + '</p>'));
     championshipDiv.append($('<span class="championshipKey">Completion</span>'));
     championshipDiv.append($('<p class="championshipValue">' + renderCompletion(data) + '</p>'));
     championshipDiv.append($('<span class="championshipKey">Number of Participants</span>'));
