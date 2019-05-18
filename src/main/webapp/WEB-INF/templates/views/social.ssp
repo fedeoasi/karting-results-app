@@ -1,11 +1,11 @@
 <div id="socialContent">
-    <div id="fbBoxDiv">
-        <div id="fb-box" class="fb-like-box" style="float:left; margin-right:10px;" data-width="550" data-height=800 data-href="http://www.facebook.com/ChicagoF1" data-colorscheme="dark"
-             data-show-faces="false" data-header="true" data-stream="true" data-show-border="true"></div>
-    </div>
+    <%--<div id="fbBoxDiv">--%>
+        <%--<div id="fb-box" class="fb-like-box" style="float:left; margin-right:10px;" data-width="550" data-height=800 data-href="https://www.facebook.com/groups/143526806043383" data-colorscheme="dark"--%>
+             <%--data-show-faces="false" data-header="true" data-stream="true" data-show-border="true"></div>--%>
+    <%--</div>--%>
     <div id="twitterDiv">
         <div id="twitter-div">
-            <a id="twitter-box" class="twitter-timeline"  href="https://twitter.com/ChicagoFormula1"  data-widget-id="422049565269716992">Tweets by @ChicagoFormula1</a>
+            <a id="twitter-box" class="twitter-timeline"  href="https://twitter.com/ChicagoF1Fans"  data-widget-id="422049565269716992">Tweets by @ChicagoFormula1</a>
             <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+"://platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
         </div>
     </div>
@@ -18,4 +18,4 @@
     }(document, 'script', 'facebook-jssdk'));</script>
 </div>
 
-<script src='/js/socialResize.js'></script>
+<%--<script src='/js/socialResize.js'></script>--%>
