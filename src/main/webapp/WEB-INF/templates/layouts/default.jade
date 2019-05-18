@@ -30,10 +30,6 @@ html
             li
               a(href="/") Home
             li
-              a(href="/events") Events
-            li
-              a(href="/photos") Photos
-            li
               a#dLabel(data-toggle="dropdown") Karting
               ul.dropdown-menu
                 li
@@ -43,18 +39,5 @@ html
                 li
                   a(href="/videos") Videos
           /.clear
-          ul(id="menu" class="nav navbar-nav navbar-right")
-            - if (user == null) {
-              li
-                a(href="/login") Login
-            - } else {
-              li
-                a#dLabel(data-toggle="dropdown")= AuthUtils.fullName(user)
-                ul.dropdown-menu
-                  li
-                    a(href="/user/profile") My Profile
-                  li
-                    a(href="/logout") Logout
-            - }
     #mainContent.container-fluid.jumbo
       != body
