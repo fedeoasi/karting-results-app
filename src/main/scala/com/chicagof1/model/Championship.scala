@@ -60,6 +60,16 @@ class ChicagoF12015PointsSystem() extends PointsSystem {
   }
 }
 
+class FormulaOnePointsSystem extends PointsSystem {
+  //noinspection ScalaStyle
+  val basePoints = Seq(25, 18, 15, 12, 10, 8, 6, 4, 2, 1)
+
+  def pointsForEdition(number: Int): Seq[Int] = {
+    require(number > 0)
+    basePoints
+  }
+}
+
 
 class EmptyPointsSystem extends PointsSystem {
   def pointsForEdition(number: Int): Seq[Int] = Seq.empty[Int]

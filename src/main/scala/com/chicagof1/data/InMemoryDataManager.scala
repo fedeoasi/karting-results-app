@@ -6,6 +6,7 @@ import com.chicagof1.utils.DateUtils
 import scala.language.postfixOps
 import com.chicagof1.links.LinkBuilder
 import scala.collection.immutable.SortedMap
+import grizzled.slf4j.Logging
 
 trait DataManager {
   def racers: List[SingleRacer]
@@ -27,7 +28,7 @@ trait DataManager {
   def reload(): Unit
 }
 
-case class InMemoryDataManager(optionalData: Option[ChicagoF1Data] = None) extends DataManager {
+case class InMemoryDataManager(optionalData: Option[ChicagoF1Data] = None) extends DataManager with Logging {
   private var data: ChicagoF1Data = optionalData.getOrElse(DataProvider.loadData())
   private val sc = new StatsCalculator
   private val racersById: Map[Int, SingleRacer] = data.racers.map(r => r.id -> r).toMap
@@ -59,8 +60,13 @@ case class InMemoryDataManager(optionalData: Option[ChicagoF1Data] = None) exten
       "2016",
       LocalDate.parse("2016-03-01"),
       LocalDate.parse("2016-11-30"),
-    new ChicagoF12015PointsSystem)
-    val tuples = Seq(championship2014, championship2015, championship2016).map { c => c.id -> c}
+      new ChicagoF12015PointsSystem)
+    val championship2019 = buildMonthlyChampionship(
+      "2019",
+      LocalDate.parse("2019-05-01"),
+      LocalDate.parse("2019-10-31"),
+      new FormulaOnePointsSystem)
+    val tuples = Seq(championship2014, championship2015, championship2016, championship2019).map { c => c.id -> c}
     SortedMap(tuples: _*)
   }
 
@@ -69,7 +75,7 @@ case class InMemoryDataManager(optionalData: Option[ChicagoF1Data] = None) exten
   override def championships: Seq[Championship] = championshipMap.values.toSeq
 
   lazy val currentChampionship: Championship = {
-    championshipMap("2015")
+    championshipMap("2019")
   }
 
   override def buildMonthlyChampionship(id: String, start: LocalDate, stop: LocalDate, pointsSystem: PointsSystem): Championship = {
