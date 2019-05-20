@@ -40,6 +40,7 @@ object LinkBuilder {
     "FRA" -> "fr",
     "KOR" -> "kr",
     "RUS" -> "ru",
+    "PRC" -> "pr",
     "POL" -> "pl",
     "ROM" -> "ro",
     "IND" -> "in",
